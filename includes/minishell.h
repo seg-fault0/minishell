@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:39:39 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 13:55:10 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,21 @@
 # define STACK 0
 # define HEAP 1
 
+typedef	struct s_parsed
+{
+	char	***cmd;
+}t_parsed;
+
+
 typedef struct s_cmd
 {
 	char	**paths;
-	char	***cmd;
 }t_cmd;
 
 typedef struct s_ms
 {
 	t_cmd		cmd;
+	t_parsed	parse;
 	char		**env;
 	const char	*input;
 }t_ms;

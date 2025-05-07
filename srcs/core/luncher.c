@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:47:57 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 13:55:29 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static BOOL ft_redline(t_ms *ms)
 
 void	reset_prompt(t_ms *ms)
 {
-	free3(ms->cmd.cmd, HEAP);
+	free3(ms->parse.cmd, HEAP);
 }
 
 void	ft_luncher(t_ms *ms)

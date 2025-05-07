@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:46:35 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 13:55:53 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	ft_parse(t_ms *ms)
 	tmp_cmd = ft_split(ms->input, '|');
 	i = 0;
 	while (tmp_cmd[i++]);
-	ms->cmd.cmd = malloc((i + 1) * sizeof(char **));
-	if (!ms->cmd.cmd)
+	ms->parse.cmd = malloc((i + 1) * sizeof(char **));
+	if (!ms->parse.cmd)
 		return (free2(tmp_cmd, HEAP));
 	i = -1;
 	while (tmp_cmd[++i])
-		ms->cmd.cmd[i] = ft_split(tmp_cmd[i], ' ');
-	ms->cmd.cmd[i] = NULL;
+		ms->parse.cmd[i] = ft_split(tmp_cmd[i], ' ');
+	ms->parse.cmd[i] = NULL;
 	free2(tmp_cmd, HEAP);
 }
