@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:57:35 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 14:16:54 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 14:41:25 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static void add_path(t_ms *ms)
 	int		j;
 
 	i = -1;
-	while (ms->parse.cmd[++i])
+	while (ms->cmd.cmd[++i])
 	{
 		j = -1;
 		while(ms->cmd.paths[++j])
 		{
-			tmp = ft_strjoin(ms->cmd.paths[j], ms->parse.cmd[i][0]);
+			tmp = ft_strjoin(ms->cmd.paths[j], ms->cmd.cmd[i][0]);
 			if (access(tmp, X_OK) == 0)
 			{
 				free(ms->parse.cmd[i][0]);
-				ms->parse.cmd[i][0] = tmp;
+				ms->cmd.cmd[i][0] = tmp;
 				break ;
 			}
 			free(tmp);
@@ -38,5 +38,8 @@ static void add_path(t_ms *ms)
 
 void	init_cmd(t_ms *ms)
 {
+	ms->cmd.counter = char_counter(ms->input, '|') + 1;
+	ms->cmd.counter = 0;
+	ms->cmd.cmd = ms->parse.cmd;
 	add_path(ms);
 }

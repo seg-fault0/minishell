@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 14:19:57 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 14:40:22 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef	struct s_parsed
 typedef struct s_cmd
 {
 	char	**paths;
+	char	***cmd;
+	int		counter;
+	int		max_counter;
 }t_cmd;
 
 typedef struct s_ms
