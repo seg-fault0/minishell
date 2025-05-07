@@ -1,15 +1,17 @@
-SRCS    = srcs/main.c
+SRCS	= srcs/main.c
 
-OBJS    = $(SRCS:srcs/%.c=objs/%.o)
+OBJS	= $(SRCS:srcs/%.c=objs/%.o)
 
-NAME    = minishell
+NAME	= minishell
 
-I       = -I includes/
+I		= -I includes/
+
+L		= -lreadline -lc
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	cc $(OBJS) -o $(NAME)
+	cc $< $(L) -o $@
 
 objs/%.o: srcs/%.c includes/minishell.h | objs/
 	cc -c $(I) $< -o $@

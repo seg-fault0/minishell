@@ -6,14 +6,23 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:36:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 10:36:54 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 10:54:00 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "minishell.h"
 
+void	ft_luncher()
+{
+	char	*input;
+
+	while (TRUE)
+	{
+		input = readline(PROMPT);
+	}
+}
+
 int main()
 {
-	printf("Hello World\n");
-	return (0);
+	ft_luncher();
 }
