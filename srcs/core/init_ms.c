@@ -6,47 +6,49 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:04:42 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 12:22:05 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 13:20:35 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void get_paths(t_ms *ms)
+static char **get_paths(char **env)
 {
+	char	**paths;
 	char	*path_str;
-	char	*tmp;
 	int		i;
 
-	i = -1;
 	path_str = NULL;
-	while (ms->env[++i])
+	paths = NULL;
+	i = -1;
+	while (env[++i])
 	{
-		if (ft_memcmp(ms->env[i], "PATH=", 5) == 0)
+		if (ft_memcmp(env[i], "PATH=", 5) == 0)
 		{
-			path_str = ms->env[i] + 5;
+			path_str = env[i] + 5;
 			break ;
 		}
 	}
 	if (!path_str)
-		return ;
-	ms->cmd.paths = ft_split(path_str, ':');
+		return (NULL);
+	paths = ft_split(path_str, ':');
 	i = -1;
-	while (ms->cmd.paths[++i])
+	while (paths[++i])
 	{
-		tmp = ms->cmd.paths[i];
-		if (tmp[ft_strlen(tmp) - 1] != '/')
+		path_str = paths[i];
+		if (path_str[ft_strlen(path_str) - 1] != '/')
 		{
-			ms->cmd.paths[i] = ft_strjoin(tmp, "/");
-			free(tmp);
+			paths[i] = ft_strjoin(path_str, "/");
+			free(path_str);
 		}
-	}	
+	}
+	return (paths);
 }
 
 BOOL	init_struct(t_ms *ms, char **env)
 {
 	ft_memset(ms, 0, sizeof(t_ms));
 	ms->env = env;
-	get_paths(ms);
+	ms->cmd.paths = get_paths(env);
 	return (TRUE);
 }
