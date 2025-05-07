@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 11:51:28 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 12:02:42 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,5 @@ static BOOL ft_redline(t_ms *ms)
 
 void	ft_luncher(t_ms *ms)
 {
-	(void) ms;
-	while (ft_redline(ms) == TRUE)
-	{
-		//init_cmd(ms);
-	}
+	while (ft_redline(ms) == TRUE);
 }
