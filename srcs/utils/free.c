@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 10:36:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 12:04:58 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/07 12:22:49 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/07 12:25:23 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-int main(int ac, char **av, char **env)
+void free2(char **arr)
 {
-	t_ms	ms;
+	int	i;
 	
-	(void) ac;
-	(void) av;
-	if (init_struct(&ms, env) == FALSE)
-		return (1);
-	ft_luncher(&ms);
-	ft_exit(&ms);
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
 }
