@@ -6,61 +6,53 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:26:33 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 15:41:34 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-void	fd_manager(t_ms *ms, int rfd, int wfd)
+void	ft_fdmanager(t_ms *ms, int rfd, int *pfd)
 {
-	if (dup2(rfd, STDIN) == -1)
-		return(err_msg(ERR_DUP2_F), exit(0));
-	if (ms->cmd.counter == ms->cmd.max_counter - 1)
-	{
-		if (dup2(0, STDOUT) == -1)
-			return(err_msg(ERR_DUP2_F), exit(0));
-	}
-	else
-	{
-		if (dup2(wfd, STDOUT) == -1)
-			return(err_msg(ERR_DUP2_F), exit(0));
-	}
+	dup2(rfd, 0);
+	close(rfd);
+	if (ms->cmd.counter < ms->cmd.max_counter - 1)
+		dup2(pfd[1], 1);
 }
 
-static void	ft_chiled(t_ms *ms, int rfd, int *pfd)
+void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 {
-	int	count;
-	int	failed;
+	char	**tmp;
+	int		status;
 
-	fd_manager(ms, rfd, pfd[1]);
-	count = ms->cmd.counter;
-	close (rfd);
-	close_pipe(pfd);
-	failed = execve(ms->cmd.cmd[count][0], ms->cmd.cmd[count], ms->env);
-	if (failed == -1)
-		return(err_msg(ERR_EXECVE_F), exit(127));
+	ft_fdmanager(ms, rfd, pfd);
+	tmp = ms->cmd.cmd[ms->cmd.counter];
+	status = execve(tmp[0], tmp, ms->env);
+	if (status == -1)
+		err_msg(ERR_EXECVE_F);
+	exit(0);
 }
 
 void	ft_exe(t_ms *ms, int rfd)
 {
 	int	pfd[2];
 	int	pid;
-	
+
 	if (ms->cmd.counter == ms->cmd.max_counter)
 		return ;
 	if (pipe(pfd) == -1)
-		return (err_msg(ERR_PIPE_F));
+		err_msg(ERR_PIPE_F);
 	pid = fork();
 	if (pid == -1)
-		return (err_msg(ERR_FORK_F));
-	else if (pid == 0)
+		err_msg(ERR_FORK_F);
+	if (pid == 0)
 		ft_chiled(ms, rfd, pfd);
 	else
 	{
-		close_pipe((int []){pfd[1], rfd});
 		ms->cmd.counter++;
+		close(pfd[1]);
 		ft_exe(ms, pfd[0]);
 		close(pfd[0]);
+		wait(NULL);
 	}
 }
