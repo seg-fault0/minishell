@@ -16,7 +16,7 @@ SRCS =	srcs/core/main.c		\
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)
 
 NAME	= minishell
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror -g
 I		= -I includes/
 L		= -lreadline -lc
 

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:05:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:11:23 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 15:21:52 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ void	err_msg(int msg)
 	else if (msg == ERR_FORK_F)
 		ft_putstr_fd("ERR : fork failed\n", 2);
 	else if (msg == ERR_EXECVE_F)
-		ft_putstr_fd("ERR : execve failed\n", 2);	
+		ft_putstr_fd("ERR : execve failed\n", 2);
+	else if (msg == ERR_DUP2_F)
+		ft_putstr_fd("ERR : dup2 failed\n", 2);
 }

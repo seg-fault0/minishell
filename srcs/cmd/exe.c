@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:11:35 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 15:26:33 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 void	fd_manager(t_ms *ms, int rfd, int wfd)
 {
 	if (dup2(rfd, STDIN) == -1)
-		exit(0);
+		return(err_msg(ERR_DUP2_F), exit(0));
 	if (ms->cmd.counter == ms->cmd.max_counter - 1)
 	{
 		if (dup2(0, STDOUT) == -1)
-			exit(0);
+			return(err_msg(ERR_DUP2_F), exit(0));
 	}
 	else
 	{
 		if (dup2(wfd, STDOUT) == -1)
-			ft_exit(ms);
+			return(err_msg(ERR_DUP2_F), exit(0));
 	}
 }
 
@@ -37,7 +37,7 @@ static void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	count = ms->cmd.counter;
 	close (rfd);
 	close_pipe(pfd);
-	failed = execve(ms->cmd.cmd[count][0], ms->cmd.cmd[count], NULL);
+	failed = execve(ms->cmd.cmd[count][0], ms->cmd.cmd[count], ms->env);
 	if (failed == -1)
 		return(err_msg(ERR_EXECVE_F), exit(127));
 }

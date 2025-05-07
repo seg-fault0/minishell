@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:57:35 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 14:41:25 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 15:19:18 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void add_path(t_ms *ms)
 
 void	init_cmd(t_ms *ms)
 {
-	ms->cmd.counter = char_counter(ms->input, '|') + 1;
+	ms->cmd.max_counter = char_counter(ms->input, '|') + 1;
 	ms->cmd.counter = 0;
 	ms->cmd.cmd = ms->parse.cmd;
 	add_path(ms);

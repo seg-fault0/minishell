@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:10:38 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 15:21:33 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define ERR_PIPE_F 2
 # define ERR_FORK_F 3
 # define ERR_EXECVE_F 4
+# define ERR_DUP2_F 5
 
 typedef	struct s_parsed
 {
