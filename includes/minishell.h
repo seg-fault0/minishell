@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 11:00:21 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 11:14:42 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -26,5 +27,9 @@
 # define BOOL unsigned sort
 
 void	ft_exit();
+
+//libft
+char	**ft_split(char const *s, char c);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif
