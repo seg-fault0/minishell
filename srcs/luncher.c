@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   luncher.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 10:36:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 11:31:49 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/07 11:33:11 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-BOOL	init_struct(t_ms *ms, char **env)
+static BOOL ft_redline()
 {
-	ft_memset(ms, 0, sizeof(t_ms));
-	ms->env = env;
+	const char *input;
+
+	input = readline(PROMPT);
+	if (!input)
+		return (FALSE);
+	add_history(input);
 	return (TRUE);
 }
 
-int main(int ac, char **av, char **env)
+void	ft_luncher(t_ms *ms)
 {
-	t_ms	ms;
-	
-	(void) ac;
-	(void) av;
-	if (init_struct(&ms, env) == FALSE)
-		return (1);
-	ft_luncher(&ms);
-	ft_exit();
+	(void) ms;
+	while (ft_redline() == TRUE);
 }
