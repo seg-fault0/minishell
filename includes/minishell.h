@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:55:10 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 14:19:57 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -32,6 +33,7 @@
 typedef	struct s_parsed
 {
 	char	***cmd;
+	int		cmd_nbr;
 }t_parsed;
 
 
@@ -53,12 +55,16 @@ BOOL	init_struct(t_ms *ms, char **env);
 void	ft_luncher(t_ms *ms);
 void	ft_exit(t_ms *ms);
 
-//cmd
+//parse
 void	ft_parse(t_ms *ms);
+
+//cmd
+void	init_cmd(t_ms *ms);
 
 //utils
 void	free2(char **arr, int c);
 void	free3(char ***arr, int c);
+size_t	char_counter(const char *str, int c);
 
 //libft
 char	**ft_split(char const *s, char c);

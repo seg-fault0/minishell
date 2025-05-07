@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars.c                                             :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 14:22:08 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/07 14:07:36 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/07 14:21:13 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_parse(t_ms *ms)
+size_t	char_counter(const char *str, int c)
 {
-	char	**tmp_cmd;
-	int		i;
+	size_t counter;
 	
-	ms->parse.cmd_nbr = char_counter(ms->input, '|') + 1;
-	ms->parse.cmd = malloc((ms->parse.cmd_nbr + 1) * sizeof(char **));
-	if (!ms->parse.cmd)
-		return ;
-	tmp_cmd = ft_split(ms->input, '|');
-	if (!tmp_cmd)
-		return (free(ms->parse.cmd));
-	i = -1;
-	while (tmp_cmd[++i])
-		ms->parse.cmd[i] = ft_split(tmp_cmd[i], ' ');
-	ms->parse.cmd[i] = NULL;
-	free2(tmp_cmd, HEAP);
+	counter = 0;
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		if (*str == c)
+			counter++;
+		str++;
+	}
+	return (counter);
 }
