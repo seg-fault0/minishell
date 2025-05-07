@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:03:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 15:11:35 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ static void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	close_pipe(pfd);
 	failed = execve(ms->cmd.cmd[count][0], ms->cmd.cmd[count], NULL);
 	if (failed == -1)
-	{
-		printf("ERR\n");
-		exit(127);
-	}
+		return(err_msg(ERR_EXECVE_F), exit(127));
 }
 
 void	ft_exe(t_ms *ms, int rfd)
@@ -53,10 +50,10 @@ void	ft_exe(t_ms *ms, int rfd)
 	if (ms->cmd.counter == ms->cmd.max_counter)
 		return ;
 	if (pipe(pfd) == -1)
-		return ;
+		return (err_msg(ERR_PIPE_F));
 	pid = fork();
 	if (pid == -1)
-		return ;
+		return (err_msg(ERR_FORK_F));
 	else if (pid == 0)
 		ft_chiled(ms, rfd, pfd);
 	else

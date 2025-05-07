@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:46:58 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 12:16:46 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 15:06:45 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	buffer[i] = '\0';
 	return (buffer);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int		i;
+
+	if (fd < 0 || !s)
+		return ;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
 }

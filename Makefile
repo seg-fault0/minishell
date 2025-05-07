@@ -1,6 +1,7 @@
 SRCS =	srcs/core/main.c		\
 		srcs/core/init_ms.c		\
 		srcs/core/luncher.c		\
+		srcs/core/err.c			\
 		srcs/core/exit.c		\
 		srcs/cmd/init.c			\
 		srcs/cmd/exe.c			\
