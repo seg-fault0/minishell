@@ -7,6 +7,7 @@ SRCS =	srcs/main.c				\
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)
 
 NAME	= minishell
+FLAGS	= -Wall -Wextra -Werror
 I		= -I includes/
 L		= -lreadline -lc
 
@@ -18,7 +19,7 @@ $(NAME): $(OBJS)
 # Rule to compile .c → .o (handles subdirectories)
 objs/%.o: srcs/%.c includes/minishell.h | objs/
 	@mkdir -p $(@D)  # Create subdirs in objs/ (e.g., objs/libft/)
-	cc -c $(I) $< -o $@
+	cc -c $(I) $(FLAGS) $< -o $@
 
 # Ensure objs/ exists
 objs/:
