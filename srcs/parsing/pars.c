@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   luncher.c                                          :+:      :+:    :+:   */
+/*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:47:57 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/07 13:46:35 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static BOOL ft_redline(t_ms *ms)
+void	ft_parse(t_ms *ms)
 {
-	ms->input = readline(PROMPT);
-	if (!ms->input)
-		return (FALSE);
-	add_history(ms->input);
-	return (TRUE);
-}
-
-void	reset_prompt(t_ms *ms)
-{
-	free3(ms->cmd.cmd, HEAP);
-}
-
-void	ft_luncher(t_ms *ms)
-{
-	while (ft_redline(ms) == TRUE)
-	{
-		ft_parse(ms);
-		reset_prompt(ms);
-	}
+	char	**tmp_cmd;
+	int		i;
+	
+	tmp_cmd = ft_split(ms->input, '|');
+	i = 0;
+	while (tmp_cmd[i++]);
+	ms->cmd.cmd = malloc((i + 1) * sizeof(char **));
+	if (!ms->cmd.cmd)
+		return (free2(tmp_cmd, HEAP));
+	i = -1;
+	while (tmp_cmd[++i])
+		ms->cmd.cmd[i] = ft_split(tmp_cmd[i], ' ');
+	ms->cmd.cmd[i] = NULL;
+	free2(tmp_cmd, HEAP);
 }

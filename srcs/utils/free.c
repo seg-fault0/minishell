@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:22:49 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:19:14 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 13:36:12 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,23 @@ void free2(char **arr, int c)
 	i = 0;
 	while (arr[i])
 		free(arr[i++]);
+	if (c == HEAP)
+		free(arr);
+}
+
+void free3(char ***arr, int c)
+{
+	int	i;
+	int	j;
+	
+	i = -1;
+	while (arr[++i])
+	{
+		j = -1;
+		while (arr[i][++j])
+			free(arr[i][j]);
+		free(arr[i]);
+	}
 	if (c == HEAP)
 		free(arr);
 }

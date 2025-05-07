@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:11:49 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 13:39:39 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_ms
 {
 	t_cmd		cmd;
 	char		**env;
-	char		*input;
+	const char	*input;
 }t_ms;
 
 //core
@@ -47,8 +47,12 @@ BOOL	init_struct(t_ms *ms, char **env);
 void	ft_luncher(t_ms *ms);
 void	ft_exit(t_ms *ms);
 
+//cmd
+void	ft_parse(t_ms *ms);
+
 //utils
 void	free2(char **arr, int c);
+void	free3(char ***arr, int c);
 
 //libft
 char	**ft_split(char const *s, char c);
