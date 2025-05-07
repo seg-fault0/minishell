@@ -3,6 +3,7 @@ SRCS =	srcs/core/main.c		\
 		srcs/core/luncher.c		\
 		srcs/core/exit.c		\
 		srcs/cmd/init.c			\
+		srcs/cmd/exe.c			\
 		srcs/parsing/pars.c		\
 		srcs/libft/ft_split.c	\
 		srcs/libft/ft_mem.c		\

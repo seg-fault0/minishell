@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:07:36 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 14:21:13 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 15:01:59 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,16 @@ size_t	char_counter(const char *str, int c)
 		str++;
 	}
 	return (counter);
+}
+
+void	close_pipe(int *fd)
+{
+	ft_close (fd[0]);
+	ft_close (fd[1]);
+}
+
+void	ft_close(int fd)
+{
+	if (fd >= 0)
+		close(fd);
 }
