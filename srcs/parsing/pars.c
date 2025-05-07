@@ -6,18 +6,17 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 14:22:08 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 14:24:27 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_parse(t_ms *ms)
+static void	get_cmd(t_ms *ms)
 {
 	char	**tmp_cmd;
 	int		i;
-	
-	ms->parse.cmd_nbr = char_counter(ms->input, '|') + 1;
+
 	ms->parse.cmd = malloc((ms->parse.cmd_nbr + 1) * sizeof(char **));
 	if (!ms->parse.cmd)
 		return ;
@@ -29,4 +28,10 @@ void	ft_parse(t_ms *ms)
 		ms->parse.cmd[i] = ft_split(tmp_cmd[i], ' ');
 	ms->parse.cmd[i] = NULL;
 	free2(tmp_cmd, HEAP);
+}
+
+void	ft_parse(t_ms *ms)
+{
+	ms->parse.cmd_nbr = char_counter(ms->input, '|') + 1;
+	get_cmd(ms);
 }
