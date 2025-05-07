@@ -6,17 +6,19 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:22:49 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 12:25:23 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 13:11:55 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free2(char **arr)
+void free2(char **arr, int c)
 {
 	int	i;
 	
 	i = 0;
 	while (arr[i])
 		free(arr[i++]);
+	if (c == HEAP)
+		free(arr);
 }

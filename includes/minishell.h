@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 12:25:20 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 13:11:49 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define BOOL unsigned short
 # define TRUE 1
 # define FALSE 0
+
+# define STACK 0
+# define HEAP 1
 
 typedef struct s_cmd
 {
@@ -45,7 +48,7 @@ void	ft_luncher(t_ms *ms);
 void	ft_exit(t_ms *ms);
 
 //utils
-void	free2(char **arr);
+void	free2(char **arr, int c);
 
 //libft
 char	**ft_split(char const *s, char c);
