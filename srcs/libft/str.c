@@ -1,35 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   luncher.c                                          :+:      :+:    :+:   */
+/*   str.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 11:51:28 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/07 11:46:58 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/07 11:54:33 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static BOOL ft_redline(t_ms *ms)
+size_t	ft_strlen(const char *s)
 {
-	const char *input;
+	size_t	len;
 
-	input = readline(PROMPT);
-	if (!input)
-		return (FALSE);
-	free(ms->input);
-	ms->input = ft_strdup(input);
-	add_history(input);
-	return (TRUE);
+	if (!s)
+		return (0);
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	return (len);
 }
 
-void	ft_luncher(t_ms *ms)
+char	*ft_strdup(const char *s1)
 {
-	(void) ms;
-	while (ft_redline(ms) == TRUE)
+	int			len;
+	char		*buffer;
+	int			i;
+
+	if (!s1)
+		return (NULL);
+	len = ft_strlen(s1);
+	buffer = malloc(len + 1);
+	if (!buffer)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
 	{
-		//init_cmd(ms);
+		buffer[i] = s1[i];
+		i++;
 	}
+	buffer[i] = '\0';
+	return (buffer);
 }

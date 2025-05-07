@@ -6,13 +6,14 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:59:37 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 11:45:31 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/07 11:55:23 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "minishell.h"
 
-void	ft_exit()
+void	ft_exit(t_ms *ms)
 {
+	free(ms->input);
 	rl_clear_history();
 }

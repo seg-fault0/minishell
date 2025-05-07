@@ -2,6 +2,7 @@ SRCS =	srcs/main.c				\
 		srcs/exit.c				\
 		srcs/libft/ft_split.c	\
 		srcs/libft/ft_mem.c		\
+		srcs/libft/str.c		\
 		srcs/luncher.c			\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
