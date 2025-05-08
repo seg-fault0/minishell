@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:09:19 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 19:09:20 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,8 @@ void	builtin_exe(t_ms *ms, char *cmd)
 		ft_echo(ms);
 	else if (ft_memcmp(cmd, "pwd", 3) == 0)
 		ft_pwd();
+	else if (ft_memcmp(cmd, "export", 6) == 0)
+		set_env(ms);
+	else if (ft_memcmp(cmd, "unset", 5) == 0)
+		unset_env(ms);
 }

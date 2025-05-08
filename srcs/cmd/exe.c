@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:32:31 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 19:07:25 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,11 @@ void	ft_start(t_ms *ms, int rfd)
 
 void	ft_exe(t_ms *ms)
 {
-	if (ft_strcmp(ms->cmd.cmd[0][0], "cd"))
-		ft_chdir(ms);
-	else if (ft_strcmp(ms->cmd.cmd[0][0], "exit"))
-		ft_exit(ms);
-	else if (ft_strcmp(ms->cmd.cmd[0][0], "export"))
-		set_env(ms);
-	else if (ft_strcmp(ms->cmd.cmd[0][0], "unset"))
-		unset_env(ms);
+	char	*cmd;
+
+	cmd = ms->cmd.cmd[0][0];
+	if (is_main_process_exe(cmd) == TRUE)
+		builtin_exe(ms, cmd);
 	else
 		ft_start(ms, 0);
 }
