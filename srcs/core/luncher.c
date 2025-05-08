@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 11:41:32 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 11:46:51 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 static BOOL	ft_redline(t_ms *ms)
 {
-	ms->input = readline(PROMPT);
-	if (!ms->input)
-		return (FALSE);
-	add_history(ms->input);
+	ms->input = NULL;
+	while (!ms->input || !*ms->input)
+	{
+		ms->input = readline(PROMPT);
+		if (!ms->input)
+			return (FALSE);
+		if (*ms->input)
+			add_history(ms->input);
+	}
 	return (TRUE);
 }
 
@@ -30,12 +35,9 @@ void	ft_luncher(t_ms *ms)
 {
 	while (ft_redline(ms) == TRUE)
 	{
-		if (*ms->input)
-		{
-			ft_parse(ms);
-			init_cmd(ms);
-			ft_exe(ms);
-			reset_prompt(ms);
-		}
+		ft_parse(ms);
+		init_cmd(ms);
+		ft_exe(ms);
+		reset_prompt(ms);
 	}
 }
