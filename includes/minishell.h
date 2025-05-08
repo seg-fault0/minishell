@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:29:50 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 18:45:02 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	ft_exe(t_ms *ms);
 
 //env
 char	*get_env(char **env, char *look_for);
-void	set_env (t_ms *ms);
-void	unset_env (t_ms *ms);
+void	set_env(t_ms *ms);
+void	unset_env(t_ms *ms);
 
 //builtin cmds
 void	builtin_exe(t_ms *ms, char *cmd);

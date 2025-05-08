@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:33:04 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 18:45:21 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,30 @@ void	set_env(t_ms *ms)
 	printf ("set env\n");
 }
 
-void	unset_env (t_ms *ms)
+void	unset_env(t_ms *ms)
 {
-	(void) ms;
-	printf ("unset env\n");
+	int		counter;
+	int		i;
+	int		j;
+
+	counter = ms->cmd.counter;
+	i = 0;
+	while (ms->cmd.cmd[counter][++i])
+	{
+		j = -1;
+		while (ms->env[++j])
+		{
+			if (ft_memcmp(ms->env[j], ms->cmd.cmd[counter][i], 4) == 0)
+			{
+				free(ms->env[j]);
+				while (ms->env[j])
+				{
+					ms->env[j] = ms->env[j + 1];
+					j++;
+				}
+			}
+			if (!ms->env[j])
+				break ;
+		}
+	}
 }

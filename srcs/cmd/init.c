@@ -6,11 +6,37 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:57:35 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 16:14:36 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 18:41:27 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static char	**get_paths(char **env)
+{
+	char	**paths;
+	char	*path_str;
+	int		i;
+
+	path_str = NULL;
+	paths = NULL;
+	i = -1;
+	path_str = get_env(env, "PATH=");
+	if (!path_str)
+		return (NULL);
+	paths = ft_split(path_str, ':');
+	i = -1;
+	while (paths[++i])
+	{
+		path_str = paths[i];
+		if (path_str[ft_strlen(path_str) - 1] != '/')
+		{
+			paths[i] = ft_strjoin(path_str, "/");
+			free(path_str);
+		}
+	}
+	return (paths);
+}
 
 static void	add_path(t_ms *ms)
 {
@@ -18,6 +44,8 @@ static void	add_path(t_ms *ms)
 	int		i;
 	int		j;
 
+	if (!ms->cmd.paths)
+		return ;
 	i = -1;
 	while (ms->cmd.cmd[++i])
 	{
@@ -41,5 +69,6 @@ void	init_cmd(t_ms *ms)
 	ms->cmd.max_counter = char_counter(ms->input, '|') + 1;
 	ms->cmd.counter = 0;
 	ms->cmd.cmd = ms->parse.cmd;
+	ms->cmd.paths = get_paths(ms->env);
 	add_path(ms);
 }
