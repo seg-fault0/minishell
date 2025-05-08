@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 15:44:29 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 16:20:25 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ void	ft_chdir(t_ms *ms)
 		err_msg(ERR_CHDIR_F);
 }
 
+void	ft_echo(t_ms *ms)
+{
+	int	counter;
+	int	i;
+
+	counter = ms->cmd.counter;
+	i = 0;
+	while (ms->cmd.cmd[counter][++i])
+		printf("%s ", ms->cmd.cmd[counter][i]);
+	printf("\n");
+}
+
 void	builtin_exe(t_ms *ms, char *cmd)
 {
 	if (ft_memcmp(cmd, "env", 3) == 0)
@@ -43,4 +55,6 @@ void	builtin_exe(t_ms *ms, char *cmd)
 		ft_exit(ms);
 	else if (ft_memcmp(cmd, "cd", 2) == 0)
 		ft_chdir(ms);
+	else if (ft_memcmp(cmd, "echo", 4) == 0)
+		ft_echo(ms);
 }
