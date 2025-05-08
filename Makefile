@@ -12,6 +12,7 @@ SRCS =	srcs/core/main.c		\
 		srcs/libft/str.c		\
 		srcs/utils/checker.c	\
 		srcs/utils/free.c		\
+		srcs/utils/geters.c		\
 		srcs/utils/utils1.c		\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs

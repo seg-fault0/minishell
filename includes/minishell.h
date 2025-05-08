@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 16:30:45 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 17:08:14 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ void	ft_close(int fd);
 
 //checkers
 BOOL	is_builtin(char	*str);
+
+//geters
+char	*get_env(char **env, char *look_for);
 
 //libft
 char	**ft_split(char const *s, char c);
