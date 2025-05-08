@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   geters.c                                           :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:19:33 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/07 14:07:36 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/08 17:22:56 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_env(char **env, char *look_for)
+size_t	char_counter(const char *str, int c)
 {
-	int	i;
+	size_t	counter;
 
-	i = -1;
-	while (env[++i])
+	counter = 0;
+	if (!str)
+		return (0);
+	while (*str)
 	{
-		if (ft_memcmp(env[i], look_for, 5) == 0)
-			return (env[i] + ft_strlen(look_for));
+		if (*str == c)
+			counter++;
+		str++;
 	}
-	return (NULL);
+	return (counter);
+}
+
+void	close_pipe(int *fd)
+{
+	ft_close (fd[0]);
+	ft_close (fd[1]);
+}
+
+void	ft_close(int fd)
+{
+	if (fd >= 0)
+		close(fd);
 }
 
 char	**get_2darr_cp(char **arr)

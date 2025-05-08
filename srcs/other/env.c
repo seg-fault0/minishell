@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 14:07:36 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:04:42 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/08 17:22:50 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	char_counter(const char *str, int c)
+char	*get_env(char **env, char *look_for)
 {
-	size_t	counter;
+	int	i;
 
-	counter = 0;
-	if (!str)
-		return (0);
-	while (*str)
+	i = -1;
+	while (env[++i])
 	{
-		if (*str == c)
-			counter++;
-		str++;
+		if (ft_memcmp(env[i], look_for, 5) == 0)
+			return (env[i] + ft_strlen(look_for));
 	}
-	return (counter);
-}
-
-void	close_pipe(int *fd)
-{
-	ft_close (fd[0]);
-	ft_close (fd[1]);
-}
-
-void	ft_close(int fd)
-{
-	if (fd >= 0)
-		close(fd);
+	return (NULL);
 }

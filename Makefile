@@ -10,10 +10,10 @@ SRCS =	srcs/core/main.c		\
 		srcs/libft/ft_split.c	\
 		srcs/libft/ft_mem.c		\
 		srcs/libft/str.c		\
-		srcs/utils/checkers.c	\
-		srcs/utils/free.c		\
-		srcs/utils/geters.c		\
-		srcs/utils/utils1.c		\
+		srcs/other/checkers.c	\
+		srcs/other/free.c		\
+		srcs/other/env.c		\
+		srcs/other/utils.c		\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)
