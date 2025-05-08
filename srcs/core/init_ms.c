@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:04:42 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:04:00 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:45:40 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,7 @@ static char	**get_paths(char **env)
 	path_str = NULL;
 	paths = NULL;
 	i = -1;
-	while (env[++i])
-	{
-		if (ft_memcmp(env[i], "PATH=", 5) == 0)
-		{
-			path_str = env[i] + 5;
-			break ;
-		}
-	}
+	path_str = get_env(env, "PATH=");
 	if (!path_str)
 		return (NULL);
 	paths = ft_split(path_str, ':');

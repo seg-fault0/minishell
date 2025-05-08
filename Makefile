@@ -13,6 +13,7 @@ SRCS =	srcs/core/main.c		\
 		srcs/utils/checker.c	\
 		srcs/utils/free.c		\
 		srcs/utils/utils1.c		\
+		srcs/utils/geters.c		\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)

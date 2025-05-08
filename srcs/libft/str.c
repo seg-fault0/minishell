@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:46:58 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:04:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:46:05 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,18 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &s[i], 1);
 		i++;
 	}
+}
+
+BOOL	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (FALSE);
+		s1++;
+		s2++;
+	}
+	if (*s1 == *s2)
+		return (TRUE);
+	return (FALSE);
 }

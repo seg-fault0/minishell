@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:15:19 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:46:24 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	exit(0);
 }
 
-void	ft_exe(t_ms *ms, int rfd)
+void	ft_start(t_ms *ms, int rfd)
 {
 	int	pfd[2];
 	int	pid;
@@ -54,8 +54,16 @@ void	ft_exe(t_ms *ms, int rfd)
 	{
 		ms->cmd.counter++;
 		close(pfd[1]);
-		ft_exe(ms, pfd[0]);
+		ft_start(ms, pfd[0]);
 		close(pfd[0]);
 		wait(NULL);
 	}
+}
+
+void	ft_exe(t_ms *ms)
+{
+	if (ft_strcmp(ms->cmd.cmd[0][0], "cd"))
+		ft_chdir(ms);
+	else
+		ft_start(ms, 0);
 }

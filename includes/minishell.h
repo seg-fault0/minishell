@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:15:07 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:46:13 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/history.h>
 
 # define PROMPT "\033[0;35mminishell : \033[0m"
+# define HOME_PATH "~"
 
 # define STDIN 0
 # define STDOUT 1
@@ -38,6 +39,7 @@
 # define ERR_FORK_F 3
 # define ERR_EXECVE_F 4
 # define ERR_DUP2_F 5
+# define ERR_CHDIR_F 6
 
 typedef struct s_parsed
 {
@@ -72,11 +74,12 @@ void	ft_parse(t_ms *ms);
 
 //cmd
 void	init_cmd(t_ms *ms);
-void	ft_exe(t_ms *ms, int rfd);
+void	ft_exe(t_ms *ms);
 
 //builtin cmds
 void	builtin_exe(t_ms *ms, char *cmd);
 void	ft_env(t_ms *ms);
+void	ft_chdir(t_ms *ms);
 
 //utils
 void	free2(char **arr, int c);
@@ -84,6 +87,9 @@ void	free3(char ***arr, int c);
 size_t	char_counter(const char *str, int c);
 void	close_pipe(int *fd);
 void	ft_close(int fd);
+
+//geters
+char	*get_env(char **env, char *look_for);
 
 //checkers
 BOOL	is_builtin(char	*str);
@@ -97,5 +103,6 @@ char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putstr_fd(char *s, int fd);
+BOOL	ft_strcmp(const char *s1, const char *s2);
 
 #endif
