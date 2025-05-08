@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 19:50:07 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 19:54:25 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	print_env(t_ms *ms)
 	while (ms->env[i])
 		printf("%s\n", ms->env[i++]);
 }
-
 
 char	*get_env(char **env, char *look_for)
 {
