@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 18:45:21 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 19:16:42 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,20 @@ char	*get_env(char **env, char *look_for)
 
 void	set_env(t_ms *ms)
 {
-	(void) ms;
-	printf ("set env\n");
+	int		counter;
+	int		i;
+	int		j;
+
+	counter = ms->cmd.counter;
+	i = 0;
+	while (ms->cmd.cmd[counter][++i])
+	{
+		j = 0;
+		while (ms->env[j])
+			j++;
+		ms->env[j++] = ft_strdup(ms->cmd.cmd[counter][i]);
+		ms->env[j] = NULL;
+	}
 }
 
 void	unset_env(t_ms *ms)
