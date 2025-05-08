@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 16:20:25 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 16:29:28 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ void	ft_echo(t_ms *ms)
 	printf("\n");
 }
 
+void	ft_pwd(void)
+{
+	char	pwd[PATH_MAX];
+
+	if (getcwd(pwd, sizeof(pwd)) == NULL)
+		return (err_msg(ERR_PWD_F));
+	printf("%s\n", pwd);
+}
+
 void	builtin_exe(t_ms *ms, char *cmd)
 {
 	if (ft_memcmp(cmd, "env", 3) == 0)
@@ -57,4 +66,6 @@ void	builtin_exe(t_ms *ms, char *cmd)
 		ft_chdir(ms);
 	else if (ft_memcmp(cmd, "echo", 4) == 0)
 		ft_echo(ms);
+	else if (ft_memcmp(cmd, "pwd", 3) == 0)
+		ft_pwd();
 }

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:05:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:26:59 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 16:27:18 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ void	err_msg(int msg)
 		ft_putstr_fd("ERR : dup2 failed\n", 2);
 	else if (msg == ERR_CHDIR_F)
 		ft_putstr_fd("ERR : chdir failed\n", 2);
+	else if (msg == ERR_PWD_F)
+		ft_putstr_fd("ERR : pwd failed\n", 2);
 }
