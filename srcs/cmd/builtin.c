@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 11:29:09 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 15:44:29 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_chdir(t_ms *ms)
 	char	*path;
 
 	if (ms->cmd.cmd[0][1] == NULL)
-		path = get_env(ms->env, "HOME=");
+		path = getenv("HOME");
 	else
 		path = ms->cmd.cmd[0][1];
 	if (!path)
