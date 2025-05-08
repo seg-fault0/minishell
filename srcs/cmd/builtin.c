@@ -6,20 +6,11 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 19:09:20 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 19:50:36 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_env(t_ms *ms)
-{
-	int	i;
-
-	i = 0;
-	while (ms->env[i])
-		printf("%s\n", ms->env[i++]);
-}
 
 void	ft_chdir(t_ms *ms)
 {
@@ -59,7 +50,7 @@ void	ft_pwd(void)
 void	builtin_exe(t_ms *ms, char *cmd)
 {
 	if (ft_memcmp(cmd, "env", 3) == 0)
-		ft_env(ms);
+		print_env(ms);
 	else if (ft_memcmp(cmd, "exit", 4) == 0)
 		ft_exit(ms);
 	else if (ft_memcmp(cmd, "cd", 2) == 0)
