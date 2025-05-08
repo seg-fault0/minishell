@@ -6,13 +6,13 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:04:42 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:20:35 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:04:00 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static char **get_paths(char **env)
+static char	**get_paths(char **env)
 {
 	char	**paths;
 	char	*path_str;

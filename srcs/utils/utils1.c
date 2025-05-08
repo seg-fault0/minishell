@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:07:36 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:01:59 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:04:42 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	char_counter(const char *str, int c)
 {
-	size_t counter;
-	
+	size_t	counter;
+
 	counter = 0;
 	if (!str)
 		return (0);

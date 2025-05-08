@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:34:48 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:05:50 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# define PURPLE "\033[0;35m"
-# define RESET  "\033[0m"
-# define PROMPT PURPLE "minishell : " RESET
+# define PROMPT "\033[0;35mminishell : \033[0m"
 
 # define STDIN 0
 # define STDOUT 1
@@ -41,12 +39,11 @@
 # define ERR_EXECVE_F 4
 # define ERR_DUP2_F 5
 
-typedef	struct s_parsed
+typedef struct s_parsed
 {
 	char	***cmd;
 	int		cmd_nbr;
 }t_parsed;
-
 
 typedef struct s_cmd
 {

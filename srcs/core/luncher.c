@@ -6,13 +6,13 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:02:43 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:04:06 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static BOOL ft_redline(t_ms *ms)
+static BOOL	ft_redline(t_ms *ms)
 {
 	ms->input = readline(PROMPT);
 	if (!ms->input)

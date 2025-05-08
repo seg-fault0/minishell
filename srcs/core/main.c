@@ -6,16 +6,16 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:36:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:20:51 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:04:14 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
 	t_ms	ms;
-	
+
 	(void) ac;
 	(void) av;
 	if (init_struct(&ms, env) == FALSE)

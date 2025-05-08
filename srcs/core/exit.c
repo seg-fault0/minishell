@@ -6,11 +6,11 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:59:37 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 13:39:58 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:03:46 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 void	ft_exit(t_ms *ms)
 {

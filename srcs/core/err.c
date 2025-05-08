@@ -6,11 +6,11 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:05:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:21:52 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:03:41 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 void	err_msg(int msg)
 {

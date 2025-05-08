@@ -6,13 +6,13 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:57:35 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/07 15:19:18 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:04:56 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void add_path(t_ms *ms)
+static void	add_path(t_ms *ms)
 {
 	char	*tmp;
 	int		i;
@@ -22,7 +22,7 @@ static void add_path(t_ms *ms)
 	while (ms->cmd.cmd[++i])
 	{
 		j = -1;
-		while(ms->cmd.paths[++j])
+		while (ms->cmd.paths[++j])
 		{
 			tmp = ft_strjoin(ms->cmd.paths[j], ms->cmd.cmd[i][0]);
 			if (access(tmp, X_OK) == 0)
