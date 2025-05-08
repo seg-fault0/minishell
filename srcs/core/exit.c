@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:59:37 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 11:19:07 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 17:16:45 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_exit(t_ms *ms)
 {
 	free2(ms->cmd.paths, HEAP);
+	free2(ms->env, HEAP);
 	rl_clear_history();
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:08:14 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 17:15:49 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ BOOL	is_builtin(char	*str);
 
 //geters
 char	*get_env(char **env, char *look_for);
+char	**get_2darr_cp(char **arr);
 
 //libft
 char	**ft_split(char const *s, char c);

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:07:49 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 17:19:33 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,23 @@ char	*get_env(char **env, char *look_for)
 			return (env[i] + ft_strlen(look_for));
 	}
 	return (NULL);
+}
+
+char	**get_2darr_cp(char **arr)
+{
+	char	**ret;
+	int		size;
+	int		i;
+
+	size = 0;
+	while (arr[size])
+		size++;
+	ret = malloc((size + 1) * sizeof(char **));
+	if (!ret)
+		return (NULL);
+	i = -1;
+	while (arr[++i])
+		ret[i] = ft_strdup(arr[i]);
+	ret[i] = NULL;
+	return (ret);
 }

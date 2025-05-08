@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:04:42 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:10:01 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 17:16:59 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	**get_paths(char **env)
 BOOL	init_struct(t_ms *ms, char **env)
 {
 	ft_memset(ms, 0, sizeof(t_ms));
-	ms->env = env;
-	ms->cmd.paths = get_paths(ms->env);
+	ms->env = get_2darr_cp(env);
+	ms->cmd.paths = get_paths(env);
 	return (TRUE);
 }
