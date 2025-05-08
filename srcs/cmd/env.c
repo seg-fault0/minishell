@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:22:50 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 17:33:04 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,16 @@ char	*get_env(char **env, char *look_for)
 			return (env[i] + ft_strlen(look_for));
 	}
 	return (NULL);
+}
+
+void	set_env(t_ms *ms)
+{
+	(void) ms;
+	printf ("set env\n");
+}
+
+void	unset_env (t_ms *ms)
+{
+	(void) ms;
+	printf ("unset env\n");
 }

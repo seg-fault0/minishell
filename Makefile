@@ -5,6 +5,7 @@ SRCS =	srcs/core/main.c		\
 		srcs/core/exit.c		\
 		srcs/cmd/init.c			\
 		srcs/cmd/builtin.c		\
+		srcs/cmd/env.c			\
 		srcs/cmd/exe.c			\
 		srcs/parsing/pars.c		\
 		srcs/libft/ft_split.c	\
@@ -12,7 +13,6 @@ SRCS =	srcs/core/main.c		\
 		srcs/libft/str.c		\
 		srcs/other/checkers.c	\
 		srcs/other/free.c		\
-		srcs/other/env.c		\
 		srcs/other/utils.c		\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs

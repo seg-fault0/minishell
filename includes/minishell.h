@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 17:15:49 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 17:29:50 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ void	ft_parse(t_ms *ms);
 void	init_cmd(t_ms *ms);
 void	ft_exe(t_ms *ms);
 
+//env
+char	*get_env(char **env, char *look_for);
+void	set_env (t_ms *ms);
+void	unset_env (t_ms *ms);
+
 //builtin cmds
 void	builtin_exe(t_ms *ms, char *cmd);
 void	ft_env(t_ms *ms);
@@ -88,13 +93,10 @@ void	free3(char ***arr, int c);
 size_t	char_counter(const char *str, int c);
 void	close_pipe(int *fd);
 void	ft_close(int fd);
+char	**get_2darr_cp(char **arr);
 
 //checkers
 BOOL	is_builtin(char	*str);
-
-//geters
-char	*get_env(char **env, char *look_for);
-char	**get_2darr_cp(char **arr);
 
 //libft
 char	**ft_split(char const *s, char c);
