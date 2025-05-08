@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:23:14 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 11:41:32 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ void	ft_luncher(t_ms *ms)
 {
 	while (ft_redline(ms) == TRUE)
 	{
-		ft_parse(ms);
-		init_cmd(ms);
-		ft_exe(ms);
-		reset_prompt(ms);
+		if (*ms->input)
+		{
+			ft_parse(ms);
+			init_cmd(ms);
+			ft_exe(ms);
+			reset_prompt(ms);
+		}
 	}
 }
