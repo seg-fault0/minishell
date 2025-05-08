@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:46:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 11:19:45 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	ft_exe(t_ms *ms)
 {
 	if (ft_strcmp(ms->cmd.cmd[0][0], "cd"))
 		ft_chdir(ms);
+	else if (ft_strcmp(ms->cmd.cmd[0][0], "exit"))
+		ft_exit(ms);
 	else
 		ft_start(ms, 0);
 }
