@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:07:36 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 18:38:09 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 19:26:05 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,4 @@ void	ft_close(int fd)
 {
 	if (fd >= 0)
 		close(fd);
-}
-
-char	**get_2darr_cp(char **arr)
-{
-	char	**ret;
-	int		size;
-	int		i;
-
-	size = 0;
-	while (arr[size])
-		size++;
-	ret = malloc((size + 1) * sizeof(char **));
-	if (!ret)
-		return (NULL);
-	i = -1;
-	while (arr[++i])
-		ret[i] = ft_strdup(arr[i]);
-	ret[i] = NULL;
-	return (ret);
 }

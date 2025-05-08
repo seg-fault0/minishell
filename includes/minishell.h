@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 19:07:04 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 19:38:08 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,11 @@ void	free3(char ***arr, int c);
 size_t	char_counter(const char *str, int c);
 void	close_pipe(int *fd);
 void	ft_close(int fd);
+
+//array utils
 char	**get_2darr_cp(char **arr);
+char	**add_to_arr(char **arr, char *to_add);
+char	**extract_from_arr(char **arr, char *to_extract);
 
 //checkers
 BOOL	is_builtin(char	*str);

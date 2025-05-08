@@ -12,6 +12,7 @@ SRCS =	srcs/core/main.c		\
 		srcs/libft/ft_mem.c		\
 		srcs/libft/str.c		\
 		srcs/other/checkers.c	\
+		srcs/other/arr_utils.c	\
 		srcs/other/free.c		\
 		srcs/other/utils.c		\
 

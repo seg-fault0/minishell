@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 19:16:42 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 19:43:13 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,46 +27,32 @@ char	*get_env(char **env, char *look_for)
 
 void	set_env(t_ms *ms)
 {
+	char	**tmp_arr;
 	int		counter;
 	int		i;
-	int		j;
 
 	counter = ms->cmd.counter;
 	i = 0;
 	while (ms->cmd.cmd[counter][++i])
 	{
-		j = 0;
-		while (ms->env[j])
-			j++;
-		ms->env[j++] = ft_strdup(ms->cmd.cmd[counter][i]);
-		ms->env[j] = NULL;
+		tmp_arr = ms->env;
+		ms->env = add_to_arr(tmp_arr, ms->cmd.cmd[counter][i]);
+		free2(tmp_arr, HEAP);
 	}
 }
 
 void	unset_env(t_ms *ms)
 {
+	char	**tmp_arr;
 	int		counter;
 	int		i;
-	int		j;
 
 	counter = ms->cmd.counter;
 	i = 0;
 	while (ms->cmd.cmd[counter][++i])
 	{
-		j = -1;
-		while (ms->env[++j])
-		{
-			if (ft_memcmp(ms->env[j], ms->cmd.cmd[counter][i], 4) == 0)
-			{
-				free(ms->env[j]);
-				while (ms->env[j])
-				{
-					ms->env[j] = ms->env[j + 1];
-					j++;
-				}
-			}
-			if (!ms->env[j])
-				break ;
-		}
+		tmp_arr = ms->env;
+		ms->env = extract_from_arr(tmp_arr, ms->cmd.cmd[counter][i]);
+		free2(tmp_arr, HEAP);
 	}
 }
