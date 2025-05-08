@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 16:28:54 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/08 16:30:45 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <readline/history.h>
 
 # define PROMPT "\033[0;35mminishell : \033[0m"
-# define HOME_PATH "~"
 
 # define STDIN 0
 # define STDOUT 1
