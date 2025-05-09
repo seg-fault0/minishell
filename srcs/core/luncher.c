@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 12:01:18 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 13:49:54 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 static BOOL	ft_redline(t_ms *ms)
 {
-	ms->input = NULL;
-	while (!ms->input || !*ms->input)
+	char	*input;
+
+	input = NULL;
+	while (!input || !*input)
 	{
-		ms->input = readline(PROMPT);
-		if (!ms->input)
+		input = readline(PROMPT);
+		if (!input)
 			return (FALSE);
-		if (*ms->input)
-			add_history(ms->input);
+		if (*input)
+			add_history(input);
 	}
+	ms->input = ft_strdup(input);
 	return (TRUE);
 }
 
@@ -31,8 +34,10 @@ void	reset_prompt(t_ms *ms)
 	reset_fds(ms);
 	free3(ms->parse.cmd, HEAP);
 	free2(ms->cmd.paths, HEAP);
+	free(ms->input);
 	ms->cmd.cmd = NULL;
 	ms->cmd.paths = NULL;
+	ms->input = NULL;
 }
 
 void	ft_luncher(t_ms *ms)

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 13:46:47 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 13:50:12 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_ms
 	t_parsed	parse;
 	t_fds		fds;
 	char		**env;
-	const char	*input;
+	char		*input;
 }t_ms;
 
 //core
