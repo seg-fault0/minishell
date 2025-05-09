@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 13:59:42 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 14:31:28 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 14:46:18 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static BOOL	get_file_name(t_ms *ms)
 		ms->fds.append_flag = TRUE;
 		start++;
 	}
-	start += skip_space(start);
+	while (is_space(*start) == TRUE)
+		start++;
+	if (!*start)
+		return (FALSE);
 	file_len = 0;
 	while (start[file_len])
 		file_len++;
