@@ -6,20 +6,27 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:26:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 11:38:33 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 12:02:49 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	reset_fds(t_ms *ms)
+{
+	free(ms->fds.instr);
+	free(ms->fds.oustr);
+	ms->fds.instr = NULL;
+	ms->fds.oustr = NULL;
+	ms->fds.infd = STDIN;
+	ms->fds.oufd = STDOUT;
+}
+
 void	setup_fds(t_ms *ms)
 {
-	if (!ms->fds.instr)
-		ms->fds.infd = STDIN;
-	else
+	//ms->fds.instr = ft_strdup("Makefile");
+	if (ms->fds.instr)
 		setup_infd(ms);
-	if (!ms->fds.oustr)
-		ms->fds.infd = STDOUT;
-	else
+	if (ms->fds.oustr)
 		setup_outfd(ms);
 }
