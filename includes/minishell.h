@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 13:50:12 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 14:13:32 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	err_msg(int msg);
 
 //parse
 void	ft_parse(t_ms *ms);
+void	parse_outfile(t_ms *ms);
 
 //fds
 void	setup_fds(t_ms *ms);
@@ -120,16 +121,26 @@ char	**extract_from_arr(char **arr, char *to_extract);
 //checkers
 BOOL	is_builtin(char	*str);
 BOOL	is_main_process_exe(char *cmd);
+BOOL	is_space(int c);
 
 //libft
 char	**ft_split(char const *s, char c);
+char	*ft_strstr(char *haystack, char *needle);
+BOOL	ft_strcmp(const char *s1, const char *s2);
+char	*ft_strdup(const char *s1);
+void	ft_putstr_fd(char *s, int fd);
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+
+//char utils
+BOOL	char_search(char *str, char c);
+
+//mem utils
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-char	*ft_strdup(const char *s1);
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	ft_putstr_fd(char *s, int fd);
-BOOL	ft_strcmp(const char *s1, const char *s2);
+
+//other
+int		skip_space(char *str);
 
 #endif

@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   char.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 14:07:36 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 14:13:12 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/09 14:06:47 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/09 14:13:09 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	close_pipe(int *fd)
-{
-	ft_close (fd[0]);
-	ft_close (fd[1]);
-}
-
-void	ft_close(int fd)
-{
-	if (fd >= 0)
-		close(fd);
-}
-
-int	skip_space(char *str)
+BOOL	char_search(char *str, char c)
 {
 	int	i;
 
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
+
+size_t	char_counter(const char *str, int c)
+{
+	size_t	counter;
+
+	counter = 0;
 	if (!str)
 		return (0);
-	while (is_space(str[i]) == TRUE)
-		i++;
-	return (i);
+	while (*str)
+	{
+		if (*str == c)
+			counter++;
+		str++;
+	}
+	return (counter);
 }

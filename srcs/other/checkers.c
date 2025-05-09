@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:10:32 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 19:09:43 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 14:12:39 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ BOOL	is_main_process_exe(char *cmd)
 		|| ft_memcmp(cmd, "exit", 4) == 0
 		|| ft_memcmp(cmd, "export", 6) == 0
 		|| ft_memcmp(cmd, "unset", 5) == 0)
+		return (TRUE);
+	return (FALSE);
+}
+
+BOOL	is_space(int c)
+{
+	if (c == ' '
+		|| c == '\v'
+		|| c == '\r'
+		|| c == '\t'
+		|| c == '\f'
+		|| c == '\n')
 		return (TRUE);
 	return (FALSE);
 }

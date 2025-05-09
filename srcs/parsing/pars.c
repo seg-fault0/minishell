@@ -6,13 +6,13 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:04:26 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 14:31:48 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	get_cmd(t_ms *ms)
+static void	parse_cmd(t_ms *ms)
 {
 	char	**tmp_cmd;
 	int		i;
@@ -33,5 +33,7 @@ static void	get_cmd(t_ms *ms)
 void	ft_parse(t_ms *ms)
 {
 	ms->parse.cmd_nbr = char_counter(ms->input, '|') + 1;
-	get_cmd(ms);
+	if (char_search(ms->input, '>') == TRUE)
+		parse_outfile(ms);
+	parse_cmd(ms);
 }
