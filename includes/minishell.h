@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 12:01:09 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 12:07:30 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <fcntl.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -41,6 +42,7 @@
 # define ERR_DUP2_F 5
 # define ERR_CHDIR_F 6
 # define ERR_PWD_F 7
+# define ERR_OPEN_F 8
 
 typedef struct s_parsed
 {

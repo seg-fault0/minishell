@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:26:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 12:02:49 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 12:12:04 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	reset_fds(t_ms *ms)
 
 void	setup_fds(t_ms *ms)
 {
-	//ms->fds.instr = ft_strdup("Makefile");
+	ms->fds.instr = ft_strdup("Makefile");
 	if (ms->fds.instr)
 		setup_infd(ms);
 	if (ms->fds.oustr)

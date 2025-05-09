@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 19:07:25 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 12:09:55 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_fdmanager(t_ms *ms, int rfd, int *pfd)
 {
-	dup2(rfd, 0);
+	dup2(rfd, STDIN);
 	close(rfd);
 	if (ms->cmd.counter < ms->cmd.max_counter - 1)
 		dup2(pfd[1], 1);
@@ -68,5 +68,5 @@ void	ft_exe(t_ms *ms)
 	if (is_main_process_exe(cmd) == TRUE)
 		builtin_exe(ms, cmd);
 	else
-		ft_start(ms, 0);
+		ft_start(ms, ms->fds.infd);
 }

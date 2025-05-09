@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:32:07 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 11:38:35 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 12:08:51 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	setup_infd(t_ms *ms)
 {
-	(void) ms;
-	printf("setup infd...\n");
+	ms->fds.infd = open(ms->fds.instr, O_RDONLY);
+	if (ms->fds.infd < 0)
+		err_msg(ERR_OPEN_F);
 }
