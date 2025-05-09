@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 11:23:06 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 11:38:31 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@ void	err_msg(int msg);
 
 //parse
 void	ft_parse(t_ms *ms);
+
+//fds
+void	setup_fds(t_ms *ms);
+void	setup_infd(t_ms *ms);
+void	setup_outfd(t_ms *ms);
 
 //cmd
 void	init_cmd(t_ms *ms);

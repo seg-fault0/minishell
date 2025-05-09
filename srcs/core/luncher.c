@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 18:49:54 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 11:43:04 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,14 @@ void	reset_prompt(t_ms *ms)
 {
 	free3(ms->parse.cmd, HEAP);
 	free2(ms->cmd.paths, HEAP);
+	free(ms->fds.instr);
+	free(ms->fds.oustr);
 	ms->cmd.cmd = NULL;
 	ms->cmd.paths = NULL;
+	ms->fds.instr = NULL;
+	ms->fds.oustr = NULL;
+	ms->fds.infd = STDIN;
+	ms->fds.oufd = STDOUT;
 }
 
 void	ft_luncher(t_ms *ms)
@@ -39,6 +45,7 @@ void	ft_luncher(t_ms *ms)
 	while (ft_redline(ms) == TRUE)
 	{
 		ft_parse(ms);
+		setup_fds(ms);
 		init_cmd(ms);
 		ft_exe(ms);
 		reset_prompt(ms);
