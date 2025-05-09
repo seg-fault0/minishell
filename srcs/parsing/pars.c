@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 14:54:43 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 17:20:05 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,9 @@ void	ft_parse(t_ms *ms)
 {
 	if (char_search(ms->input, '>') == TRUE)
 		parse_outfile(ms);
+	if (char_search(ms->input, '<') ==  TRUE)
+		parse_infile(ms);
+		
+	// printf("%s\n", ms->parse.instr);
 	parse_cmd(ms);
 }

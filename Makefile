@@ -9,6 +9,7 @@ SRCS =	srcs/core/main.c		\
 		srcs/cmd/exe.c			\
 		srcs/parsing/pars.c		\
 		srcs/parsing/outfile.c	\
+		srcs/parsing/infile.c		\
 		srcs/libft/ft_split.c	\
 		srcs/libft/ft_mem.c		\
 		srcs/libft/str.c		\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 14:13:32 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 17:05:25 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	err_msg(int msg);
 //parse
 void	ft_parse(t_ms *ms);
 void	parse_outfile(t_ms *ms);
+void	parse_infile(t_ms *ms);
 
 //fds
 void	setup_fds(t_ms *ms);
