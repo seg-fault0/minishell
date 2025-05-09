@@ -16,8 +16,6 @@ SRCS =	srcs/core/main.c				\
 		srcs/other/free.c				\
 		srcs/other/utils.c				\
 		srcs/redirections/setup_fds.c	\
-		srcs/redirections/setup_in.c	\
-		srcs/redirections/setup_out.c	\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)

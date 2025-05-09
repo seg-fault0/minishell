@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 12:21:53 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 13:10:10 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@ void	ft_fdmanager(t_ms *ms, int rfd, int *pfd)
 {
 	if (dup2(rfd, STDIN) == -1)
 		return (err_msg(ERR_DUP2_F), exit(0));
-	close(rfd);
 	if (ms->cmd.counter < ms->cmd.max_counter - 1)
-		if (dup2(pfd[1], 1) == -1)
+	{
+		if (dup2(pfd[1], STDOUT) == -1)
 			return (err_msg(ERR_DUP2_F), exit(0));
+	}
+	else
+	{
+		if (dup2(ms->fds.oufd, STDOUT) == -1)
+			return (err_msg(ERR_DUP2_F), exit(0));
+	}
 }
 
 void	ft_chiled(t_ms *ms, int rfd, int *pfd)
