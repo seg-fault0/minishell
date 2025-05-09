@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 19:50:22 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 11:23:06 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,19 @@ typedef struct s_cmd
 	int		max_counter;
 }t_cmd;
 
+typedef struct s_fds
+{
+	char	*instr;
+	char	*oustr;
+	int		infd;
+	int		oufd;
+}t_fds;
+
 typedef struct s_ms
 {
 	t_cmd		cmd;
 	t_parsed	parse;
+	t_fds		fds;
 	char		**env;
 	const char	*input;
 }t_ms;
