@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 13:10:10 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 15:58:21 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	char	**tmp;
 	int		status;
 
+	status = 0;
 	ft_fdmanager(ms, rfd, pfd);
 	tmp = ms->cmd.cmd[ms->cmd.counter];
 	if (is_builtin(tmp[0]) == TRUE)
