@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 12:07:30 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 13:16:45 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_fds
 	char	*oustr;
 	int		infd;
 	int		oufd;
+	BOOL	append_flag;
 }t_fds;
 
 typedef struct s_ms
