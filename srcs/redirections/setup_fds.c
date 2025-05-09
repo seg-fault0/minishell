@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:26:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 13:11:35 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/09 13:14:47 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	reset_fds(t_ms *ms)
 {
+	if (ms->fds.infd > 2)
+		close (ms->fds.infd);
+	if (ms->fds.oufd > 2)
+		close (ms->fds.oufd);
 	free(ms->fds.instr);
 	free(ms->fds.oustr);
 	ms->fds.instr = NULL;
