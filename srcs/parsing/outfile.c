@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 13:59:42 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 14:57:09 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 09:55:57 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static BOOL	get_file_name(t_ms *ms)
 	if (!*start)
 		return (FALSE);
 	file_len = 0;
-	while (start[file_len])
+	while (start[file_len] && is_space(start[file_len]) == FALSE)
 		file_len++;
 	ms->parse.oustr = malloc(file_len + 1);
 	if (!ms->parse.oustr)
