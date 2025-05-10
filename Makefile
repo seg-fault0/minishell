@@ -9,7 +9,7 @@ SRCS =	srcs/core/main.c		\
 		srcs/cmd/exe.c			\
 		srcs/parsing/pars.c		\
 		srcs/parsing/outfile.c	\
-		srcs/parsing/infile.c		\
+		srcs/parsing/infile.c	\
 		srcs/libft/ft_split.c	\
 		srcs/libft/ft_mem.c		\
 		srcs/libft/str.c		\
@@ -19,6 +19,7 @@ SRCS =	srcs/core/main.c		\
 		srcs/other/utils.c		\
 		srcs/other/char.c		\
 		srcs/other/str.c		\
+		srcs/fds/in_ouSetup.c	\
 		srcs/fds/setup_fds.c	\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
