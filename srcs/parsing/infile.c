@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:29:28 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/09 18:21:43 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/10 09:34:37 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static BOOL	get_infile_name(t_ms *ms)
 		return (FALSE);
 	ft_memcpy(ms->parse.instr, start, file_len);
 	ms->parse.instr[file_len] = '\0';
-	printf("%s\n\n", ms->parse.instr);
 	return (TRUE);
 }
 
@@ -74,7 +73,6 @@ void	parse_infile(t_ms *ms)
 
 	if (get_infile_name(ms) == FALSE)
 		return ;
-	printf("%s\n", ms->input);
 	old_input = ms->input;
 	tmp = old_input;
 	while (is_space(*tmp))
@@ -83,7 +81,6 @@ void	parse_infile(t_ms *ms)
 		ms->input = remove_infile_redirection(tmp);
 	else
 		ms->input = remove_infile(tmp);
-	printf("%s\n", ms->input);
 	if (!ms->input)
 		return (ms->input = old_input, (void) 0);
 	free(old_input);
