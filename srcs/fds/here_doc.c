@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:08:30 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 14:44:53 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 14:48:59 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	here_doc(t_ms *ms)
 		ft_putstr_fd(HERE_DOC, STDOUT);
 		line = get_next_line(STDIN);
 	}
+	free(line);
 	get_next_line(GNL_FREE);
 	close(pfd[1]);
 	ms->fds.infd = pfd[0];
