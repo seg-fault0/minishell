@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 11:00:38 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 15:41:42 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	reset_prompt(t_ms *ms)
 
 void	ft_luncher(t_ms *ms)
 {
+	setup_signals();
 	while (ft_redline(ms) == TRUE)
 	{
 		ft_parse(ms);

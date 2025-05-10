@@ -3,6 +3,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/core/luncher.c				\
 		srcs/core/err.c					\
 		srcs/core/exit.c				\
+		srcs/core/signals.c				\
 		srcs/cmd/init.c					\
 		srcs/cmd/builtin.c				\
 		srcs/cmd/env.c					\
