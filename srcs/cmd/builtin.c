@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 11:26:29 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 13:56:59 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	builtin_exe(t_ms *ms, char *cmd)
 		set_env(ms);
 	else if (ft_memcmp(cmd, "unset", 5) == 0)
 		unset_env(ms);
-	exit(0);
+	if (is_main_process_exe(cmd) == FALSE)
+		exit(0);
 }
