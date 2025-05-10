@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 11:24:36 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 14:06:21 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <readline/history.h>
 
 # define PROMPT "\033[0;35mminishell : \033[0m"
+
+# define GNL_BUFFER_SIZE 1
 
 # define STDIN 0
 # define STDOUT 1
@@ -143,6 +145,12 @@ BOOL	char_search(char *str, char c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
+
+//gnl
+int		ft_new_line_check(char *str);
+char	*ft_init(char *str);
+char	*get_next_line(int fd);
+char	*ft_strljoin(char *s1, char *s2, int size);
 
 //other
 int		skip_space(char *str);
