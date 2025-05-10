@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 13:49:54 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 11:00:38 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ void	reset_prompt(t_ms *ms)
 	free3(ms->parse.cmd, HEAP);
 	free2(ms->cmd.paths, HEAP);
 	free(ms->input);
+	free(ms->cmd.pids);
 	ms->cmd.cmd = NULL;
 	ms->cmd.paths = NULL;
 	ms->input = NULL;
+	ms->cmd.pids = NULL;
 }
 
 void	ft_luncher(t_ms *ms)

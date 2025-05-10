@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:57:35 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 18:41:27 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 10:59:21 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	add_path(t_ms *ms)
 void	init_cmd(t_ms *ms)
 {
 	ms->cmd.max_counter = char_counter(ms->input, '|') + 1;
+	ms->cmd.pids = malloc(ms->cmd.max_counter * sizeof(int *));
 	ms->cmd.counter = 0;
 	ms->cmd.cmd = ms->parse.cmd;
 	ms->cmd.paths = get_paths(ms->env);
