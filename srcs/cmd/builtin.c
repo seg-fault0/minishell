@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 11:22:53 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 11:26:29 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,12 @@ void	ft_echo(t_ms *ms)
 	counter = ms->cmd.counter;
 	i = 0;
 	while (ms->cmd.cmd[counter][++i])
-		printf("%s ", ms->cmd.cmd[counter][i]);
+	{
+		if (ft_strstr(ms->cmd.cmd[counter][i], "$?"))
+			printf("%d", ms->cmd.last_exit_code);
+		else
+			printf("%s", ms->cmd.cmd[counter][i]);
+	}
 	printf("\n");
 }
 

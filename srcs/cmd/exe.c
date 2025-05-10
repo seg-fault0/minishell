@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 11:07:27 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 11:25:16 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void	ft_exe(t_ms *ms)
 		builtin_exe(ms, cmd);
 	else
 		ft_start(ms, ms->fds.infd);
+	ms->cmd.last_exit_code = WEXITSTATUS(ms->cmd.cur_exit_code);
 }
