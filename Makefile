@@ -19,6 +19,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/other/utils.c				\
 		srcs/other/char.c				\
 		srcs/other/str.c				\
+		srcs/fds/here_doc.c				\
 		srcs/fds/in_ouSetup.c			\
 		srcs/fds/setup_fds.c			\
 		srcs/gnl/get_next_line.c		\

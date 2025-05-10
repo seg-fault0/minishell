@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:50:33 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 13:57:35 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 14:32:03 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ void	setup_outfd(t_ms *ms)
 
 void	setup_infd(t_ms *ms)
 {
-	ms->fds.infd = open(ms->parse.instr, O_RDONLY);
-	if (ms->fds.infd < 0)
-		err_msg(ERR_OPEN_F);
+	if (ms->parse.delimiter)
+		here_doc(ms);
+	else
+	{
+		ms->fds.infd = open(ms->parse.instr, O_RDONLY);
+		if (ms->fds.infd < 0)
+			err_msg(ERR_OPEN_F);
+	}
 }

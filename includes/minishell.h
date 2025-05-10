@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 14:06:21 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 14:31:54 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 # include <readline/history.h>
 
 # define PROMPT "\033[0;35mminishell : \033[0m"
+# define HERE_DOC "pipe heredoc> "
 
 # define GNL_BUFFER_SIZE 1
+# define GNL_FREE -9123423
 
 # define STDIN 0
 # define STDOUT 1
@@ -49,9 +51,10 @@
 typedef struct s_parsed
 {
 	char	***cmd;
-	int		cmd_nbr;
 	char	*instr;
 	char	*oustr;
+	char	*delimiter;
+	int		cmd_nbr;
 }t_parsed;
 
 typedef struct s_cmd
@@ -97,6 +100,7 @@ void	setup_fds(t_ms *ms);
 void	setup_infd(t_ms *ms);
 void	setup_outfd(t_ms *ms);
 void	reset_fds(t_ms *ms);
+void	here_doc(t_ms *ms);
 
 //cmd
 void	init_cmd(t_ms *ms);

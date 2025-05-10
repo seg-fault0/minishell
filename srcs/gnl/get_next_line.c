@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 05:04:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 14:05:03 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/10 14:20:27 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char	*get_next_line(int fd)
 	static char	*data;
 	char		*line;
 
-	if (fd == -9)
+	if (fd == GNL_FREE)
 		free(data);
 	if (fd < 0 || GNL_BUFFER_SIZE <= 0)
 		return (NULL);
