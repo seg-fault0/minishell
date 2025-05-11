@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 16:18:44 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/11 11:28:53 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	setup_signals(void);
 void	ft_parse(t_ms *ms);
 void	parse_outfile(t_ms *ms);
 void	parse_infile(t_ms *ms);
+BOOL	synthax_checker(char *input);
 
 //fds
 void	setup_fds(t_ms *ms);
