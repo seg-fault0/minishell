@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/15 11:31:13 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/15 14:30:00 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 
 typedef struct s_parsed
 {
+	char	**tmp2d;
 	char	***cmd;
 	char	***infiles;
 	char	***oufiles;
@@ -96,15 +97,17 @@ void	setup_signals(void);
 //parse
 void	ft_parse(t_ms *ms);
 void	parse_outfile(t_ms *ms);
-void	parse_infile(t_ms *ms);
+// void	parse_infile(t_ms *ms);
+char	**quote_protect(char *str, int len);
+int pipe_counter(const char *str, char delimiter);
 BOOL	synthax_checker(char *input);
 
 //fds
-void	setup_fds(t_ms *ms);
-void	setup_infd(t_ms *ms);
-void	setup_outfd(t_ms *ms);
-void	reset_fds(t_ms *ms);
-void	here_doc(t_ms *ms);
+// void	setup_fds(t_ms *ms);
+// void	setup_infd(t_ms *ms);
+// void	setup_outfd(t_ms *ms);
+// void	reset_fds(t_ms *ms);
+// void	here_doc(t_ms *ms);
 
 //cmd
 void	init_cmd(t_ms *ms);
@@ -145,6 +148,7 @@ char	*ft_strdup(const char *s1);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	**ft_split_len(const char *s, char c, size_t size);
 
 //char utils
 BOOL	char_search(char *str, char c);

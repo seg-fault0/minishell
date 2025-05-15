@@ -10,9 +10,12 @@ SRCS =	srcs/core/main.c				\
 		srcs/cmd/exe.c					\
 		srcs/parsing/pars.c				\
 		srcs/parsing/synthax.c			\
+		srcs/parsing/helper.c			\
+		srcs/parsing/parse_outfile.c	\
 		srcs/libft/ft_split.c			\
 		srcs/libft/ft_mem.c				\
 		srcs/libft/str.c				\
+		srcs/libft/ft_split_len.c		\
 		srcs/other/checkers.c			\
 		srcs/other/arr_utils.c			\
 		srcs/other/free.c				\
