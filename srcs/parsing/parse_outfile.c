@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/15 15:05:03 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/15 16:46:04 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,29 @@ static void	fill_redirection_result(char *cmd, char *res, int i)
 	int	j;
 
 	j = 0;
-	while (cmd[i])
+	while (cmd[i] && cmd[i] != '|')
 	{
-		if (!is_space(cmd[i]))
+		if (cmd[i] == '>')
 		{
-			res[j++] = cmd[i];
+			res[j++] = '>';
+			i++;
+			while (cmd[i] && is_space(cmd[i]))
+				i++;
+			while (cmd[i] && !is_space(cmd[i])
+				&& cmd[i] != '>' && cmd[i] != '<' && cmd[i] != '|')
+			{
+				res[j++] = cmd[i];
+				i++;
+			}
 		}
-		i++;
+		else
+			i++;
 	}
 	res[j] = '\0';
 }
 
 
-char	*clean_redirection(char *cmd)
+static char	*clean_redirection(char *cmd)
 {
 	int		i;
 	char	*res;

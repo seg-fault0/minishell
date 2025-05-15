@@ -12,6 +12,8 @@ SRCS =	srcs/core/main.c				\
 		srcs/parsing/synthax.c			\
 		srcs/parsing/helper.c			\
 		srcs/parsing/parse_outfile.c	\
+		srcs/parsing/parse_infile.c		\
+		srcs/parsing/parse_cmd.c		\
 		srcs/libft/ft_split.c			\
 		srcs/libft/ft_mem.c				\
 		srcs/libft/str.c				\

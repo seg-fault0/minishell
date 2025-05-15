@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/15 14:30:00 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/15 16:58:57 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,10 @@ void	setup_signals(void);
 //parse
 void	ft_parse(t_ms *ms);
 void	parse_outfile(t_ms *ms);
-// void	parse_infile(t_ms *ms);
+void	parse_infile(t_ms *ms);
+void	parse_cmd(t_ms *ms);
 char	**quote_protect(char *str, int len);
-int pipe_counter(const char *str, char delimiter);
+int		pipe_counter(const char *str, char delimiter);
 BOOL	synthax_checker(char *input);
 
 //fds
