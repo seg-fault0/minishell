@@ -9,8 +9,6 @@ SRCS =	srcs/core/main.c				\
 		srcs/cmd/env.c					\
 		srcs/cmd/exe.c					\
 		srcs/parsing/pars.c				\
-		srcs/parsing/outfile.c			\
-		srcs/parsing/infile.c			\
 		srcs/parsing/synthax.c			\
 		srcs/libft/ft_split.c			\
 		srcs/libft/ft_mem.c				\
@@ -21,9 +19,6 @@ SRCS =	srcs/core/main.c				\
 		srcs/other/utils.c				\
 		srcs/other/char.c				\
 		srcs/other/str.c				\
-		srcs/fds/here_doc.c				\
-		srcs/fds/in_ouSetup.c			\
-		srcs/fds/setup_fds.c			\
 		srcs/gnl/get_next_line.c		\
 		srcs/gnl/get_next_line_utils.c	\
 
