@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_outfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 12:32:04 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 16:06:37 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	parse_outfile(t_ms *ms)
 
 	i = 0;
 	if (ms->parse.oufiles)
-		free3size(ms->parse.oufiles, ms->parse.cmd_nbr);	
+		free3size(ms->parse.oufiles, ms->parse.cmd_nbr);
 	ms->parse.oufiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
 	if (!ms->parse.oufiles)
 		return ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   luncher.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/16 12:28:27 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 16:04:34 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,56 +38,12 @@ void	reset_prompt(t_ms *ms)
 	ms->cmd.cmd = NULL;
 	ms->input = NULL;
 	ms->cmd.pids = NULL;
-	
 	free3size(ms->parse.cmd, ms->parse.cmd_nbr);
 	free3size(ms->parse.infiles, ms->parse.cmd_nbr);
 	free3size(ms->parse.oufiles, ms->parse.cmd_nbr);
 	ms->parse.cmd = NULL;
 	ms->parse.infiles = NULL;
 	ms->parse.oufiles = NULL;
-}
-
-void	print_parsed(t_ms *ms)
-{
-	for (int i = 0; i < ms->parse.cmd_nbr; i++)
-	{
-		if (ms->parse.cmd && ms->parse.cmd[i])
-		{
-			for (int j = 0; ms->parse.cmd[i][j]; j++)
-				printf("cmd[%d][%d] = %s\n", i, j, ms->parse.cmd[i][j]);
-		}
-		else
-			printf("cmd[%d][0] = NULL\n", i);
-		printf("\n");
-	}
-	
-	printf("---------------------------------------\n");
-	
-	for (int i = 0; i < ms->parse.cmd_nbr; i++)
-	{
-		if (ms->parse.infiles && ms->parse.infiles[i])
-		{
-			for (int j = 0; ms->parse.infiles[i][j]; j++)
-				printf("infile[%d][%d] = %s\n", i, j, ms->parse.infiles[i][j]);
-		}
-		else
-			printf("infile[%d][0] = NULL\n", i);
-		printf("\n");
-	}
-	printf("---------------------------------------\n");
-
-	for (int i = 0; i < ms->parse.cmd_nbr; i++)
-	{
-		if (ms->parse.oufiles && ms->parse.oufiles[i])
-		{
-			for (int j = 0; ms->parse.oufiles[i][j]; j++)
-				printf("outfiles[%d][%d] = %s\n", i, j, ms->parse.oufiles[i][j]);
-		}
-		else
-			printf("outfiles[%d][0] = NULL\n", i);
-		printf("\n");
-	}
-	printf("---------------------------------------\n");
 }
 
 void	ft_luncher(t_ms *ms)
@@ -98,11 +54,8 @@ void	ft_luncher(t_ms *ms)
 		if (synthax_checker(ms->input) == TRUE)
 		{
 			ft_parse(ms);
-
-			print_parsed(ms);
-			// setup_fds(ms);
-			// init_cmd(ms);
-			// ft_exe(ms);
+			init_cmd(ms);
+			ft_exe(ms);
 		}
 		reset_prompt(ms);
 	}

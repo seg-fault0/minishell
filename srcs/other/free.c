@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:22:49 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/16 11:48:53 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 16:06:27 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	free3(char ***arr, int c)
 
 void	free3size(char ***arg, int size)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	if (!arg)
-	return ;
+		return ;
 	while (i < size)
 	{
 		if (arg[i])
