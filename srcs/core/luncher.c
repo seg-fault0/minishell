@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   luncher.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/15 17:57:15 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 09:38:34 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	print_parsed(t_ms *ms)
 		if (ms->parse.cmd && ms->parse.cmd[i])
 		{
 			for (int j = 0; ms->parse.cmd[i][j]; j++)
-				printf("infile[%d][%d] = %s\n", i, j, ms->parse.cmd[i][j]);
+				printf("cmd[%d][%d] = %s\n", i, j, ms->parse.cmd[i][j]);
 		}
 		else
 			printf("cmd[%d][0] = NULL\n", i);
