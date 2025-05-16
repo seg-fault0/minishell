@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/15 16:46:04 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 10:20:44 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	fill_redirection_result(char *cmd, char *res, int i)
 	res[j] = '\0';
 }
 
-
 static char	*clean_redirection(char *cmd)
 {
 	int		i;
@@ -62,10 +61,10 @@ void	parse_outfile(t_ms *ms)
 	char	*cmd;
 	char	*redirect;
 
-	ms->parse.oufiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
+	i = 0;
+	ms->parse.oufiles = malloc(sizeof(char *) * (ms->parse.cmd_nbr + 1));
 	if (!ms->parse.oufiles)
 		return ;
-	i = 0;
 	while (i < ms->parse.cmd_nbr)
 	{
 		cmd = ms->parse.tmp2d[i];
@@ -74,11 +73,8 @@ void	parse_outfile(t_ms *ms)
 			redirect = clean_redirection(cmd);
 			if (!redirect)
 				return ;
-			ms->parse.oufiles[i] = malloc(sizeof(char *) * 2);
-			if (!ms->parse.oufiles[i])
-				return ;
-			ms->parse.oufiles[i][0] = redirect;
-			ms->parse.oufiles[i][1] = NULL;
+			ms->parse.oufiles[i] = ft_split(redirect, '>');
+			free(redirect);
 		}
 		else
 			ms->parse.oufiles[i] = NULL;
