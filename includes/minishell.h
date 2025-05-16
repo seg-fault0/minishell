@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/11 11:28:53 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/16 10:47:57 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@
 
 typedef struct s_parsed
 {
+	char	**tmp2d;
 	char	***cmd;
-	char	*instr;
-	char	*oustr;
+	char	***infiles;
+	char	***oufiles;
 	char	*delimiter;
 	int		cmd_nbr;
 }t_parsed;
@@ -97,14 +98,17 @@ void	setup_signals(void);
 void	ft_parse(t_ms *ms);
 void	parse_outfile(t_ms *ms);
 void	parse_infile(t_ms *ms);
+void	parse_cmd(t_ms *ms);
+char	**quote_protect(char *str, int len);
+int		pipe_counter(const char *str, char delimiter);
 BOOL	synthax_checker(char *input);
 
 //fds
-void	setup_fds(t_ms *ms);
-void	setup_infd(t_ms *ms);
-void	setup_outfd(t_ms *ms);
-void	reset_fds(t_ms *ms);
-void	here_doc(t_ms *ms);
+// void	setup_fds(t_ms *ms);
+// void	setup_infd(t_ms *ms);
+// void	setup_outfd(t_ms *ms);
+// void	reset_fds(t_ms *ms);
+// void	here_doc(t_ms *ms);
 
 //cmd
 void	init_cmd(t_ms *ms);
@@ -145,6 +149,7 @@ char	*ft_strdup(const char *s1);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	**ft_split_len(const char *s, char c, size_t size);
 
 //char utils
 BOOL	char_search(char *str, char c);
@@ -162,5 +167,5 @@ char	*ft_strljoin(char *s1, char *s2, int size);
 
 //other
 int		skip_space(char *str);
-
+void	free3size(char ***arg, int size);
 #endif

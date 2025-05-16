@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/11 11:58:14 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:04:34 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,19 @@ static BOOL	ft_redline(t_ms *ms)
 
 void	reset_prompt(t_ms *ms)
 {
-	reset_fds(ms);
-	free3(ms->parse.cmd, HEAP);
 	free2(ms->cmd.paths, HEAP);
 	free(ms->input);
 	free(ms->cmd.pids);
-	ms->cmd.cmd = NULL;
 	ms->cmd.paths = NULL;
+	ms->cmd.cmd = NULL;
 	ms->input = NULL;
 	ms->cmd.pids = NULL;
+	free3size(ms->parse.cmd, ms->parse.cmd_nbr);
+	free3size(ms->parse.infiles, ms->parse.cmd_nbr);
+	free3size(ms->parse.oufiles, ms->parse.cmd_nbr);
 	ms->parse.cmd = NULL;
+	ms->parse.infiles = NULL;
+	ms->parse.oufiles = NULL;
 }
 
 void	ft_luncher(t_ms *ms)
@@ -51,7 +54,6 @@ void	ft_luncher(t_ms *ms)
 		if (synthax_checker(ms->input) == TRUE)
 		{
 			ft_parse(ms);
-			setup_fds(ms);
 			init_cmd(ms);
 			ft_exe(ms);
 		}
