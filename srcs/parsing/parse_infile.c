@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 12:32:56 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 18:38:29 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void	parse_infile(t_ms *ms)
 	char	*cmd;
 	char	*redirect;
 
-	i = 0;
+	i = -1;
 	if (ms->parse.infiles)
 		free3size(ms->parse.infiles, ms->parse.cmd_nbr);
 	ms->parse.infiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
 	if (!ms->parse.infiles)
 		return ;
-	while (i < ms->parse.cmd_nbr)
+	while (++i < ms->parse.cmd_nbr)
 	{
 		cmd = ms->parse.tmp2d[i];
 		if (char_search(cmd, '<'))
@@ -80,7 +80,6 @@ void	parse_infile(t_ms *ms)
 		}
 		else
 			ms->parse.infiles[i] = NULL;
-		i++;
 	}
 	ms->parse.infiles[i] = NULL;
 }

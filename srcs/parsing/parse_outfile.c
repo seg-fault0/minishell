@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_outfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 16:06:37 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/16 18:39:43 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void	parse_outfile(t_ms *ms)
 	char	*cmd;
 	char	*redirect;
 
-	i = 0;
+	i = -1;
 	if (ms->parse.oufiles)
 		free3size(ms->parse.oufiles, ms->parse.cmd_nbr);
 	ms->parse.oufiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
 	if (!ms->parse.oufiles)
 		return ;
-	while (i < ms->parse.cmd_nbr)
+	while (++i < ms->parse.cmd_nbr)
 	{
 		cmd = ms->parse.tmp2d[i];
 		if (char_search(cmd, '>'))
@@ -80,7 +80,6 @@ void	parse_outfile(t_ms *ms)
 		}
 		else
 			ms->parse.oufiles[i] = NULL;
-		i++;
 	}
 	ms->parse.oufiles[i] = NULL;
 }

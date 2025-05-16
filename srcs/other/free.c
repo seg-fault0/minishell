@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:22:49 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/16 17:58:00 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 18:32:44 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,11 @@ void	free3size(char ***arg, int size)
 
 void	free2d_buffer(char **buffer)
 {
-	size_t	i = 0;
+	size_t	i;
 
+	i = 0;
 	if (!buffer)
-		return;
+		return ;
 	while (buffer[i])
 		free(buffer[i++]);
 	free(buffer);
