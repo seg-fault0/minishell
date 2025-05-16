@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   luncher.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/16 09:38:34 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/16 11:02:22 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	reset_prompt(t_ms *ms)
 	ms->input = NULL;
 	ms->cmd.pids = NULL;
 	
-	free3(ms->parse.cmd, HEAP);
-	free3(ms->parse.infiles, HEAP);
-	free3(ms->parse.oufiles, HEAP);
+	free3size(ms->parse.cmd, ms->parse.cmd_nbr);
+	free3size(ms->parse.infiles, ms->parse.cmd_nbr);
+	free3size(ms->parse.oufiles, ms->parse.cmd_nbr);
 	ms->parse.cmd = NULL;
-	ms->parse.oufiles = NULL;
+	ms->parse.infiles = NULL;
 	ms->parse.oufiles = NULL;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:22:49 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/11 11:58:37 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/16 10:51:34 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,29 @@ void	free3(char ***arr, int c)
 	}
 	if (c == HEAP)
 		free(arr);
+}
+
+void	free3size(char ***arg, int size)
+{
+	int i;
+	int j;
+
+	i = 0;
+	if (!arg)
+	return ;
+	while (i < size)
+	{
+		if (arg[i])
+		{
+			j = 0;
+			while (arg[i][j])
+			{
+				free(arg[i][j]);
+				j++;
+			}
+			free(arg[i]);
+		}
+		i++;
+	}
+	free(arg);
 }

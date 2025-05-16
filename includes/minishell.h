@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/15 16:58:57 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 10:47:57 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,5 @@ char	*ft_strljoin(char *s1, char *s2, int size);
 
 //other
 int		skip_space(char *str);
-
+void	free3size(char ***arg, int size);
 #endif

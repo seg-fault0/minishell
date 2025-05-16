@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 10:21:28 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 10:56:07 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	parse_cmd(t_ms *ms)
 	char	*clean;
 
 	i = 0;
-	ms->parse.cmd = malloc(sizeof(char *) * (ms->parse.cmd_nbr + 1));
+	ms->parse.cmd = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
 	if (!ms->parse.cmd)
 		return ;
 	while (i < ms->parse.cmd_nbr)
