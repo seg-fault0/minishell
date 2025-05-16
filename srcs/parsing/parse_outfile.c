@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 10:20:44 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 12:32:04 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	parse_outfile(t_ms *ms)
 	char	*redirect;
 
 	i = 0;
-	ms->parse.oufiles = malloc(sizeof(char *) * (ms->parse.cmd_nbr + 1));
+	if (ms->parse.oufiles)
+		free3size(ms->parse.oufiles, ms->parse.cmd_nbr);	
+	ms->parse.oufiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
 	if (!ms->parse.oufiles)
 		return ;
 	while (i < ms->parse.cmd_nbr)
