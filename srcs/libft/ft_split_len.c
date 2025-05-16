@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:12:00 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 16:06:09 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/16 17:55:51 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static char	*ft_fill_len(const char *s, char c, size_t *word_len, size_t size, s
 	return (word);
 }
 
+
+
 char	**ft_split_len(const char *s, char c, size_t size)
 {
 	char	**buffer;
@@ -66,7 +68,7 @@ char	**ft_split_len(const char *s, char c, size_t size)
 	i = 0;
 	offset = 0;
 	if (!s)
-		return (NULL);
+		return (NULL); 
 	buffer = malloc((ft_row_len(s, c, size) + 1) * sizeof(char *));
 	if (!buffer)
 		return (NULL);

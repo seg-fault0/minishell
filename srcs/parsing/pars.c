@@ -6,11 +6,12 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/16 12:28:24 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/16 17:58:08 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 void	ft_parse(t_ms *ms)
 {
@@ -22,6 +23,8 @@ void	ft_parse(t_ms *ms)
 	tmp = ft_strdup(ms->input);
 	if (!tmp)
 		return ;
+	if (ms->parse.tmp2d)
+		free2d_buffer(ms->parse.tmp2d);
 	ms->parse.tmp2d = quote_protect(tmp, strlen(tmp) + 1);
 	if (!ms->parse.tmp2d)
 		return (free(tmp));

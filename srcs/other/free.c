@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:22:49 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/16 16:06:27 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/16 17:58:00 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,15 @@ void	free3size(char ***arg, int size)
 		i++;
 	}
 	free(arg);
+}
+
+void	free2d_buffer(char **buffer)
+{
+	size_t	i = 0;
+
+	if (!buffer)
+		return;
+	while (buffer[i])
+		free(buffer[i++]);
+	free(buffer);
 }
