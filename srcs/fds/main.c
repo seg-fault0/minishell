@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:55:44 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:49:16 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 12:43:21 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ BOOL	ft_allocator(t_ms *ms)
 	if (!ms->fd.out)
 		return (FALSE);
 	ft_memset(ms->fd.out, -1, size);
+	ms->fd.out[ms->parse.cmd_nbr - 1] = STDOUT;
 	return (TRUE);
 }
 
