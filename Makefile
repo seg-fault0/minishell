@@ -28,6 +28,8 @@ SRCS =	srcs/core/main.c				\
 		srcs/gnl/get_next_line_utils.c	\
 		srcs/synthax/main.c				\
 		srcs/synthax/quotes.c			\
+		srcs/fds/main.c					\
+		srcs/fds/oufd.c					\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)
@@ -60,3 +62,6 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+valgrind : all
+	valgrind --leak-check=full --trace-children=yes --track-fds=yes --log-file=log.txt ./minishell

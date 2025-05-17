@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 09:37:42 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 10:09:01 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_luncher(t_ms *ms)
 		if (synthax_checker(ms->input) == TRUE)
 		{
 			ft_parse(ms);
+			fd_setup(ms);
 			init_cmd(ms);
 			ft_exe(ms);
 		}
