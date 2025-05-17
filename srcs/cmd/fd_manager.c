@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 11:56:07 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 12:45:34 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 13:07:34 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	fd_manager(t_ms *ms, int rfd, int *pfd)
 		else if (dup2(pfd[1], STDOUT) == -1)
 			return (err_msg(ERR_DUP2_F), exit(0));
 	}
+	close_pipe(pfd);
 }
