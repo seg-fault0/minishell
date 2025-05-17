@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   luncher.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/16 18:01:40 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/17 09:37:42 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,10 @@ static BOOL	ft_redline(t_ms *ms)
 
 void	reset_prompt(t_ms *ms)
 {
-	free2(ms->cmd.paths, HEAP);
+	parse_reseter(ms);
+	cmd_reseter(ms);
 	free(ms->input);
-	free(ms->cmd.pids);
-	ms->cmd.paths = NULL;
-	ms->cmd.cmd = NULL;
 	ms->input = NULL;
-	ms->cmd.pids = NULL;
-	free3size(ms->parse.cmd, ms->parse.cmd_nbr);
-	free3size(ms->parse.infiles, ms->parse.cmd_nbr);
-	free3size(ms->parse.oufiles, ms->parse.cmd_nbr);
-	ms->parse.cmd = NULL;
-	ms->parse.infiles = NULL;
-	ms->parse.oufiles = NULL;
 }
 
 void	ft_luncher(t_ms *ms)

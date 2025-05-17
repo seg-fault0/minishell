@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/16 17:58:22 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/17 09:39:39 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,9 @@ char	**quote_protect(char *str, int len);
 int		pipe_counter(const char *str, char delimiter);
 BOOL	synthax_checker(char *input);
 
-//fds
-// void	setup_fds(t_ms *ms);
-// void	setup_infd(t_ms *ms);
-// void	setup_outfd(t_ms *ms);
-// void	reset_fds(t_ms *ms);
-// void	here_doc(t_ms *ms);
+//reseter
+void	parse_reseter(t_ms *ms);
+void	cmd_reseter(t_ms *ms);
 
 //cmd
 void	init_cmd(t_ms *ms);
@@ -141,6 +138,9 @@ char	**extract_from_arr(char **arr, char *to_extract);
 BOOL	is_builtin(char	*str);
 BOOL	is_main_process_exe(char *cmd);
 BOOL	is_space(int c);
+
+//synthax
+BOOL	quotes_checker(char *input);
 
 //libft
 char	**ft_split(char const *s, char c);

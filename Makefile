@@ -2,14 +2,14 @@ SRCS =	srcs/core/main.c				\
 		srcs/core/init_ms.c				\
 		srcs/core/luncher.c				\
 		srcs/core/err.c					\
+		srcs/core/reseter.c				\
 		srcs/core/exit.c				\
 		srcs/core/signals.c				\
 		srcs/cmd/init.c					\
 		srcs/cmd/builtin.c				\
 		srcs/cmd/env.c					\
 		srcs/cmd/exe.c					\
-		srcs/parsing/pars.c				\
-		srcs/parsing/synthax.c			\
+		srcs/parsing/main.c				\
 		srcs/parsing/helper.c			\
 		srcs/parsing/parse_outfile.c	\
 		srcs/parsing/parse_infile.c		\
@@ -26,6 +26,8 @@ SRCS =	srcs/core/main.c				\
 		srcs/other/str.c				\
 		srcs/gnl/get_next_line.c		\
 		srcs/gnl/get_next_line_utils.c	\
+		srcs/synthax/main.c				\
+		srcs/synthax/quotes.c			\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   synthax.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 11:26:01 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/11 11:53:51 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 09:39:20 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,6 @@ void	synthax_err_msg(int msg)
 {
 	if (msg == UNCLOSED_QUOTES)
 		ft_putstr_fd("synthax error : unclosed quotes\n", STDERR);
-}
-
-BOOL	quotes_checker(char *input)
-{
-	BOOL	open_flag;
-	char	c;
-
-	open_flag = FALSE;
-	c = 0;
-	while (*input)
-	{
-		if ((*input == '\'' || *input == '\"') && open_flag == FALSE)
-		{
-			c = *input;
-			open_flag = TRUE;
-		}
-		else if (c != 0 && c == *input)
-			open_flag = FALSE;
-		input++;
-	}
-	return (open_flag);
 }
 
 BOOL	synthax_checker(char *input)
