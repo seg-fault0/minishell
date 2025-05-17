@@ -31,6 +31,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/synthax/main.c				\
 		srcs/synthax/quotes.c			\
 		srcs/fds/main.c					\
+		srcs/fds/infd.c					\
 		srcs/fds/oufd.c					\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs

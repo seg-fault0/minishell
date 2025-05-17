@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:56:47 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 13:20:08 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_cmd
 typedef struct s_fd
 {
 	int	*out;
+	int	*in;
 }t_fd;
 
 typedef struct s_ms
@@ -103,6 +104,7 @@ BOOL	synthax_checker(char *input);
 
 //fds
 void	fd_setup(t_ms *ms);
+void	in_fd_opener(t_ms *ms);
 void	ou_fd_opener(t_ms *ms);
 
 //reseter

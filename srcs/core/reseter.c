@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:35:00 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:52:57 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 13:15:01 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,6 @@ void	fd_reseter(t_ms *ms)
 {
 	free(ms->fd.out);
 	ms->fd.out = NULL;
+	free(ms->fd.in);
+	ms->fd.in = NULL;
 }
