@@ -8,7 +8,9 @@ SRCS =	srcs/core/main.c				\
 		srcs/cmd/init.c					\
 		srcs/cmd/builtin.c				\
 		srcs/cmd/env.c					\
+		srcs/cmd/fd_manager.c			\
 		srcs/cmd/exe.c					\
+		srcs/cmd/main.c					\
 		srcs/parsing/main.c				\
 		srcs/parsing/helper.c			\
 		srcs/parsing/parse_outfile.c	\

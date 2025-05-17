@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:51:51 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 11:56:47 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void	fd_reseter(t_ms *ms);
 //cmd
 void	init_cmd(t_ms *ms);
 void	ft_exe(t_ms *ms);
+void	ft_start(t_ms *ms, int rfd);
+void	fd_manager(t_ms *ms, int rfd, int *pfd);
 
 //env
 char	*get_env(char **env, char *look_for);

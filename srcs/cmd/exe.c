@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:34:38 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 11:57:20 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,13 @@ void	ft_wait(t_ms *ms)
 	}
 }
 
-void	ft_fdmanager(t_ms *ms, int rfd, int *pfd)
-{
-	if (dup2(rfd, STDIN) == -1)
-		return (err_msg(ERR_DUP2_F), exit(0));
-	if (ms->cmd.counter < ms->cmd.max_counter - 1)
-	{
-		if (dup2(pfd[1], STDOUT) == -1)
-			return (err_msg(ERR_DUP2_F), exit(0));
-	}
-}
-
 void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 {
 	char	**tmp;
 	int		status;
 
 	status = 0;
-	ft_fdmanager(ms, rfd, pfd);
+	fd_manager(ms, rfd, pfd);
 	close_pipe(pfd);
 	tmp = ms->cmd.cmd[ms->cmd.counter];
 	if (is_builtin(tmp[0]) == TRUE)
@@ -80,18 +69,4 @@ void	ft_start(t_ms *ms, int rfd)
 		close(pfd[0]);
 		ft_wait(ms);
 	}
-}
-
-void	ft_exe(t_ms *ms)
-{
-	char	*first_cmd;
-
-	if (!ms->input || !*ms->input)
-		return ;
-	first_cmd = ms->cmd.cmd[0][0];
-	if (is_main_process_exe(first_cmd) == TRUE)
-		builtin_exe(ms, first_cmd);
-	else
-		ft_start(ms, STDOUT);
-	ms->cmd.last_exit_code = WEXITSTATUS(ms->cmd.cur_exit_code);
 }
