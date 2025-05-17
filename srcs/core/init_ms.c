@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:04:42 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:33:48 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 11:42:06 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ BOOL	init_struct(t_ms *ms, char **env)
 	ms->env = get_2darr_cp(env);
 	ms->parse.oufiles = NULL;
 	ms->parse.infiles = NULL;
+	ms->fd.out = NULL;
 	return (TRUE);
 }
