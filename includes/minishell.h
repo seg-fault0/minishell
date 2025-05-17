@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:49:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 11:51:51 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	ou_fd_opener(t_ms *ms);
 //reseter
 void	parse_reseter(t_ms *ms);
 void	cmd_reseter(t_ms *ms);
+void	fd_reseter(t_ms *ms);
 
 //cmd
 void	init_cmd(t_ms *ms);

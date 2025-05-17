@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 10:09:01 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 11:51:48 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	reset_prompt(t_ms *ms)
 {
 	parse_reseter(ms);
 	cmd_reseter(ms);
+	fd_reseter(ms);
 	free(ms->input);
 	ms->input = NULL;
 }

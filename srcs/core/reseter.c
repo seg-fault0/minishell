@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:35:00 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 09:54:44 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 11:52:57 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,10 @@ void	cmd_reseter(t_ms *ms)
 	ms->cmd.paths = NULL;
 	ms->cmd.cmd = NULL;
 	ms->cmd.pids = NULL;
+}
+
+void	fd_reseter(t_ms *ms)
+{
+	free(ms->fd.out);
+	ms->fd.out = NULL;
 }
