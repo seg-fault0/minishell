@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 13:34:56 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/17 09:52:34 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ void	ft_fdmanager(t_ms *ms, int rfd, int *pfd)
 	if (ms->cmd.counter < ms->cmd.max_counter - 1)
 	{
 		if (dup2(pfd[1], STDOUT) == -1)
-			return (err_msg(ERR_DUP2_F), exit(0));
-	}
-	else
-	{
-		if (dup2(ms->fds.oufd, STDOUT) == -1)
 			return (err_msg(ERR_DUP2_F), exit(0));
 	}
 }
@@ -96,6 +91,6 @@ void	ft_exe(t_ms *ms)
 	if (is_main_process_exe(first_cmd) == TRUE)
 		builtin_exe(ms, first_cmd);
 	else
-		ft_start(ms, ms->fds.infd);
+		ft_start(ms, STDOUT);
 	ms->cmd.last_exit_code = WEXITSTATUS(ms->cmd.cur_exit_code);
 }
