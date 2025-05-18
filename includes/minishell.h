@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 13:20:08 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/18 14:53:55 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	fd_manager(t_ms *ms, int rfd, int *pfd);
 
 //env
 char	*get_env(char **env, char *look_for);
+char	*get_env_v2(char **env, char *look_for);
 void	set_env(t_ms *ms);
 void	unset_env(t_ms *ms);
 void	print_env(t_ms *ms);
@@ -158,6 +159,9 @@ void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split_len(const char *s, char c, size_t size);
+int		ft_isdigit(int c);
+int		ft_isalpha(int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 //char utils
 BOOL	char_search(char *str, char c);
@@ -176,4 +180,10 @@ char	*ft_strljoin(char *s1, char *s2, int size);
 //other
 int		skip_space(char *str);
 void	free3size(char ***arg, int size);
+
+//expands
+void	expand_vars(t_ms *ms);
+int		expand_checker(char *content);
+int		is_valid_alpha(char c);
+
 #endif

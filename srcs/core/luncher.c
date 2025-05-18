@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   luncher.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:51:48 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/18 15:19:48 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ void	ft_luncher(t_ms *ms)
 		if (synthax_checker(ms->input) == TRUE)
 		{
 			ft_parse(ms);
+			expand_vars(ms);
 			fd_setup(ms);
 			init_cmd(ms);
 			ft_exe(ms);
+			printf("%s\n", ms->parse.tmp2d[0]);
 		}
 		reset_prompt(ms);
 	}
