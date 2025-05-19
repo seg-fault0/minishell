@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 11:57:36 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 13:08:37 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ void	parse_infile(t_ms *ms)
 	char	*redirect;
 
 	i = -1;
-	ms->parse.infiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
-	if (!ms->parse.infiles)
-		return ;
 	while (++i < ms->parse.cmd_nbr)
 	{
 		cmd = ms->parse.tmp2d[i];
