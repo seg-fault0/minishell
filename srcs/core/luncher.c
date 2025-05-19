@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 13:12:46 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:42:52 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 static BOOL	ft_redline(t_ms *ms)
 {
-	char	*input;
-
-	input = NULL;
-	while (!input || !*input)
+	while (!ms->input || !*ms->input)
 	{
-		input = readline(PROMPT);
-		if (!input)
+		ms->input = readline(PROMPT);
+		if (!ms->input)
 			return (FALSE);
-		if (*input)
-			add_history(input);
+		if (*ms->input)
+			add_history(ms->input);
 	}
-	ms->input = ft_strdup(input);
 	return (TRUE);
 }
 
