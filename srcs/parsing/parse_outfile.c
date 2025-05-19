@@ -6,52 +6,30 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 11:57:28 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 13:06:01 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
-static void	fill_redirection_result(char *cmd, char *res, int i)
+static char	*remove_spaces(char *cmd)
 {
-	int	j;
-
-	j = 0;
-	while (cmd[i] && cmd[i] != '|')
-	{
-		if (cmd[i] == '>')
-		{
-			res[j++] = '>';
-			i++;
-			while (cmd[i] && is_space(cmd[i]))
-				i++;
-			while (cmd[i] && !is_space(cmd[i])
-				&& cmd[i] != '>' && cmd[i] != '<' && cmd[i] != '|')
-			{
-				res[j++] = cmd[i];
-				i++;
-			}
-		}
-		else
-			i++;
-	}
-	res[j] = '\0';
-}
-
-static char	*clean_redirection(char *cmd)
-{
-	int		i;
 	char	*res;
+	int		i;
 
-	i = 0;
-	while (cmd[i] && cmd[i] != '>')
-		i++;
-	if (!cmd[i])
-		return (NULL);
+	while (*cmd != '>')
+		cmd++;
 	res = malloc(sizeof(char) * (ft_strlen(cmd) + 1));
 	if (!res)
-		return (NULL);
-	fill_redirection_result(cmd, res, i);
+		return (free(res), NULL);
+	i = 0;
+	while (*cmd)
+	{
+		if (is_space(*cmd) == FALSE)
+			res[i++] = *cmd;
+		cmd++;
+	}
+	res[i] = '\0';
 	return (res);
 }
 
@@ -70,7 +48,7 @@ void	parse_outfile(t_ms *ms)
 		cmd = ms->parse.tmp2d[i];
 		if (char_search(cmd, '>'))
 		{
-			redirect = clean_redirection(cmd);
+			redirect = remove_spaces(cmd);
 			if (!redirect)
 				return ;
 			ms->parse.oufiles[i] = ft_split(redirect, '>');
