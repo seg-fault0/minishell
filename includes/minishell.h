@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 15:55:46 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 17:28:03 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ void	ft_chdir(t_ms *ms);
 //utils
 void	free2(char **arr, int c);
 void	free3(char ***arr, int c);
-void	free2d_buffer(char **buffer);
 size_t	char_counter(const char *str, int c);
 void	close_pipe(int *fd);
 void	ft_close(int fd);
