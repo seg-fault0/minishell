@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 13:44:50 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 15:44:32 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_parse(t_ms *ms);
 void	parse_outfile(t_ms *ms);
 void	parse_infile(t_ms *ms);
 void	parse_cmd(t_ms *ms);
-char	**split_cmd(t_ms *ms);
+char	**split_cmd(const char *input);
 int		cmd_counter(const char *str);
 BOOL	synthax_checker(char *input);
 

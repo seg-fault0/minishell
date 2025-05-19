@@ -6,13 +6,13 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:13:39 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 11:22:20 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 15:45:00 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
-char	**split_cmd(t_ms *ms)
+char	**split_cmd(const char *input)
 {
 	int		i;
 	char	quote;
@@ -20,10 +20,10 @@ char	**split_cmd(t_ms *ms)
 	char	*input_cpy;
 	int		input_len;
 
-	input_cpy = ft_strdup(ms->input);
+	input_cpy = ft_strdup(input);
 	if (!input_cpy)
 		return (NULL);
-	input_len = ft_strlen(ms->input);
+	input_len = ft_strlen(input);
 	quote = 0;
 	i = 0;
 	while (i < input_len)
