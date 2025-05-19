@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 15:44:32 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 15:55:46 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ typedef struct s_cmd
 
 typedef struct s_fd
 {
-	int	*out;
-	int	*in;
+	int		*out;
+	size_t	*append;
+	int		*in;
 }t_fd;
 
 typedef struct s_ms
@@ -168,6 +169,7 @@ BOOL	char_search(char *str, char c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 
 //gnl
 int		ft_new_line_check(char *str);

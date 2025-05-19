@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 13:36:18 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 16:58:15 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,32 @@ static char	*get_outfiles_str(char *cmd)
 	return (res);
 }
 
+static int	append_scanner(char	*files_str)
+{
+	int	file;
+	int	ret;
+	int	i;
+
+	file = 0;
+	ret = 0;
+	i = 0;
+	printf("str = %s\n", files_str);
+	while (files_str[i])
+	{
+		if (files_str[i] == '>')
+		{
+			if (files_str[i + 1] == '>')
+			{
+				ret |= (1 << file);
+				i++;
+			}
+			file++;
+		}
+		i++;
+	}
+	return (ret);
+}
+
 void	parse_outfile(t_ms *ms)
 {
 	int		i;
@@ -48,6 +74,7 @@ void	parse_outfile(t_ms *ms)
 			redirect = get_outfiles_str(cmd);
 			if (!redirect)
 				return ;
+			ms->fd.append[i] = append_scanner(redirect);
 			ms->parse.oufiles[i] = ft_split(redirect, '>');
 			free(redirect);
 		}

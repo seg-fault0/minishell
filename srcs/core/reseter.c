@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:35:00 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 11:27:32 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 15:57:25 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	cmd_reseter(t_ms *ms)
 void	fd_reseter(t_ms *ms)
 {
 	free(ms->fd.out);
-	ms->fd.out = NULL;
 	free(ms->fd.in);
+	free(ms->fd.append);
+	ms->fd.out = NULL;
 	ms->fd.in = NULL;
+	ms->fd.append = NULL;
 }

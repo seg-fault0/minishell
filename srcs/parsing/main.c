@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 15:45:07 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 15:56:48 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ static BOOL	ft_allocator(t_ms *ms)
 	ms->parse.oufiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
 	ms->parse.infiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
 	ms->parse.cmd = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
+	ms->fd.append = ft_calloc(ms->parse.cmd_nbr, sizeof(size_t));
 	if (!ms->parse.tmp2d || !ms->parse.oufiles || !ms->parse.infiles
-		|| !ms->parse.cmd)
+		|| !ms->parse.cmd || !ms->fd.append)
 		return (FALSE);
 	return (TRUE);
 }
