@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 13:24:07 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 17:57:09 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,31 @@ static char	*get_infiles_str(char *cmd)
 	return (infiles[j] = '\0', infiles);
 }
 
+static size_t	heredoc_scanner(char *files_str)
+{
+	int	file;
+	int	ret;
+	int	i;
+
+	file = 0;
+	ret = 0;
+	i = 0;
+	while (files_str[i])
+	{
+		if (files_str[i] == '<')
+		{
+			if (files_str[i + 1] == '<')
+			{
+				ret |= (1 << file);
+				i++;
+			}
+			file++;
+		}
+		i++;
+	}
+	return (ret);
+}
+
 void	parse_infile(t_ms *ms)
 {
 	int		i;
@@ -56,6 +81,7 @@ void	parse_infile(t_ms *ms)
 			redirect = get_infiles_str(cmd);
 			if (!redirect)
 				return ;
+			ms->fd.heredoc[i] = heredoc_scanner(redirect);
 			ms->parse.infiles[i] = ft_split(redirect, '<');
 			free(redirect);
 		}
