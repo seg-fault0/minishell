@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:56:57 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:49:36 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 11:58:46 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ou_fd_opener(t_ms *ms)
 		return ;
 	while (++i < ms->parse.cmd_nbr)
 	{
-		j = -1;
+		j = 0;
 		while (ms->parse.oufiles[i] && ms->parse.oufiles[i][j])
 		{
 			filename = ms->parse.oufiles[i][j];

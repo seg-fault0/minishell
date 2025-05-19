@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 13:10:28 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 13:21:26 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 11:58:41 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	in_fd_opener(t_ms *ms)
 		return ;
 	while (++i < ms->parse.cmd_nbr)
 	{
-		j = -1;
+		j = 0;
 		while (ms->parse.infiles[i] && ms->parse.infiles[i][j])
 		{
 			filename = ms->parse.infiles[i][j];
