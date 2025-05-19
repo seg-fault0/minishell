@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:35:00 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 13:15:01 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 11:27:32 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	parse_reseter(t_ms *ms)
 	free3size(ms->parse.cmd, ms->parse.cmd_nbr);
 	free3size(ms->parse.infiles, ms->parse.cmd_nbr);
 	free3size(ms->parse.oufiles, ms->parse.cmd_nbr);
+	free2(ms->parse.tmp2d, HEAP);
+	ms->parse.tmp2d = NULL;
 	ms->parse.cmd = NULL;
 	ms->parse.infiles = NULL;
 	ms->parse.oufiles = NULL;

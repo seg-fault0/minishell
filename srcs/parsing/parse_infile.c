@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_infile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 18:38:29 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/19 11:25:59 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void	parse_infile(t_ms *ms)
 	char	*redirect;
 
 	i = -1;
-	if (ms->parse.infiles)
-		free3size(ms->parse.infiles, ms->parse.cmd_nbr);
-	ms->parse.infiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
+	ms->parse.infiles = malloc(sizeof(char **) * ms->parse.cmd_nbr);
 	if (!ms->parse.infiles)
 		return ;
 	while (++i < ms->parse.cmd_nbr)

@@ -3,38 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:13:39 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 17:55:09 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/19 11:22:20 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
-char	**quote_protect(char *str, int len)
+char	**split_cmd(t_ms *ms)
 {
 	int		i;
 	char	quote;
 	char	**tmp;
+	char	*input_cpy;
+	int		input_len;
 
-	i = 0;
+	input_cpy = ft_strdup(ms->input);
+	if (!input_cpy)
+		return (NULL);
+	input_len = ft_strlen(ms->input);
 	quote = 0;
-	while (i < len)
+	i = 0;
+	while (i < input_len)
 	{
-		if (!quote && (str[i] == '\'' || str[i] == '"'))
-			quote = str[i];
-		else if (quote && str[i] == quote)
+		if (!quote && (input_cpy[i] == '\'' || input_cpy[i] == '"'))
+			quote = input_cpy[i];
+		else if (quote && input_cpy[i] == quote)
 			quote = 0;
-		else if (!quote && str[i] == '|')
-			str[i] = '\0';
+		else if (!quote && input_cpy[i] == '|')
+			input_cpy[i] = '\0';
 		i++;
 	}
-	tmp = ft_split_len(str, '\0', len);
-	return (tmp);
+	tmp = ft_split_len(input_cpy, '\0', input_len);
+	return (free(input_cpy), tmp);
 }
 
-int	pipe_counter(const char *str, char delimiter)
+int	cmd_counter(const char *str)
 {
 	int		count;
 	char	in_quote;
@@ -50,11 +56,9 @@ int	pipe_counter(const char *str, char delimiter)
 			else if (in_quote == *str)
 				in_quote = 0;
 		}
-		else if (*str == delimiter && !in_quote)
-		{
+		else if (*str == '|' && !in_quote)
 			count++;
-		}
 		str++;
 	}
-	return (count);
+	return (count + 1);
 }
