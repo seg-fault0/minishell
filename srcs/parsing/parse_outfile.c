@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 17:00:30 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 17:50:50 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*get_outfiles_str(char *cmd)
 	return (res);
 }
 
-static int	append_scanner(char	*files_str)
+static size_t	append_scanner(char	*files_str)
 {
 	int	file;
 	int	ret;

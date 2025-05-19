@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 17:28:03 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 17:50:32 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,9 @@ typedef struct s_cmd
 typedef struct s_fd
 {
 	int		*out;
-	size_t	*append;
 	int		*in;
+	size_t	*append;
+	size_t	*heredoc;
 }t_fd;
 
 typedef struct s_ms
