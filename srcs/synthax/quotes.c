@@ -6,13 +6,13 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:39:10 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 09:39:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 13:38:59 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-BOOL	quotes_checker(char *input)
+BOOL	open_quotes_checker(char *input)
 {
 	BOOL	open_flag;
 	char	c;

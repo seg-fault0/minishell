@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 13:12:53 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 13:44:50 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,9 +145,11 @@ char	**extract_from_arr(char **arr, char *to_extract);
 BOOL	is_builtin(char	*str);
 BOOL	is_main_process_exe(char *cmd);
 BOOL	is_space(int c);
+BOOL	is_quote(char c);
 
 //synthax
-BOOL	quotes_checker(char *input);
+BOOL	open_quotes_checker(char *input);
+BOOL	open_pipe_checker(char *input);
 
 //libft
 char	**ft_split(char const *s, char c);
