@@ -31,6 +31,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/gnl/get_next_line_utils.c	\
 		srcs/synthax/main.c				\
 		srcs/synthax/quotes.c			\
+		srcs/synthax/pipe.c				\
 		srcs/fds/main.c					\
 		srcs/fds/infd.c					\
 		srcs/fds/oufd.c					\

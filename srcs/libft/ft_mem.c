@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:10:31 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:04:17 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 16:11:16 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,21 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		i++;
 	}
 	return (0);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*buffer;
+	size_t	x;
+
+	if (count == 0 || size == 0)
+		return (malloc(0));
+	x = count * size;
+	if (x / count != size || x / size != count)
+		return (NULL);
+	buffer = malloc(x);
+	if (!buffer)
+		return (NULL);
+	ft_memset(buffer, 0, x);
+	return (buffer);
 }

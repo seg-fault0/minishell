@@ -6,37 +6,32 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 09:35:20 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 17:52:01 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static BOOL	ft_allocator(t_ms *ms)
+{
+	ms->parse.tmp2d = split_cmd(ms->input);
+	ms->parse.oufiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
+	ms->parse.infiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
+	ms->parse.cmd = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
+	ms->fd.append = ft_calloc(ms->parse.cmd_nbr, sizeof(size_t));
+	ms->fd.heredoc = ft_calloc(ms->parse.cmd_nbr, sizeof(size_t));
+	if (!ms->parse.tmp2d || !ms->parse.oufiles || !ms->parse.infiles
+		|| !ms->parse.cmd || !ms->fd.append || !ms->fd.heredoc)
+		return (FALSE);
+	return (TRUE);
+}
+
 void	ft_parse(t_ms *ms)
 {
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	ms->parse.cmd_nbr = 0;
-	tmp = ft_strdup(ms->input);
-	if (!tmp)
+	ms->parse.cmd_nbr = cmd_counter(ms->input);
+	if (ft_allocator(ms) == FALSE)
 		return ;
-	if (ms->parse.tmp2d)
-		free2d_buffer(ms->parse.tmp2d);
-	ms->parse.tmp2d = quote_protect(tmp, strlen(tmp) + 1);
-	if (!ms->parse.tmp2d)
-		return (free(tmp));
-	while (ms->parse.tmp2d[ms->parse.cmd_nbr])
-		ms->parse.cmd_nbr++;
-	while (i < ms->parse.cmd_nbr)
-	{
-		if (char_search(ms->parse.tmp2d[i], '>') == TRUE)
-			parse_outfile(ms);
-		if (char_search(ms->parse.tmp2d[i], '<') == TRUE)
-			parse_infile(ms);
-		i++;
-	}
+	parse_outfile(ms);
+	parse_infile(ms);
 	parse_cmd(ms);
-	free(tmp);
 }

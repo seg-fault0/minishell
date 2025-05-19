@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   infd.c                                             :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 13:10:28 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 11:58:41 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/19 13:38:00 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/19 13:46:24 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	in_fd_opener(t_ms *ms)
+BOOL	open_pipe_checker(char *input)
 {
-	char	*filename;
+	BOOL	in_quotes;
+	char	quote_char;
 	int		i;
-	int		j;
-	int		fd;
 
+	in_quotes = FALSE;
+	quote_char = '\0';
 	i = -1;
-	if (!ms->parse.infiles)
-		return ;
-	while (++i < ms->parse.cmd_nbr)
+	while (input[++i])
 	{
-		j = 0;
-		while (ms->parse.infiles[i] && ms->parse.infiles[i][j])
+		if (is_quote(input[i]) && !in_quotes)
 		{
-			filename = ms->parse.infiles[i][j];
-			fd = open(filename, O_RDONLY);
-			if (!ms->parse.infiles[i][j + 1])
-				ms->fd.in[i] = fd;
-			else
-				ft_close(fd);
-			j++;
+			in_quotes = TRUE;
+			quote_char = input[i];
+		}
+		else if (input[i] == quote_char)
+			in_quotes = FALSE;
+		else if (input[i] == '|' && !in_quotes)
+		{
+			while (input[++i] == ' ')
+				i++;
+			if (input[i] == '|' || input[i] == '\0')
+				return (TRUE);
 		}
 	}
+	return (FALSE);
 }

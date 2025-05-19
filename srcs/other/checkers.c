@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:10:32 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 14:12:39 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 13:45:52 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ BOOL	is_space(int c)
 		|| c == '\t'
 		|| c == '\f'
 		|| c == '\n')
+		return (TRUE);
+	return (FALSE);
+}
+
+BOOL	is_quote(char c)
+{
+	if (c == '\'' || c == '"')
 		return (TRUE);
 	return (FALSE);
 }

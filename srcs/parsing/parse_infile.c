@@ -3,56 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   parse_infile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 18:38:29 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/19 17:57:09 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
-static void	fill_redirection_result(char *cmd, char *res, int i)
+static char	*get_infiles_str(char *cmd)
 {
-	int	j;
+	char	*infiles;
+	int		i;
+	int		j;
 
+	infiles = malloc(ft_strlen(cmd) + 1);
+	if (!infiles)
+		return (NULL);
+	i = 0;
 	j = 0;
-	while (cmd[i] && cmd[i] != '|')
+	while (cmd[i])
 	{
 		if (cmd[i] == '<')
 		{
-			res[j++] = '<';
+			infiles[j++] = '<';
 			i++;
-			while (cmd[i] && is_space(cmd[i]))
+			while (is_space(cmd[i]))
 				i++;
 			while (cmd[i] && !is_space(cmd[i])
-				&& cmd[i] != '>' && cmd[i] != '<' && cmd[i] != '|')
-			{
-				res[j++] = cmd[i];
-				i++;
-			}
+				&& cmd[i] != '<' && cmd[i] != '>')
+				infiles[j++] = cmd[i++];
 		}
 		else
 			i++;
 	}
-	res[j] = '\0';
+	return (infiles[j] = '\0', infiles);
 }
 
-static char	*clean_redirection(char *cmd)
+static size_t	heredoc_scanner(char *files_str)
 {
-	int		i;
-	char	*res;
+	int	file;
+	int	ret;
+	int	i;
 
+	file = 0;
+	ret = 0;
 	i = 0;
-	while (cmd[i] && cmd[i] != '<')
+	while (files_str[i])
+	{
+		if (files_str[i] == '<')
+		{
+			if (files_str[i + 1] == '<')
+			{
+				ret |= (1 << file);
+				i++;
+			}
+			file++;
+		}
 		i++;
-	if (!cmd[i])
-		return (NULL);
-	res = malloc(sizeof(char) * (ft_strlen(cmd) + 1));
-	if (!res)
-		return (NULL);
-	fill_redirection_result(cmd, res, i);
-	return (res);
+	}
+	return (ret);
 }
 
 void	parse_infile(t_ms *ms)
@@ -62,19 +73,15 @@ void	parse_infile(t_ms *ms)
 	char	*redirect;
 
 	i = -1;
-	if (ms->parse.infiles)
-		free3size(ms->parse.infiles, ms->parse.cmd_nbr);
-	ms->parse.infiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
-	if (!ms->parse.infiles)
-		return ;
 	while (++i < ms->parse.cmd_nbr)
 	{
 		cmd = ms->parse.tmp2d[i];
 		if (char_search(cmd, '<'))
 		{
-			redirect = clean_redirection(cmd);
+			redirect = get_infiles_str(cmd);
 			if (!redirect)
 				return ;
+			ms->fd.heredoc[i] = heredoc_scanner(redirect);
 			ms->parse.infiles[i] = ft_split(redirect, '<');
 			free(redirect);
 		}

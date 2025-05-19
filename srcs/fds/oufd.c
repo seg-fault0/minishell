@@ -6,17 +6,40 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:56:57 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 11:49:36 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 18:15:02 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ou_fd_opener(t_ms *ms)
+int	cmd_outfiles_opener(char	**files, int append_code)
 {
 	char	*filename;
+	int		fd;
 	int		i;
-	int		j;
+
+	i = 0;
+	while (files[i])
+	{
+		filename = files[i];
+		if ((append_code >> i) & 1)
+			fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		else
+			fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (fd == -1)
+			return (err_msg(ERR_OPEN_F), -1);
+		if (!files[i + 1])
+			return (fd);
+		else
+			ft_close(fd);
+		i++;
+	}
+	return (-1);
+}
+
+void	ou_fd_opener(t_ms *ms)
+{
+	int		i;
 	int		fd;
 
 	i = -1;
@@ -24,16 +47,11 @@ void	ou_fd_opener(t_ms *ms)
 		return ;
 	while (++i < ms->parse.cmd_nbr)
 	{
-		j = -1;
-		while (ms->parse.oufiles[i] && ms->parse.oufiles[i][j])
+		if (ms->parse.oufiles[i])
 		{
-			filename = ms->parse.oufiles[i][j];
-			fd = open(filename, O_WRONLY | O_CREAT);
-			if (!ms->parse.oufiles[i][j + 1])
-				ms->fd.out[i] = fd;
-			else
-				ft_close(fd);
-			j++;
+			fd = cmd_outfiles_opener(ms->parse.oufiles[i], ms->fd.append[i]);
+			ms->fd.out[i] = fd;
 		}
+		i++;
 	}
 }

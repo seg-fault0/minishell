@@ -3,56 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   parse_outfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 18:39:43 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/19 17:50:50 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
-static void	fill_redirection_result(char *cmd, char *res, int i)
+static char	*get_outfiles_str(char *cmd)
 {
-	int	j;
-
-	j = 0;
-	while (cmd[i] && cmd[i] != '|')
-	{
-		if (cmd[i] == '>')
-		{
-			res[j++] = '>';
-			i++;
-			while (cmd[i] && is_space(cmd[i]))
-				i++;
-			while (cmd[i] && !is_space(cmd[i])
-				&& cmd[i] != '>' && cmd[i] != '<' && cmd[i] != '|')
-			{
-				res[j++] = cmd[i];
-				i++;
-			}
-		}
-		else
-			i++;
-	}
-	res[j] = '\0';
-}
-
-static char	*clean_redirection(char *cmd)
-{
-	int		i;
 	char	*res;
+	int		i;
 
-	i = 0;
-	while (cmd[i] && cmd[i] != '>')
-		i++;
-	if (!cmd[i])
-		return (NULL);
+	while (*cmd != '>')
+		cmd++;
 	res = malloc(sizeof(char) * (ft_strlen(cmd) + 1));
 	if (!res)
-		return (NULL);
-	fill_redirection_result(cmd, res, i);
+		return (free(res), NULL);
+	i = 0;
+	while (*cmd)
+	{
+		if (is_space(*cmd) == FALSE)
+			res[i++] = *cmd;
+		cmd++;
+	}
+	res[i] = '\0';
 	return (res);
+}
+
+static size_t	append_scanner(char	*files_str)
+{
+	int	file;
+	int	ret;
+	int	i;
+
+	file = 0;
+	ret = 0;
+	i = 0;
+	while (files_str[i])
+	{
+		if (files_str[i] == '>')
+		{
+			if (files_str[i + 1] == '>')
+			{
+				ret |= (1 << file);
+				i++;
+			}
+			file++;
+		}
+		i++;
+	}
+	return (ret);
 }
 
 void	parse_outfile(t_ms *ms)
@@ -62,19 +65,15 @@ void	parse_outfile(t_ms *ms)
 	char	*redirect;
 
 	i = -1;
-	if (ms->parse.oufiles)
-		free3size(ms->parse.oufiles, ms->parse.cmd_nbr);
-	ms->parse.oufiles = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
-	if (!ms->parse.oufiles)
-		return ;
 	while (++i < ms->parse.cmd_nbr)
 	{
 		cmd = ms->parse.tmp2d[i];
 		if (char_search(cmd, '>'))
 		{
-			redirect = clean_redirection(cmd);
+			redirect = get_outfiles_str(cmd);
 			if (!redirect)
 				return ;
+			ms->fd.append[i] = append_scanner(redirect);
 			ms->parse.oufiles[i] = ft_split(redirect, '>');
 			free(redirect);
 		}

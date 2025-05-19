@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/18 14:53:55 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/19 21:49:42 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ typedef struct s_cmd
 
 typedef struct s_fd
 {
-	int	*out;
-	int	*in;
+	int		*out;
+	int		*in;
+	size_t	*append;
+	size_t	*heredoc;
 }t_fd;
 
 typedef struct s_ms
@@ -98,8 +100,8 @@ void	ft_parse(t_ms *ms);
 void	parse_outfile(t_ms *ms);
 void	parse_infile(t_ms *ms);
 void	parse_cmd(t_ms *ms);
-char	**quote_protect(char *str, int len);
-int		pipe_counter(const char *str, char delimiter);
+char	**split_cmd(const char *input);
+int		cmd_counter(const char *str);
 BOOL	synthax_checker(char *input);
 
 //fds
@@ -132,7 +134,6 @@ void	ft_chdir(t_ms *ms);
 //utils
 void	free2(char **arr, int c);
 void	free3(char ***arr, int c);
-void	free2d_buffer(char **buffer);
 size_t	char_counter(const char *str, int c);
 void	close_pipe(int *fd);
 void	ft_close(int fd);
@@ -146,9 +147,11 @@ char	**extract_from_arr(char **arr, char *to_extract);
 BOOL	is_builtin(char	*str);
 BOOL	is_main_process_exe(char *cmd);
 BOOL	is_space(int c);
+BOOL	is_quote(char c);
 
 //synthax
-BOOL	quotes_checker(char *input);
+BOOL	open_quotes_checker(char *input);
+BOOL	open_pipe_checker(char *input);
 
 //libft
 char	**ft_split(char const *s, char c);
@@ -170,6 +173,7 @@ BOOL	char_search(char *str, char c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 
 //gnl
 int		ft_new_line_check(char *str);

@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/18 15:19:48 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/19 21:50:01 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 static BOOL	ft_redline(t_ms *ms)
 {
-	char	*input;
-
-	input = NULL;
-	while (!input || !*input)
+	while (!ms->input || !*ms->input)
 	{
-		input = readline(PROMPT);
-		if (!input)
+		ms->input = readline(PROMPT);
+		if (!ms->input)
 			return (FALSE);
-		if (*input)
-			add_history(input);
+		if (*ms->input)
+			add_history(ms->input);
 	}
-	ms->input = ft_strdup(input);
 	return (TRUE);
 }
 

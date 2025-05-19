@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/16 10:56:07 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/19 13:08:46 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ void	parse_cmd(t_ms *ms)
 	char	*clean;
 
 	i = 0;
-	ms->parse.cmd = malloc(sizeof(char **) * (ms->parse.cmd_nbr + 1));
-	if (!ms->parse.cmd)
-		return ;
 	while (i < ms->parse.cmd_nbr)
 	{
 		clean = extract_cmd(ms->parse.tmp2d[i]);
