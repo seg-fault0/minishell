@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 16:58:15 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 17:00:30 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static int	append_scanner(char	*files_str)
 	file = 0;
 	ret = 0;
 	i = 0;
-	printf("str = %s\n", files_str);
 	while (files_str[i])
 	{
 		if (files_str[i] == '>')
