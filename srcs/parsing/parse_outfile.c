@@ -6,13 +6,13 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 13:08:28 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/19 13:36:18 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
-static char	*remove_spaces(char *cmd)
+static char	*get_outfiles_str(char *cmd)
 {
 	char	*res;
 	int		i;
@@ -45,7 +45,7 @@ void	parse_outfile(t_ms *ms)
 		cmd = ms->parse.tmp2d[i];
 		if (char_search(cmd, '>'))
 		{
-			redirect = remove_spaces(cmd);
+			redirect = get_outfiles_str(cmd);
 			if (!redirect)
 				return ;
 			ms->parse.oufiles[i] = ft_split(redirect, '>');
