@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:13:39 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/20 15:54:35 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/20 17:30:25 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,16 @@ int	cmd_counter(const char *str)
 	}
 	return (count + 1);
 }
-BOOL is_outside_quotes(char *cmd, char *c_ptr)
-{
-	int i = 0;
-	int in_single = 0;
-	int in_double = 0;
 
+BOOL	is_outside_quotes(char *cmd, char *c_ptr)
+{
+	int	i;
+	int	in_single;
+	int	in_double;
+
+	i = 0;
+	in_single = 0;
+	in_double = 0;
 	while (&cmd[i] < c_ptr)
 	{
 		if (cmd[i] == '\'' && !in_double)
@@ -78,7 +82,21 @@ BOOL is_outside_quotes(char *cmd, char *c_ptr)
 	}
 	return (!in_single && !in_double);
 }
+
 BOOL	is_redirection(char c)
 {
 	return (c == '<' || c == '>');
+}
+
+int	skip_redirection(char *cmd, int i)
+{
+	if (cmd[i] == '<' && cmd[i + 1] == '<')
+		i += 2;
+	else if (cmd[i] == '>' && cmd[i + 1] == '>')
+		i += 2;
+	else
+		i++;
+	while (cmd[i] && is_space(cmd[i]))
+		i++;
+	return (i);
 }

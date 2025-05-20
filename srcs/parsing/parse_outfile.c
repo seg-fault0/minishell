@@ -6,12 +6,11 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/20 15:53:58 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/20 17:31:30 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
-
 
 static char	*extract_unquoted_redirs(char *cmd)
 {
@@ -81,7 +80,6 @@ void	parse_outfile(t_ms *ms)
 	{
 		if (char_search(ms->parse.tmp2d[i], '>'))
 		{
-			
 			redirs = extract_unquoted_redirs(ms->parse.tmp2d[i]);
 			if (!redirs)
 				return ;
@@ -91,7 +89,8 @@ void	parse_outfile(t_ms *ms)
 			int k = 0;
 			while (ms->parse.oufiles[i][k])
 			{
-				printf("  outfile[%d][%d] = %s\n", i, k, ms->parse.oufiles[i][k]);
+				printf("  outfile[%d][%d] = %s\n", i, k,
+					ms->parse.oufiles[i][k]);
 				k++;
 			}
 			free(redirs);

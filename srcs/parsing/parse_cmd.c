@@ -6,24 +6,11 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/20 16:15:21 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/20 17:30:34 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	skip_redirection(char *cmd, int i)
-{
-	if (cmd[i] == '<' && cmd[i + 1] == '<')
-		i += 2;
-	else if (cmd[i] == '>' && cmd[i + 1] == '>')
-		i += 2;
-	else
-		i++;
-	while (cmd[i] && is_space(cmd[i]))
-		i++;
-	return (i);
-}
 
 static char	*extract_quoted_content(char *cmd, int *i, char quote)
 {
@@ -34,8 +21,6 @@ static char	*extract_quoted_content(char *cmd, int *i, char quote)
 	(*i)++;
 	while (cmd[*i] && cmd[*i] != quote)
 	{
-		if (cmd[*i] == '\\' && quote == '"')
-			(*i)++;
 		if (cmd[*i])
 			(*i)++;
 	}
@@ -55,8 +40,6 @@ static char	*extract_regular_word(char *cmd, int *i)
 	start = *i;
 	while (cmd[*i] && !is_space(cmd[*i]) && !is_redirection(cmd[*i]) && !is_quote(cmd[*i]))
 	{
-		if (cmd[*i] == '\\')
-			(*i)++;
 		if (cmd[*i])
 			(*i)++;
 	}

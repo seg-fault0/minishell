@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/20 15:54:44 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/20 17:26:22 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char	**split_cmd(const char *input);
 int		cmd_counter(const char *str);
 BOOL	synthax_checker(char *input);
 BOOL	is_redirection(char c);
+int	skip_redirection(char *cmd, int i);
 
 //fds
 void	fd_setup(t_ms *ms);
