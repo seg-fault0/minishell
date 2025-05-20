@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/20 15:54:31 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/20 16:15:21 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ static int	skip_redirection(char *cmd, int i)
 		i++;
 	while (cmd[i] && is_space(cmd[i]))
 		i++;
-	while (cmd[i] && !is_space(cmd[i]) && !is_redirection(cmd[i]) && !is_quote(cmd[i]))
-	{
-		if (cmd[i] == '\\')
-			i++;
-		if (cmd[i])
-			i++;
-	}
 	return (i);
 }
 
