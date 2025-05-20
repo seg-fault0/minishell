@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:13:39 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 15:45:00 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/20 15:54:35 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,24 @@ int	cmd_counter(const char *str)
 		str++;
 	}
 	return (count + 1);
+}
+BOOL is_outside_quotes(char *cmd, char *c_ptr)
+{
+	int i = 0;
+	int in_single = 0;
+	int in_double = 0;
+
+	while (&cmd[i] < c_ptr)
+	{
+		if (cmd[i] == '\'' && !in_double)
+			in_single = !in_single;
+		else if (cmd[i] == '\"' && !in_single)
+			in_double = !in_double;
+		i++;
+	}
+	return (!in_single && !in_double);
+}
+BOOL	is_redirection(char c)
+{
+	return (c == '<' || c == '>');
 }

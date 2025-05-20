@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:46:58 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/10 11:01:12 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/20 03:34:25 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,30 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &s[i], 1);
 		i++;
 	}
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub;
+	size_t	i;
+	size_t	s_len;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	sub = malloc(sizeof(char) * (len + 1));
+	if (!sub)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start + i])
+	{
+		sub[i] = s[start + i];
+		i++;
+	}
+	sub[i] = '\0';
+	return (sub);
 }

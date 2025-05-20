@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 17:52:01 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/20 15:33:30 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 static BOOL	ft_allocator(t_ms *ms)
 {
@@ -35,3 +36,4 @@ void	ft_parse(t_ms *ms)
 	parse_infile(ms);
 	parse_cmd(ms);
 }
+

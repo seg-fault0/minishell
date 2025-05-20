@@ -3,79 +3,99 @@
 /*                                                        :::      ::::::::   */
 /*   parse_outfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 17:50:50 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/20 15:53:58 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
-static char	*get_outfiles_str(char *cmd)
+
+static char	*extract_unquoted_redirs(char *cmd)
 {
 	char	*res;
 	int		i;
+	int		j;
 
-	while (*cmd != '>')
-		cmd++;
-	res = malloc(sizeof(char) * (ft_strlen(cmd) + 1));
-	if (!res)
-		return (free(res), NULL);
 	i = 0;
-	while (*cmd)
+	j = 0;
+	res = malloc(ft_strlen(cmd) + 1);
+	if (!res)
+		return (NULL);
+	while (cmd[i])
 	{
-		if (is_space(*cmd) == FALSE)
-			res[i++] = *cmd;
-		cmd++;
+		if (cmd[i] == '>' && is_outside_quotes(cmd, &cmd[i]))
+		{
+			res[j++] = '>';
+			if (cmd[i + 1] == '>')
+				res[j++] = cmd[++i];
+			i++;
+			while (cmd[i] && is_space(cmd[i]))
+				i++;
+			while (cmd[i] && !is_space(cmd[i]) && cmd[i] != '>')
+				res[j++] = cmd[i++];
+			res[j++] = ' ';
+		}
+		else
+			i++;
 	}
-	res[i] = '\0';
+	res[j] = '\0';
 	return (res);
 }
 
-static size_t	append_scanner(char	*files_str)
+static size_t	get_append_flags(char *redirs)
 {
-	int	file;
-	int	ret;
-	int	i;
+	size_t	flags;
+	int		count;
+	int		i;
 
-	file = 0;
-	ret = 0;
+	flags = 0;
+	count = 0;
 	i = 0;
-	while (files_str[i])
+	while (redirs[i])
 	{
-		if (files_str[i] == '>')
+		if (redirs[i] == '>')
 		{
-			if (files_str[i + 1] == '>')
+			if (redirs[i + 1] == '>')
 			{
-				ret |= (1 << file);
+				flags |= (1 << count);
 				i++;
 			}
-			file++;
+			count++;
 		}
 		i++;
 	}
-	return (ret);
+	return (flags);
 }
 
 void	parse_outfile(t_ms *ms)
 {
 	int		i;
-	char	*cmd;
-	char	*redirect;
+	char	*redirs;
+	char	*clean_redirs;
 
 	i = -1;
 	while (++i < ms->parse.cmd_nbr)
 	{
-		cmd = ms->parse.tmp2d[i];
-		if (char_search(cmd, '>'))
+		if (char_search(ms->parse.tmp2d[i], '>'))
 		{
-			redirect = get_outfiles_str(cmd);
-			if (!redirect)
+			
+			redirs = extract_unquoted_redirs(ms->parse.tmp2d[i]);
+			if (!redirs)
 				return ;
-			ms->fd.append[i] = append_scanner(redirect);
-			ms->parse.oufiles[i] = ft_split(redirect, '>');
-			free(redirect);
+			clean_redirs = ft_strjoin(redirs, " ");
+			ms->fd.append[i] = get_append_flags(redirs);
+			ms->parse.oufiles[i] = ft_split(clean_redirs, ' ');
+			int k = 0;
+			while (ms->parse.oufiles[i][k])
+			{
+				printf("  outfile[%d][%d] = %s\n", i, k, ms->parse.oufiles[i][k]);
+				k++;
+			}
+			free(redirs);
+			free(clean_redirs);
 		}
 		else
 			ms->parse.oufiles[i] = NULL;

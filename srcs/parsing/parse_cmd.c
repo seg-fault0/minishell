@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 13:08:46 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/20 15:54:31 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,82 +14,106 @@
 
 static int	skip_redirection(char *cmd, int i)
 {
-	i++;
+	if (cmd[i] == '<' && cmd[i + 1] == '<')
+		i += 2;
+	else if (cmd[i] == '>' && cmd[i + 1] == '>')
+		i += 2;
+	else
+		i++;
 	while (cmd[i] && is_space(cmd[i]))
 		i++;
-	while (cmd[i] && !is_space(cmd[i]) && cmd[i] != '<' && cmd[i] != '>')
-		i++;
+	while (cmd[i] && !is_space(cmd[i]) && !is_redirection(cmd[i]) && !is_quote(cmd[i]))
+	{
+		if (cmd[i] == '\\')
+			i++;
+		if (cmd[i])
+			i++;
+	}
 	return (i);
 }
 
-static void	copy_cmd(char *cmd, char *res, int *i, int *j)
+static char	*extract_quoted_content(char *cmd, int *i, char quote)
 {
-	int	space_allowed;
+	int		start;
+	char	*content;
 
-	space_allowed = 0;
-	while (cmd[*i])
+	start = *i + 1;
+	(*i)++;
+	while (cmd[*i] && cmd[*i] != quote)
 	{
-		if (cmd[*i] == '<' || cmd[*i] == '>')
-		{
-			*i = skip_redirection(cmd, *i);
-		}
-		else if (is_space(cmd[*i]))
-		{
-			if (space_allowed)
-			{
-				res[(*j)++] = ' ';
-				space_allowed = 0;
-			}
+		if (cmd[*i] == '\\' && quote == '"')
 			(*i)++;
-		}
-		else
-		{
-			res[(*j)++] = cmd[*i];
-			space_allowed = 1;
+		if (cmd[*i])
 			(*i)++;
-		}
 	}
+	if (cmd[*i] == quote)
+	{
+		content = ft_substr(cmd, start, *i - start);
+		(*i)++;
+		return (content);
+	}
+	return (NULL);
 }
 
-static char	*extract_cmd(char *cmd)
+static char	*extract_regular_word(char *cmd, int *i)
 {
-	int		j;
-	int		i;
-	char	*res;
+	int	start;
 
-	i = 0;
-	j = 0;
-	res = malloc(ft_strlen(cmd) + 1);
-	if (!res)
-		return (NULL);
-	copy_cmd(cmd, res, &i, &j);
-	if (j > 0 && res[j - 1] == ' ')
-		j--;
-	res[j] = '\0';
-	if (j == 0)
+	start = *i;
+	while (cmd[*i] && !is_space(cmd[*i]) && !is_redirection(cmd[*i]) && !is_quote(cmd[*i]))
 	{
-		free(res);
-		return (NULL);
+		if (cmd[*i] == '\\')
+			(*i)++;
+		if (cmd[*i])
+			(*i)++;
 	}
-	return (res);
+	if (*i > start)
+		return (ft_substr(cmd, start, *i - start));
+	return (NULL);
+}
+
+static char	**split_outside_quotes(char *cmd)
+{
+	char	**words;
+	int		word_count;
+	int		i;
+
+	word_count = 0;
+	i = 0;
+	words = malloc((ft_strlen(cmd) + 1) * sizeof(char *));
+	if (!words)
+		return (NULL);
+	while (cmd[i])
+	{
+		if (is_quote(cmd[i]))
+		{
+			words[word_count] = extract_quoted_content(cmd, &i, cmd[i]);
+			if (words[word_count])
+				word_count++;
+		}
+		else if (is_redirection(cmd[i]))
+			i = skip_redirection(cmd, i);
+		else if (!is_space(cmd[i]))
+		{
+			words[word_count] = extract_regular_word(cmd, &i);
+			if (words[word_count])
+				word_count++;
+		}
+		else
+			i++;
+	}
+	words[word_count] = NULL;
+	return (words);
 }
 
 void	parse_cmd(t_ms *ms)
 {
-	int		i;
-	char	*clean;
+	int	i;
 
 	i = 0;
 	while (i < ms->parse.cmd_nbr)
 	{
-		clean = extract_cmd(ms->parse.tmp2d[i]);
-		if (!clean)
-			ms->parse.cmd[i] = NULL;
-		else
-		{
-			ms->parse.cmd[i] = ft_split(clean, ' ');
-			free(clean);
-		}
+		ms->parse.cmd[i] = split_outside_quotes(ms->parse.tmp2d[i]);
 		i++;
 	}
 	ms->parse.cmd[i] = NULL;

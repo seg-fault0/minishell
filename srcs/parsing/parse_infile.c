@@ -3,87 +3,99 @@
 /*                                                        :::      ::::::::   */
 /*   parse_infile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 17:57:09 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/20 15:54:03 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include "minishell.h"
 
-static char	*get_infiles_str(char *cmd)
+
+static char	*extract_unquoted_input_redirs(char *cmd)
 {
-	char	*infiles;
+	char	*res;
 	int		i;
 	int		j;
 
-	infiles = malloc(ft_strlen(cmd) + 1);
-	if (!infiles)
-		return (NULL);
 	i = 0;
 	j = 0;
+	res = malloc(ft_strlen(cmd) + 1);
+	if (!res)
+		return (NULL);
 	while (cmd[i])
 	{
-		if (cmd[i] == '<')
+		if (cmd[i] == '<' && is_outside_quotes(cmd, &cmd[i]))
 		{
-			infiles[j++] = '<';
+			res[j++] = cmd[i];
+			if (cmd[i + 1] == '<')
+				res[j++] = cmd[++i];
 			i++;
-			while (is_space(cmd[i]))
+			while (cmd[i] && is_space(cmd[i]))
 				i++;
-			while (cmd[i] && !is_space(cmd[i])
-				&& cmd[i] != '<' && cmd[i] != '>')
-				infiles[j++] = cmd[i++];
+			while (cmd[i] && !is_space(cmd[i]) && cmd[i] != '<')
+				res[j++] = cmd[i++];
+			res[j++] = ' ';
 		}
 		else
 			i++;
 	}
-	return (infiles[j] = '\0', infiles);
+	res[j] = '\0';
+	return (res);
 }
 
-static size_t	heredoc_scanner(char *files_str)
+static size_t	get_heredoc_flags(char *redirs)
 {
-	int	file;
-	int	ret;
-	int	i;
+	size_t	flags;
+	int		count;
+	int		i;
 
-	file = 0;
-	ret = 0;
+	flags = 0;
+	count = 0;
 	i = 0;
-	while (files_str[i])
+	while (redirs[i])
 	{
-		if (files_str[i] == '<')
+		if (redirs[i] == '<')
 		{
-			if (files_str[i + 1] == '<')
+			if (redirs[i + 1] == '<')
 			{
-				ret |= (1 << file);
+				flags |= (1 << count);
 				i++;
 			}
-			file++;
+			count++;
 		}
 		i++;
 	}
-	return (ret);
+	return (flags);
 }
 
 void	parse_infile(t_ms *ms)
 {
 	int		i;
-	char	*cmd;
-	char	*redirect;
+	char	*redirs;
+	char	*clean_redirs;
 
 	i = -1;
 	while (++i < ms->parse.cmd_nbr)
 	{
-		cmd = ms->parse.tmp2d[i];
-		if (char_search(cmd, '<'))
+		if (char_search(ms->parse.tmp2d[i], '<'))
 		{
-			redirect = get_infiles_str(cmd);
-			if (!redirect)
+			redirs = extract_unquoted_input_redirs(ms->parse.tmp2d[i]);
+			if (!redirs)
 				return ;
-			ms->fd.heredoc[i] = heredoc_scanner(redirect);
-			ms->parse.infiles[i] = ft_split(redirect, '<');
-			free(redirect);
+			clean_redirs = ft_strjoin(redirs, " ");
+			ms->fd.heredoc[i] = get_heredoc_flags(redirs);
+			ms->parse.infiles[i] = ft_split(clean_redirs, ' ');
+			int k = 0;
+			while (ms->parse.infiles[i][k])
+			{
+				printf("  infiles[%d][%d] = %s\n", i, k, ms->parse.infiles[i][k]);
+				k++;
+			}
+
+			free(redirs);
+			free(clean_redirs);
 		}
 		else
 			ms->parse.infiles[i] = NULL;

@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 21:49:42 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/20 15:54:44 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	err_msg(int msg);
 void	setup_signals(void);
 
 //parse
+BOOL is_outside_quotes(char *cmd, char *c_ptr);
 void	ft_parse(t_ms *ms);
 void	parse_outfile(t_ms *ms);
 void	parse_infile(t_ms *ms);
@@ -103,6 +104,7 @@ void	parse_cmd(t_ms *ms);
 char	**split_cmd(const char *input);
 int		cmd_counter(const char *str);
 BOOL	synthax_checker(char *input);
+BOOL	is_redirection(char c);
 
 //fds
 void	fd_setup(t_ms *ms);
@@ -165,6 +167,7 @@ char	**ft_split_len(const char *s, char c, size_t size);
 int		ft_isdigit(int c);
 int		ft_isalpha(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 //char utils
 BOOL	char_search(char *str, char c);
@@ -189,5 +192,8 @@ void	free3size(char ***arg, int size);
 void	expand_vars(t_ms *ms);
 int		expand_checker(char *content);
 int		is_valid_alpha(char c);
+
+
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

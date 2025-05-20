@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 21:50:01 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/20 01:22:24 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_luncher(t_ms *ms)
 			fd_setup(ms);
 			init_cmd(ms);
 			ft_exe(ms);
-			printf("%s\n", ms->parse.tmp2d[0]);
+			// printf("%s\n", ms->parse.tmp2d[0]);
 		}
 		reset_prompt(ms);
 	}
