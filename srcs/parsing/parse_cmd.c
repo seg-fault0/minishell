@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/20 17:30:34 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:48:36 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static char	*extract_regular_word(char *cmd, int *i)
 	int	start;
 
 	start = *i;
-	while (cmd[*i] && !is_space(cmd[*i]) && !is_redirection(cmd[*i]) && !is_quote(cmd[*i]))
+	while (cmd[*i] && !is_space(cmd[*i])
+		&&!is_redirection(cmd[*i]) && !is_quote(cmd[*i]))
 	{
 		if (cmd[*i])
 			(*i)++;

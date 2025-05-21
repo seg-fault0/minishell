@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/20 17:26:22 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:51:18 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	err_msg(int msg);
 void	setup_signals(void);
 
 //parse
-BOOL is_outside_quotes(char *cmd, char *c_ptr);
+BOOL	is_outside_quotes(char *cmd, char *c_ptr);
 void	ft_parse(t_ms *ms);
 void	parse_outfile(t_ms *ms);
 void	parse_infile(t_ms *ms);
@@ -105,7 +105,7 @@ char	**split_cmd(const char *input);
 int		cmd_counter(const char *str);
 BOOL	synthax_checker(char *input);
 BOOL	is_redirection(char c);
-int	skip_redirection(char *cmd, int i);
+int		skip_redirection(char *cmd, int i);
 
 //fds
 void	fd_setup(t_ms *ms);
@@ -169,6 +169,8 @@ int		ft_isdigit(int c);
 int		ft_isalpha(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_isalnum(int c);
+char	*ft_strchr(const char *s, int c);
 
 //char utils
 BOOL	char_search(char *str, char c);
@@ -191,10 +193,9 @@ void	free3size(char ***arg, int size);
 
 //expands
 void	expand_vars(t_ms *ms);
-int		expand_checker(char *content);
-int		is_valid_alpha(char c);
-
-
+char	*strjoin_and_free(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		is_valid_var_char(char c);
+int		is_in_single_quotes(const char *str, int pos);
 
 #endif

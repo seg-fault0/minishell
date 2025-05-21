@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/20 17:25:40 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:51:30 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@ void	ft_luncher(t_ms *ms)
 		if (synthax_checker(ms->input) == TRUE)
 		{
 			ft_parse(ms);
-			expand_vars(ms);
 			fd_setup(ms);
 			init_cmd(ms);
 			ft_exe(ms);
-			printf("%s\n", ms->parse.tmp2d[0]);
 		}
 		reset_prompt(ms);
 	}

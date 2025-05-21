@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/20 17:28:41 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:47:43 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,6 @@ void	parse_infile(t_ms *ms)
 			clean_redirs = ft_strjoin(redirs, " ");
 			ms->fd.heredoc[i] = get_heredoc_flags(redirs);
 			ms->parse.infiles[i] = ft_split(clean_redirs, ' ');
-			int k = 0;
-			while (ms->parse.infiles[i][k])
-			{
-				printf("  infiles[%d][%d] = %s\n", i, k, ms->parse.infiles[i][k]);
-				k++;
-			}
 			free(redirs);
 			free(clean_redirs);
 		}

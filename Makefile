@@ -35,8 +35,8 @@ SRCS =	srcs/core/main.c				\
 		srcs/fds/main.c					\
 		srcs/fds/infd.c					\
 		srcs/fds/oufd.c					\
-		srcs/expand/expand_checker.c	\
-		srcs/expand/main.c				\
+		srcs/expand/expand_vars.c		\
+		srcs/expand/helper.c			\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)
