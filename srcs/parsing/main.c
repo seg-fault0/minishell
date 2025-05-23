@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 17:52:01 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/23 18:42:59 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_parse(t_ms *ms)
 	ms->parse.cmd_nbr = cmd_counter(ms->input);
 	if (ft_allocator(ms) == FALSE)
 		return ;
+	expand_vars(ms);
 	parse_outfile(ms);
 	parse_infile(ms);
 	parse_cmd(ms);

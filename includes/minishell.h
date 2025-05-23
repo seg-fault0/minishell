@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 17:50:32 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/23 19:07:27 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,15 @@ void	parse_cmd(t_ms *ms);
 char	**split_cmd(const char *input);
 int		cmd_counter(const char *str);
 BOOL	synthax_checker(char *input);
+BOOL	is_redirection(char c);
+int		skip_redirection(char *cmd, int i);
+char	*extract_cmd(char *cmd);
+
+//expands
+void	expand_vars(t_ms *ms);
+int		is_valid_var_char(char c);
+char	*strjoin_and_free(char *s1, char *s2);
+int		is_in_single_quotes(const char *str, int pos);
 
 //fds
 void	fd_setup(t_ms *ms);
@@ -119,6 +128,7 @@ void	init_cmd(t_ms *ms);
 void	ft_exe(t_ms *ms);
 void	ft_start(t_ms *ms, int rfd);
 void	fd_manager(t_ms *ms, int rfd, int *pfd);
+char	*get_env_v2(char **env, char *look_for);
 
 //env
 char	*get_env(char **env, char *look_for);
@@ -161,6 +171,10 @@ void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split_len(const char *s, char c, size_t size);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strchr(const char *s, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_isalnum(int c);
 
 //char utils
 BOOL	char_search(char *str, char c);

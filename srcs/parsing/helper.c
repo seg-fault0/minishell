@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:13:39 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 15:45:00 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/23 19:08:00 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,22 @@ int	cmd_counter(const char *str)
 		str++;
 	}
 	return (count + 1);
+}
+
+BOOL	is_redirection(char c)
+{
+	return (c == '<' || c == '>');
+}
+
+int	skip_redirection(char *cmd, int i)
+{
+	if (cmd[i] == '<' && cmd[i + 1] == '<')
+		i += 2;
+	else if (cmd[i] == '>' && cmd[i + 1] == '>')
+		i += 2;
+	else
+		i++;
+	while (cmd[i] && is_space(cmd[i]))
+		i++;
+	return (i);
 }

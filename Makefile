@@ -16,10 +16,12 @@ SRCS =	srcs/core/main.c				\
 		srcs/parsing/parse_outfile.c	\
 		srcs/parsing/parse_infile.c		\
 		srcs/parsing/parse_cmd.c		\
+		srcs/parsing/extract_cmd.c		\
 		srcs/libft/ft_split.c			\
 		srcs/libft/ft_mem.c				\
 		srcs/libft/str.c				\
 		srcs/libft/ft_split_len.c		\
+		srcs/libft/alpha.c				\
 		srcs/other/checkers.c			\
 		srcs/other/arr_utils.c			\
 		srcs/other/free.c				\
@@ -34,6 +36,8 @@ SRCS =	srcs/core/main.c				\
 		srcs/fds/main.c					\
 		srcs/fds/infd.c					\
 		srcs/fds/oufd.c					\
+		srcs/expand/expand_vars.c		\
+		srcs/expand/helper.c				\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 19:54:25 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/23 18:50:12 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ char	*get_env(char **env, char *look_for)
 	{
 		if (ft_memcmp(env[i], look_for, 5) == 0)
 			return (env[i] + ft_strlen(look_for));
+	}
+	return (NULL);
+}
+
+char	*get_env_v2(char **env, char *look_for)
+{
+	int		i;
+	size_t	len;
+
+	len = ft_strlen(look_for);
+	i = -1;
+	while (env[++i])
+	{
+		if (!ft_strncmp(env[i], look_for, len) && env[i][len] == '=')
+			return (env[i] + len + 1);
 	}
 	return (NULL);
 }
