@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 11:01:09 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 11:11:00 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 11:49:10 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ft_echo(t_ms *ms)
 			else
 				write(STDOUT, &cmd_args[i][j], 1);
 		}
+		if (cmd_args[i + 1])
+				write(STDOUT, " ", 1);
 	}
 	printf("\n");
 }
