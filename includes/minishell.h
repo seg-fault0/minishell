@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 11:59:32 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 13:26:32 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,10 @@ typedef struct s_ms
 //core
 BOOL	init_struct(t_ms *ms, char **env);
 void	ft_luncher(t_ms *ms);
-void	ft_exit(t_ms *ms, int code);
+void	ft_exit(t_ms *ms);
 void	err_msg(int msg);
 void	setup_signals(void);
+void	reset_prompt(t_ms *ms);
 
 //parse
 void	ft_parse(t_ms *ms);

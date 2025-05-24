@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 12:05:05 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 13:25:13 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	if (status == -1)
 	{
 		err_msg(ERR_EXECVE_F);
-		exit(get_exit_code(ms));
+		ms->cmd.cur_exit_code = get_exit_code(ms);
+		ft_exit(ms);
 	}
 }
 
