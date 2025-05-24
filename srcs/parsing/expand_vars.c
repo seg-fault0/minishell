@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:56:01 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/24 10:16:37 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 10:18:58 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ static char	*append_text_before_dollar(char *result, char *str, int i)
 
 	before = ft_substr(str, 0, i);
 	new_result = ft_strjoin(result, before);
-	free(before);
-	free(result);
-	return (new_result);
+	return (free(result), free(before), new_result);
 }
 
 static char	*expand_line(t_ms *ms, char *str)
@@ -70,7 +68,7 @@ static char	*expand_line(t_ms *ms, char *str)
 	char	*expanded;
 
 	i = 0;
-	result = ft_strdup("");
+	result = NULL;
 	while (str[i])
 	{
 		if (str[i] == '$' && !is_in_single_quotes(str, i)
