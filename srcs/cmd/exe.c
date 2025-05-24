@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/17 13:07:30 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 11:25:00 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ void	ft_wait(t_ms *ms)
 	}
 }
 
+int	get_exit_code(t_ms *ms)
+{
+	int	counter;
+	
+	counter = ms->cmd.counter;
+	if (access(ms->cmd.cmd[counter][0], X_OK) != 0)
+		return (127);
+	if (access(ms->cmd.cmd[counter][1], F_OK) == 0)
+		return (2);
+	return (0);
+}
+
 void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 {
 	char	**tmp;
@@ -41,7 +53,7 @@ void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	if (status == -1)
 	{
 		err_msg(ERR_EXECVE_F);
-		exit(127);
+		exit(get_exit_code(ms));
 	}
 }
 
