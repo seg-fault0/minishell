@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/23 19:07:27 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/24 10:09:03 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ char	*extract_cmd(char *cmd);
 
 //expands
 void	expand_vars(t_ms *ms);
-int		is_valid_var_char(char c);
-char	*strjoin_and_free(char *s1, char *s2);
 int		is_in_single_quotes(const char *str, int pos);
 
 //fds

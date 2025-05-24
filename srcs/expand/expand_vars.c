@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:56:01 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/23 18:43:19 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/24 10:09:22 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*extract_and_expand_var(t_ms *ms, char **str, int *i)
 
 	start = *i + 1;
 	len = 0;
-	while (is_valid_var_char((*str)[start + len]))
+	while (ft_isalnum((*str)[start + len]))
 		len++;
 	var_name = ft_substr(*str, start, len);
 	var_value = get_env_v2(ms->env, var_name);
@@ -42,8 +42,9 @@ static char	*append_text_before_dollar(char *result, char *str, int i)
 	char	*new_result;
 
 	before = ft_substr(str, 0, i);
-	new_result = strjoin_and_free(result, before);
+	new_result = ft_strjoin(result, before);
 	free(before);
+	free(result);
 	return (new_result);
 }
 
@@ -59,20 +60,21 @@ static char	*expand_line(t_ms *ms, char *str)
 	while (str[i])
 	{
 		if (str[i] == '$' && !is_in_single_quotes(str, i)
-			&& is_valid_var_char(str[i + 1]))
+			&& ft_isalnum(str[i + 1]))
 		{
 			result = append_text_before_dollar(result, str, i);
 			expanded = extract_and_expand_var(ms, &str, &i);
-			result = strjoin_and_free(result, expanded);
+			temp = result;
+			result = ft_strjoin(temp, expanded);
 			free(expanded);
+			free(temp);
 		}
 		else
 			i++;
 	}
-	temp = ft_strdup(str);
-	result = strjoin_and_free(result, temp);
-	free(temp);
-	return (result);
+	temp = result;
+	result = ft_strjoin(result, str);
+	return (free(temp), result);
 }
 
 void	expand_vars(t_ms *ms)
