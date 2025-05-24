@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 10:12:47 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 10:49:48 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ char	*get_env(char **env, char *look_for)
 	i = -1;
 	while (env[++i])
 	{
-		if (ft_memcmp(env[i], look_for, 5) == 0)
-			return (env[i] + ft_strlen(look_for));
+		if (ft_memcmp(env[i], look_for, ft_strlen(look_for)) == 0)
+			return (env[i] + ft_strlen(look_for) + 1);
 	}
 	return (NULL);
 }
