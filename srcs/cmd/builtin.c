@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 11:01:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 11:59:46 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	builtin_exe(t_ms *ms, char *cmd)
 	if (ft_memcmp(cmd, "env", 3) == 0)
 		print_env(ms);
 	else if (ft_memcmp(cmd, "exit", 4) == 0)
-		ft_exit(ms);
+		ft_exit(ms, ft_atoi(ms->cmd.cmd[ms->cmd.counter][1]));
 	else if (ft_memcmp(cmd, "cd", 2) == 0)
 		ft_chdir(ms);
 	else if (ft_memcmp(cmd, "echo", 4) == 0)

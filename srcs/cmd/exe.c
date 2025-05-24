@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 11:25:00 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 12:05:05 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_wait(t_ms *ms)
 int	get_exit_code(t_ms *ms)
 {
 	int	counter;
-	
+
 	counter = ms->cmd.counter;
 	if (access(ms->cmd.cmd[counter][0], X_OK) != 0)
 		return (127);

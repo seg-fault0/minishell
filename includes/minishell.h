@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 11:02:01 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 11:59:32 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_ms
 //core
 BOOL	init_struct(t_ms *ms, char **env);
 void	ft_luncher(t_ms *ms);
-void	ft_exit(t_ms *ms);
+void	ft_exit(t_ms *ms, int code);
 void	err_msg(int msg);
 void	setup_signals(void);
 
@@ -171,6 +171,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_isalnum(int c);
 void	ft_putnbr(int n);
+long	ft_atoi(const char *str);
 
 //char utils
 BOOL	char_search(char *str, char c);

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:36:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:04:14 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 12:00:46 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ int	main(int ac, char **av, char **env)
 	if (init_struct(&ms, env) == FALSE)
 		return (1);
 	ft_luncher(&ms);
-	ft_exit(&ms);
+	ft_exit(&ms, 0);
 }
