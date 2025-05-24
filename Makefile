@@ -6,6 +6,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/core/exit.c				\
 		srcs/core/signals.c				\
 		srcs/cmd/init.c					\
+		srcs/cmd/echo.c					\
 		srcs/cmd/builtin.c				\
 		srcs/cmd/env.c					\
 		srcs/cmd/fd_manager.c			\
@@ -23,6 +24,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/libft/str.c				\
 		srcs/libft/ft_split_len.c		\
 		srcs/libft/alpha.c				\
+		srcs/libft/ft_putnbr.c			\
 		srcs/other/checkers.c			\
 		srcs/other/arr_utils.c			\
 		srcs/other/free.c				\

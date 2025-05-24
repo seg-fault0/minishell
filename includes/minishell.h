@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 10:17:09 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 11:02:01 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void	print_env(t_ms *ms);
 //builtin cmds
 void	builtin_exe(t_ms *ms, char *cmd);
 void	ft_chdir(t_ms *ms);
+void	ft_echo(t_ms *ms);
 
 //utils
 void	free2(char **arr, int c);
@@ -169,6 +170,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_isalnum(int c);
+void	ft_putnbr(int n);
 
 //char utils
 BOOL	char_search(char *str, char c);
