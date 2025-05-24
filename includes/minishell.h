@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 10:09:03 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 10:17:09 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,7 @@ BOOL	synthax_checker(char *input);
 BOOL	is_redirection(char c);
 int		skip_redirection(char *cmd, int i);
 char	*extract_cmd(char *cmd);
-
-//expands
 void	expand_vars(t_ms *ms);
-int		is_in_single_quotes(const char *str, int pos);
 
 //fds
 void	fd_setup(t_ms *ms);
@@ -126,7 +123,6 @@ void	init_cmd(t_ms *ms);
 void	ft_exe(t_ms *ms);
 void	ft_start(t_ms *ms, int rfd);
 void	fd_manager(t_ms *ms, int rfd, int *pfd);
-char	*get_env_v2(char **env, char *look_for);
 
 //env
 char	*get_env(char **env, char *look_for);

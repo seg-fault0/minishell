@@ -6,17 +6,36 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:56:01 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/24 10:09:22 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 10:16:37 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
+static int	is_in_single_quotes(const char *str, int pos)
+{
+	int		i;
+	int		squote;
+	int		dquote;
+
+	squote = 0;
+	dquote = 0;
+	i = 0;
+	while (i < pos)
+	{
+		if (str[i] == '\'' && dquote == 0)
+			squote = !squote;
+		else if (str[i] == '\"' && squote == 0)
+			dquote = !dquote;
+		i++;
+	}
+	return (squote);
+}
+
 static char	*extract_and_expand_var(t_ms *ms, char **str, int *i)
 {
 	char	*var_name;
 	char	*var_value;
-	char	*dup_value;
 	int		start;
 	int		len;
 
@@ -25,15 +44,10 @@ static char	*extract_and_expand_var(t_ms *ms, char **str, int *i)
 	while (ft_isalnum((*str)[start + len]))
 		len++;
 	var_name = ft_substr(*str, start, len);
-	var_value = get_env_v2(ms->env, var_name);
+	var_value = get_env(ms->env, var_name);
 	free(var_name);
 	*str += start + len;
-	*i = 0;
-	if (var_value)
-		dup_value = ft_strdup(var_value);
-	else
-		dup_value = ft_strdup("");
-	return (dup_value);
+	return (ft_strdup(var_value));
 }
 
 static char	*append_text_before_dollar(char *result, char *str, int i)
