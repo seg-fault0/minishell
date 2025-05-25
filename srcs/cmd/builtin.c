@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/25 15:56:40 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/25 16:23:07 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,20 @@
 void	ft_chdir(t_ms *ms)
 {
 	char	*path;
+	int		counter;
 
-	if (ms->cmd.cmd[0][1] == NULL)
+	counter = ms->cmd.counter;
+	if (ms->cmd.cmd[counter][1] == NULL)
 		path = get_env(ms->env, "HOME=");
 	else
-		path = ms->cmd.cmd[0][1];
+		path = ms->cmd.cmd[counter][1];
 	if (!path)
-		return ;
+		return (ms->cmd.cur_exit_code = 1, (void) 0);
 	if (chdir(path) == -1)
+	{
+		ms->cmd.cur_exit_code = 1;
 		err_msg(ERR_CHDIR_F);
+	}
 }
 
 void	ft_pwd(void)
@@ -35,15 +40,18 @@ void	ft_pwd(void)
 	printf("%s\n", pwd);
 }
 
+void	built_in_exit(t_ms *ms)
+{
+	ms->cmd.cur_exit_code = ft_atoi(ms->cmd.cmd[ms->cmd.counter][1]);
+	ft_exit(ms);
+}
+
 void	builtin_exe(t_ms *ms, char *cmd)
 {
 	if (ft_memcmp(cmd, "env", 3) == 0)
 		print_env(ms);
 	else if (ft_memcmp(cmd, "exit", 4) == 0)
-	{
-		ms->cmd.cur_exit_code = ft_atoi(ms->cmd.cmd[ms->cmd.counter][1]);
-		ft_exit(ms);
-	}
+		built_in_exit(ms);
 	else if (ft_memcmp(cmd, "cd", 2) == 0)
 		ft_chdir(ms);
 	else if (ft_memcmp(cmd, "echo", 4) == 0)
@@ -56,5 +64,5 @@ void	builtin_exe(t_ms *ms, char *cmd)
 		unset_env(ms);
 	if (is_main_process_exe(cmd) == TRUE && ms->cmd.counter == 0)
 		return ;	
-	exit(0);
+	ft_exit(ms);
 }
