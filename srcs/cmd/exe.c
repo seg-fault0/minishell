@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 13:25:13 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/25 16:13:12 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_wait(t_ms *ms)
 		waitpid(id, &ms->cmd.cur_exit_code, 0);
 		i++;
 	}
+	ms->cmd.last_exit_code = WEXITSTATUS(ms->cmd.cur_exit_code);
 }
 
 int	get_exit_code(t_ms *ms)
