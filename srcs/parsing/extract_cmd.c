@@ -6,17 +6,29 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 15:55:57 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/23 19:06:37 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/26 00:14:41 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
+static void	update_quote_state(char c, char *quote)
+{
+	if (*quote == 0 && is_quote(c))
+		*quote = c;
+	else if (*quote == c)
+		*quote = 0;
+}
+
 static int	skip_redirections(char *cmd, int i)
 {
+	char	quote;
+
+	quote = 0;
 	while (cmd[i])
 	{
-		if (is_redirection(cmd[i]))
+		update_quote_state(cmd[i], &quote);
+		if (!quote && is_redirection(cmd[i]))
 		{
 			i = skip_redirection(cmd, i);
 			while (cmd[i] && !is_space(cmd[i]))
@@ -34,9 +46,13 @@ static int	skip_redirections(char *cmd, int i)
 
 static void	copy_command_content(char *cmd, char *res, int *i, int *j)
 {
+	char	quote;
+
+	quote = 0;
 	while (cmd[*i])
 	{
-		if (is_redirection(cmd[*i]))
+		update_quote_state(cmd[*i], &quote);
+		if (!quote && is_redirection(cmd[*i]))
 			*i = skip_redirection(cmd, *i);
 		else
 			res[(*j)++] = cmd[(*i)++];
