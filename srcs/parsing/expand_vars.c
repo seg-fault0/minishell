@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:56:01 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/24 10:18:58 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/24 16:14:06 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	is_in_single_quotes(const char *str, int pos)
 	return (squote);
 }
 
-static char	*extract_and_expand_var(t_ms *ms, char **str, int *i)
+static char	*extract_and_expand_var(t_ms *ms, char *str, int *i)
 {
 	char	*var_name;
 	char	*var_value;
@@ -41,52 +41,58 @@ static char	*extract_and_expand_var(t_ms *ms, char **str, int *i)
 
 	start = *i + 1;
 	len = 0;
-	while (ft_isalnum((*str)[start + len]))
+	while (ft_isalnum(str[start + len]))
 		len++;
-	var_name = ft_substr(*str, start, len);
+	var_name = ft_substr(str, start, len);
 	var_value = get_env(ms->env, var_name);
 	free(var_name);
-	*str += start + len;
+	*i = start + len - 1;
 	return (ft_strdup(var_value));
 }
 
-static char	*append_text_before_dollar(char *result, char *str, int i)
+static char	*append_text_before_dollar(char *result, char *str,
+		int start, int end)
 {
 	char	*before;
 	char	*new_result;
 
-	before = ft_substr(str, 0, i);
-	new_result = ft_strjoin(result, before);
-	return (free(result), free(before), new_result);
+	before = ft_substr(str, start, end - start);
+	if (!before)
+		new_result = NULL;
+	else
+	{
+		new_result = ft_strjoin(result, before);
+		free(result);
+	}
+	return (free(before), new_result);
 }
 
 static char	*expand_line(t_ms *ms, char *str)
 {
 	char	*result;
 	int		i;
-	char	*temp;
+	int		start;
 	char	*expanded;
+	char	*tmp;
 
-	i = 0;
-	result = NULL;
-	while (str[i])
+	(1) && (i = -1, start = 0, result = NULL);
+	while (str[++i])
 	{
 		if (str[i] == '$' && !is_in_single_quotes(str, i)
 			&& ft_isalnum(str[i + 1]))
 		{
-			result = append_text_before_dollar(result, str, i);
-			expanded = extract_and_expand_var(ms, &str, &i);
-			temp = result;
-			result = ft_strjoin(temp, expanded);
+			result = append_text_before_dollar(result, str, start, i);
+			expanded = extract_and_expand_var(ms, str, &i);
+			tmp = result;
+			result = ft_strjoin(result, expanded);
 			free(expanded);
-			free(temp);
+			free(tmp);
+			start = i + 1;
 		}
-		else
-			i++;
 	}
-	temp = result;
-	result = ft_strjoin(result, str);
-	return (free(temp), result);
+	if (start < i)
+		result = append_text_before_dollar(result, str, start, i);
+	return (result);
 }
 
 void	expand_vars(t_ms *ms)
