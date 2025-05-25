@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_outfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 17:50:50 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/25 22:31:45 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,31 @@
 
 static char	*get_outfiles_str(char *cmd)
 {
-	char	*res;
+	char	*outfiles;
 	int		i;
+	int		j;
 
-	while (*cmd != '>')
-		cmd++;
-	res = malloc(sizeof(char) * (ft_strlen(cmd) + 1));
-	if (!res)
-		return (free(res), NULL);
+	outfiles = malloc(ft_strlen(cmd) + 1);
+	if (!outfiles)
+		return (NULL);
 	i = 0;
-	while (*cmd)
+	j = 0;
+	while (cmd[i])
 	{
-		if (is_space(*cmd) == FALSE)
-			res[i++] = *cmd;
-		cmd++;
+		if (cmd[i] == '>')
+		{
+			outfiles[j++] = '>';
+			i++;
+			while (is_space(cmd[i]))
+				i++;
+			while (cmd[i] && !is_space(cmd[i])
+				&& cmd[i] != '<' && cmd[i] != '>')
+				outfiles[j++] = cmd[i++];
+		}
+		else
+			i++;
 	}
-	res[i] = '\0';
-	return (res);
+	return (outfiles[j] = '\0', outfiles);
 }
 
 static size_t	append_scanner(char	*files_str)
