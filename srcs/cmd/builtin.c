@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/25 16:23:07 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/25 16:26:26 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_chdir(t_ms *ms)
 
 	counter = ms->cmd.counter;
 	if (ms->cmd.cmd[counter][1] == NULL)
-		path = get_env(ms->env, "HOME=");
+		path = get_env(ms->env, "HOME");
 	else
 		path = ms->cmd.cmd[counter][1];
 	if (!path)
@@ -63,6 +63,6 @@ void	builtin_exe(t_ms *ms, char *cmd)
 	else if (ft_memcmp(cmd, "unset", 5) == 0)
 		unset_env(ms);
 	if (is_main_process_exe(cmd) == TRUE && ms->cmd.counter == 0)
-		return ;	
+		return ;
 	ft_exit(ms);
 }
