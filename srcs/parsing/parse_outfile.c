@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/25 23:32:27 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/25 23:34:44 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	parse_outfile(t_ms *ms)
 		if (char_search(cmd, '>'))
 		{
 			redirect = get_outfiles_str(cmd);
-			printf("%s\n",redirect);
 			if (!redirect)
 				return ;
 			ms->fd.append[i] = append_scanner(redirect);
