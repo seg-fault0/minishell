@@ -5,10 +5,15 @@ SRCS =	srcs/core/main.c				\
 		srcs/core/reseter.c				\
 		srcs/core/exit.c				\
 		srcs/core/signals.c				\
+		srcs/builtin/main.c				\
+		srcs/builtin/chdir.c			\
+		srcs/builtin/echo.c				\
+		srcs/builtin/env.c				\
+		srcs/builtin/exit.c				\
+		srcs/builtin/export.c			\
+		srcs/builtin/pwd.c				\
+		srcs/builtin/unset.c			\
 		srcs/cmd/init.c					\
-		srcs/cmd/echo.c					\
-		srcs/cmd/builtin.c				\
-		srcs/cmd/env.c					\
 		srcs/cmd/fd_manager.c			\
 		srcs/cmd/exe.c					\
 		srcs/cmd/main.c					\

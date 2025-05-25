@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 13:26:32 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/25 16:50:55 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,10 @@ void	print_env(t_ms *ms);
 
 //builtin cmds
 void	builtin_exe(t_ms *ms, char *cmd);
-void	ft_chdir(t_ms *ms);
+void	built_in_exit(t_ms *ms);
 void	ft_echo(t_ms *ms);
+void	ft_pwd(t_ms *ms);
+void	ft_chdir(t_ms *ms);
 
 //utils
 void	free2(char **arr, int c);
