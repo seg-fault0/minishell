@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/25 16:31:50 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/25 16:38:14 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void	ft_pwd(t_ms *ms)
 {
 	char	pwd[PATH_MAX];
 
-	if (getcwd(pwd, sizeof(pwd)) == NULL
-		|| ms->cmd.cmd[ms->cmd.counter][1])
+	if (getcwd(pwd, sizeof(pwd)) == NULL)
 	{
 		ms->cmd.cur_exit_code = 1;
 		return (err_msg(ERR_PWD_F));
