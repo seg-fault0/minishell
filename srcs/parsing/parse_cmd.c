@@ -6,81 +6,90 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/23 18:58:07 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/24 14:09:38 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*extract_quoted_content(char *cmd, int *i, char quote)
+static char	*handle_quotes(char *input, int *i)
 {
-	int		start;
+	char	quote;
 	char	*content;
+	int		start;
 
-	start = *i + 1;
-	(*i)++;
-	while (cmd[*i] && cmd[*i] != quote)
+	quote = input[*i];
+	start = ++(*i);
+	while (input[*i] && input[*i] != quote)
+		(*i)++;
+	if (input[*i] == quote)
 	{
-		if (cmd[*i])
-			(*i)++;
-	}
-	if (cmd[*i] == quote)
-	{
-		content = ft_substr(cmd, start, *i - start);
+		content = ft_substr(input, start, *i - start);
 		(*i)++;
 		return (content);
 	}
 	return (NULL);
 }
 
-static char	*extract_regular_word(char *cmd, int *i)
+static char	*handle_word(char *input, int *i)
 {
-	int	start;
+	char	*word;
+	char	*tmp;
+	int		start;
+	char	*new_word;
 
-	start = *i;
-	while (cmd[*i] && !is_space(cmd[*i])
-		&&!is_redirection(cmd[*i]) && !is_quote(cmd[*i]))
+	word = NULL;
+	while (input[*i] && !is_space(input[*i]) && !is_redirection(input[*i]))
 	{
-		if (cmd[*i])
-			(*i)++;
-	}
-	if (*i > start)
-		return (ft_substr(cmd, start, *i - start));
-	return (NULL);
-}
-
-static char	**split_outside_quotes(char *cmd)
-{
-	char	**words;
-	int		word_count;
-	int		i;
-
-	word_count = 0;
-	i = 0;
-	words = malloc((ft_strlen(cmd) + 1) * sizeof(char *));
-	if (!words)
-		return (NULL);
-	while (cmd[i])
-	{
-		if (is_quote(cmd[i]))
+		if (input[*i] == '\'' || input[*i] == '"')
 		{
-			words[word_count] = extract_quoted_content(cmd, &i, cmd[i]);
-			if (words[word_count])
-				word_count++;
-		}
-		else if (is_redirection(cmd[i]))
-			i = skip_redirection(cmd, i);
-		else if (!is_space(cmd[i]))
-		{
-			words[word_count] = extract_regular_word(cmd, &i);
-			if (words[word_count])
-				word_count++;
+			tmp = handle_quotes(input, i);
+			new_word = ft_strjoin(word, tmp);
+			free(word);
+			free(tmp);
+			word = new_word;
 		}
 		else
-			i++;
+		{
+			start = *i;
+			while (input[*i] && !is_space(input[*i])
+				&& !is_redirection(input[*i]) && !is_quote(input[*i]))
+				(*i)++;
+			tmp = ft_substr(input, start, *i - start);
+			new_word = ft_strjoin(word, tmp);
+			free(word);
+			free(tmp);
+			word = new_word;
+		}
 	}
-	words[word_count] = NULL;
-	return (words);
+	return (word);
+}
+
+char	**split_with_quotes(char *input)
+{
+	char	**result;
+	int		i;
+	int		j;
+
+	result = ft_calloc(ft_strlen(input) + 1, sizeof(char *));
+	if (!result)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (input[i])
+	{
+		if (is_space(input[i]) == TRUE)
+			i++;
+		else if (is_redirection(input[i]))
+			i = skip_redirection(input, i);
+		else
+		{
+			result[j] = handle_word(input, &i);
+			if (result[j])
+				j++;
+		}
+	}
+	return (result);
 }
 
 void	parse_cmd(t_ms *ms)
@@ -92,7 +101,7 @@ void	parse_cmd(t_ms *ms)
 	while (i < ms->parse.cmd_nbr)
 	{
 		clean = extract_cmd(ms->parse.tmp2d[i]);
-		ms->parse.cmd[i] = split_outside_quotes(clean);
+		ms->parse.cmd[i] = split_with_quotes(clean);
 		i++;
 	}
 	free(clean);
