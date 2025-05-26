@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/26 00:14:15 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/26 16:03:26 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ char	**split_with_quotes(char *input)
 	j = 0;
 	while (input[i])
 	{
-		if (is_space(input[i]) == TRUE)
+		if (is_space(input[i]))
 			i++;
-		else if (is_redirection(input[i]))
-			i = skip_redirection(input, i);
 		else
 		{
 			result[j] = handle_word(input, &i);

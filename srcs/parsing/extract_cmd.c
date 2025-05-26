@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 15:55:57 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/26 00:14:41 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/26 15:14:30 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,43 +20,17 @@ static void	update_quote_state(char c, char *quote)
 		*quote = 0;
 }
 
-static int	skip_redirections(char *cmd, int i)
+static int	skip_redirection_with_quotes(char *cmd, int i)
 {
 	char	quote;
 
 	quote = 0;
-	while (cmd[i])
+	while (cmd[i] && (quote || !is_space(cmd[i])))
 	{
 		update_quote_state(cmd[i], &quote);
-		if (!quote && is_redirection(cmd[i]))
-		{
-			i = skip_redirection(cmd, i);
-			while (cmd[i] && !is_space(cmd[i]))
-				i++;
-			while (is_space(cmd[i]))
-				i++;
-		}
-		else if (!is_space(cmd[i]))
-			break ;
-		else
-			i++;
+		i++;
 	}
 	return (i);
-}
-
-static void	copy_command_content(char *cmd, char *res, int *i, int *j)
-{
-	char	quote;
-
-	quote = 0;
-	while (cmd[*i])
-	{
-		update_quote_state(cmd[*i], &quote);
-		if (!quote && is_redirection(cmd[*i]))
-			*i = skip_redirection(cmd, *i);
-		else
-			res[(*j)++] = cmd[(*i)++];
-	}
 }
 
 char	*extract_cmd(char *cmd)
@@ -64,15 +38,26 @@ char	*extract_cmd(char *cmd)
 	int		i;
 	int		j;
 	char	*res;
+	char	quote;
 
-	i = 0;
-	j = 0;
+	(1) & (i = 0, j = 0);
 	res = malloc(ft_strlen(cmd) + 1);
 	if (!res)
 		return (NULL);
-	i = skip_redirections(cmd, i);
-	if (cmd[i])
-		copy_command_content(cmd, res, &i, &j);
+	quote = 0;
+	while (cmd[i])
+	{
+		update_quote_state(cmd[i], &quote);
+		if (!quote && is_redirection(cmd[i]))
+		{
+			i = skip_redirection(cmd, i);
+			i = skip_redirection_with_quotes(cmd, i);
+			while (is_space(cmd[i]))
+				i++;
+		}
+		else
+			res[j++] = cmd[i++];
+	}
 	res[j] = '\0';
 	return (res);
 }
