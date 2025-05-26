@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/25 18:33:02 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/26 12:02:56 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static BOOL	env_synthax(char *str)
 {
-	if (str[0] == '\0' || str[0] == '='|| is_digit(str[0]))
+	if (str[0] == '\0' || str[0] == '=' || is_digit(str[0]))
 		return (TRUE);
 	return (FALSE);
 }
