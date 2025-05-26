@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:56:57 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 18:15:02 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/26 10:35:37 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	ou_fd_opener(t_ms *ms)
 	int		i;
 	int		fd;
 
-	i = -1;
 	if (!ms->parse.oufiles)
 		return ;
+	i = -1;
 	while (++i < ms->parse.cmd_nbr)
 	{
 		if (ms->parse.oufiles[i])
@@ -52,6 +52,5 @@ void	ou_fd_opener(t_ms *ms)
 			fd = cmd_outfiles_opener(ms->parse.oufiles[i], ms->fd.append[i]);
 			ms->fd.out[i] = fd;
 		}
-		i++;
 	}
 }

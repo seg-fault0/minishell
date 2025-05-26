@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 13:10:28 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 11:58:41 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/26 10:41:10 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,18 @@
 
 void	in_fd_opener(t_ms *ms)
 {
-	char	*filename;
 	int		i;
 	int		j;
-	int		fd;
 
-	i = -1;
 	if (!ms->parse.infiles)
 		return ;
+	i = -1;
 	while (++i < ms->parse.cmd_nbr)
 	{
 		j = 0;
 		while (ms->parse.infiles[i] && ms->parse.infiles[i][j])
-		{
-			filename = ms->parse.infiles[i][j];
-			fd = open(filename, O_RDONLY);
-			if (!ms->parse.infiles[i][j + 1])
-				ms->fd.in[i] = fd;
-			else
-				ft_close(fd);
 			j++;
-		}
+		if (j > 0)
+			ms->fd.in[i] = open(ms->parse.infiles[i][j - 1], O_RDONLY);
 	}
 }
