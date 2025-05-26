@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:35:00 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 17:51:16 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/26 12:19:20 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ void	cmd_reseter(t_ms *ms)
 
 void	fd_reseter(t_ms *ms)
 {
+	int	i;
+
+	i = 0;
+	while (i < ms->cmd.max_counter)
+	{
+		ft_close(ms->fd.in[i]);
+		ft_close(ms->fd.out[i]);
+		i++;
+	}
 	free(ms->fd.out);
 	free(ms->fd.in);
 	free(ms->fd.append);
