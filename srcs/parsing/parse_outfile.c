@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/26 00:15:03 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/27 09:56:24 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,23 @@ static char	*get_outfiles_str(char *cmd)
 	char	*outfiles;
 	int		i;
 	int		j;
+	char	quote;
 
+	(1) & (i = 0, j = 0);
 	outfiles = malloc(ft_strlen(cmd) + 1);
 	if (!outfiles)
 		return (NULL);
-	i = 0;
-	j = 0;
 	while (cmd[i])
 	{
-		if (cmd[i] == '>')
+		if (cmd[i] == '\'' || cmd[i] == '"')
+		{
+			quote = cmd[i++];
+			while (cmd[i] && cmd[i] != quote)
+				i++;
+			if (cmd[i] == quote)
+				i++;
+		}
+		else if (cmd[i] == '>')
 		{
 			outfiles[j++] = '>';
 			i++;
