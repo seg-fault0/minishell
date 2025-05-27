@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_infile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/19 17:57:09 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 10:16:43 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static char	*get_infiles_str(char *cmd)
 	char	*infiles;
 	int		i;
 	int		j;
+	char	quote;
 
 	infiles = malloc(ft_strlen(cmd) + 1);
 	if (!infiles)
@@ -25,7 +26,15 @@ static char	*get_infiles_str(char *cmd)
 	j = 0;
 	while (cmd[i])
 	{
-		if (cmd[i] == '<')
+		if (cmd[i] == '\'' || cmd[i] == '"')
+		{
+			quote = cmd[i++];
+			while (cmd[i] && cmd[i] != quote)
+				i++;
+			if (cmd[i] == quote)
+				i++;
+		}
+		else if (cmd[i] == '<')
 		{
 			infiles[j++] = '<';
 			i++;
