@@ -13,9 +13,10 @@ SRCS =	srcs/core/main.c				\
 		srcs/builtin/export.c			\
 		srcs/builtin/pwd.c				\
 		srcs/builtin/unset.c			\
-		srcs/exe/init.c					\
+		srcs/exe/exit_code.c			\
 		srcs/exe/fd_manager.c			\
 		srcs/exe/exe.c					\
+		srcs/exe/init.c					\
 		srcs/exe/main.c					\
 		srcs/parsing/main.c				\
 		srcs/parsing/helper.c			\
@@ -42,9 +43,10 @@ SRCS =	srcs/core/main.c				\
 		srcs/synthax/main.c				\
 		srcs/synthax/quotes.c			\
 		srcs/synthax/pipe.c				\
-		srcs/fds/main.c					\
+		srcs/fds/here_doc.c				\
 		srcs/fds/infd.c					\
 		srcs/fds/oufd.c					\
+		srcs/fds/main.c					\
 
 # Convert srcs/*.c → objs/*.o, preserving subdirs
 OBJS	= $(SRCS:srcs/%.c=objs/%.o)

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/25 18:18:22 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 10:05:49 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <readline/history.h>
 
 # define PROMPT "\033[0;35mminishell : \033[0m"
-# define HERE_DOC "pipe heredoc> "
+# define HERE_DOC "> "
 
 # define GNL_BUFFER_SIZE 1
 # define GNL_FREE -9123423
@@ -56,7 +56,6 @@ typedef struct s_parsed
 	char	***cmd;
 	char	***infiles;
 	char	***oufiles;
-	char	*delimiter;
 	int		cmd_nbr;
 }t_parsed;
 
@@ -113,17 +112,19 @@ void	expand_vars(t_ms *ms);
 void	fd_setup(t_ms *ms);
 void	in_fd_opener(t_ms *ms);
 void	ou_fd_opener(t_ms *ms);
+int		here_doc(char *delimiter);
 
 //reseter
 void	parse_reseter(t_ms *ms);
 void	cmd_reseter(t_ms *ms);
 void	fd_reseter(t_ms *ms);
 
-//cmd
+//exe
 void	init_cmd(t_ms *ms);
 void	ft_exe(t_ms *ms);
 void	ft_start(t_ms *ms, int rfd);
 void	fd_manager(t_ms *ms, int rfd, int *pfd);
+int		get_exit_code(t_ms *ms);
 
 //env
 char	*get_env(char **env, char *look_for);
