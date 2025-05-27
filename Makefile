@@ -13,10 +13,10 @@ SRCS =	srcs/core/main.c				\
 		srcs/builtin/export.c			\
 		srcs/builtin/pwd.c				\
 		srcs/builtin/unset.c			\
-		srcs/cmd/init.c					\
-		srcs/cmd/fd_manager.c			\
-		srcs/cmd/exe.c					\
-		srcs/cmd/main.c					\
+		srcs/exe/init.c					\
+		srcs/exe/fd_manager.c			\
+		srcs/exe/exe.c					\
+		srcs/exe/main.c					\
 		srcs/parsing/main.c				\
 		srcs/parsing/helper.c			\
 		srcs/parsing/parse_outfile.c	\

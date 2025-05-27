@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit_code.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 11:54:24 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/25 16:12:55 by wimam            ###   ########.fr       */
+/*   Created: 2025/05/27 09:38:27 by wimam             #+#    #+#             */
+/*   Updated: 2025/05/27 09:38:33 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exe(t_ms *ms)
+int	get_exit_code(t_ms *ms)
 {
-	char	*first_cmd;
+	int	counter;
 
-	if (!ms->input || !*ms->input)
-		return ;
-	first_cmd = ms->cmd.cmd[0][0];
-	if (is_main_process_exe(first_cmd) == TRUE)
-		builtin_exe(ms, first_cmd);
-	else
-		ft_start(ms, ms->fd.in[0]);
+	counter = ms->cmd.counter;
+	if (access(ms->cmd.cmd[counter][0], X_OK) != 0)
+		return (127);
+	if (access(ms->cmd.cmd[counter][1], F_OK) == 0)
+		return (2);
+	return (0);
 }

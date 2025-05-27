@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 14:42:52 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 09:36:22 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	ft_luncher(t_ms *ms)
 		{
 			ft_parse(ms);
 			fd_setup(ms);
-			init_cmd(ms);
 			ft_exe(ms);
 		}
 		reset_prompt(ms);
