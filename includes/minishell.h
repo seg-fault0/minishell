@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/27 10:05:49 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 14:37:13 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ BOOL	is_digit(int c);
 //synthax
 BOOL	open_quotes_checker(char *input);
 BOOL	open_pipe_checker(char *input);
+BOOL	operators_checker(char *input);
 
 //libft
 char	**ft_split(char const *s, char c);
