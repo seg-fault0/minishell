@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/27 09:38:19 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 11:07:15 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_wait(t_ms *ms)
 		waitpid(id, &ms->cmd.cur_exit_code, 0);
 		i++;
 	}
-	ms->cmd.last_exit_code = WEXITSTATUS(ms->cmd.cur_exit_code);
+	ms->cmd.cur_exit_code = WEXITSTATUS(ms->cmd.cur_exit_code);
 }
 
 void	ft_chiled(t_ms *ms, int rfd, int *pfd)
