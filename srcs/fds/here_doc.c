@@ -3,20 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:45:53 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/27 10:07:00 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 11:10:09 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_delimiter_extract(char *delimiter)
+{
+	int		i;
+	int		j;
+	char	quote;
+
+	(1) & (i = 0, j = 0);
+	while (delimiter[i])
+	{
+		if (delimiter[i] == '\'' || delimiter[i] == '"')
+		{
+			quote = delimiter[i++];
+			while (delimiter[i] && delimiter[i] != quote)
+				delimiter[j++] = delimiter[i++];
+			if (delimiter[i] == quote)
+				i++;
+		}
+		else
+			delimiter[j++] = delimiter[i++];
+	}
+	delimiter[j] = '\0';
+}
 
 int	here_doc(char *delimiter)
 {
 	char	*line;
 	int		pfd[2];
 
+	if (delimiter[0] == '\'' || delimiter[0] == '"')
+		ft_delimiter_extract(delimiter);
 	if (pipe(pfd) == -1)
 		return (err_msg(ERR_PIPE_F), -1);
 	ft_putstr_fd(HERE_DOC, STDOUT);
