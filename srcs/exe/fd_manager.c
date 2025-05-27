@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 11:56:07 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/26 11:57:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 13:59:23 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,20 @@ static void	ou_fd_manager(t_ms *ms, int pfd, int counter)
 
 static void	in_fd_manager(t_ms *ms, int rfd, int counter)
 {
-	if (ms->fd.in[counter] != -1)
+	if (ms->fd.in[counter] == -1)
+	{
+		ft_putstr_fd("no such file or directory\n", STDERR);
+		exit(1);
+	}
+	if (ms->fd.in[counter] >= 0)
 	{
 		if (dup2(ms->fd.in[counter], STDIN) == -1)
-			return (err_msg(ERR_DUP2_F), exit(0));
+			return (err_msg(ERR_DUP2_F), exit(1));
 	}
 	else if (ms->cmd.counter == 0)
 		return ;
 	else if (dup2(rfd, STDIN) == -1)
-		return (err_msg(ERR_DUP2_F), exit(0));
+		return (err_msg(ERR_DUP2_F), exit(1));
 }
 
 void	fd_manager(t_ms *ms, int rfd, int *pfd)
