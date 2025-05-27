@@ -6,11 +6,31 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/27 10:16:43 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/05/27 12:07:28 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
+
+static void	handle_filename(char *cmd, int *i, char *outfiles, int *j)
+{
+	char	quote;
+
+	if (cmd[*i] == '\'' || cmd[*i] == '"')
+	{
+		quote = cmd[(*i)++];
+		while (cmd[*i] && cmd[*i] != quote)
+			outfiles[(*j)++] = cmd[(*i)++];
+		if (cmd[*i] == quote)
+			(*i)++;
+	}
+	else
+	{
+		while (cmd[*i] && !is_space(cmd[*i])
+			&& cmd[*i] != '<' && cmd[*i] != '>')
+			outfiles[(*j)++] = cmd[(*i)++];
+	}
+}
 
 static char	*get_infiles_str(char *cmd)
 {
@@ -40,9 +60,7 @@ static char	*get_infiles_str(char *cmd)
 			i++;
 			while (is_space(cmd[i]))
 				i++;
-			while (cmd[i] && !is_space(cmd[i])
-				&& cmd[i] != '<' && cmd[i] != '>')
-				infiles[j++] = cmd[i++];
+			handle_filename(cmd, &i, infiles, &j);
 		}
 		else
 			i++;
