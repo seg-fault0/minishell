@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 13:10:28 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/27 10:07:10 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 14:20:32 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	in_fd_opener(t_ms *ms)
 				fd = here_doc(ms->parse.infiles[i][j]);
 			else
 				fd = open(ms->parse.infiles[i][j], O_RDONLY);
+			if (fd == -1)
+				ft_putstr_fd("no such file or directory\n", STDERR);
 			if (ms->parse.infiles[i][j + 1] == NULL)
 				ms->fd.in[i] = fd;
 			else
