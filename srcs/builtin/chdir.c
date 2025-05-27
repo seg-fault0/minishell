@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:38 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/27 11:05:02 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 11:34:34 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	ft_chdir(t_ms *ms)
 		ms->cmd.cur_exit_code = 1;
 		err_msg(ERR_CHDIR_F);
 	}
+	ms->cmd.cur_exit_code = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 11:01:09 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/24 12:04:55 by wimam            ###   ########.fr       */
+/*   Updated: 2025/05/27 11:35:35 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void	ft_echo(t_ms *ms)
 			write(STDOUT, " ", 1);
 	}
 	printf("\n");
+	ms->cmd.cur_exit_code = 0;
 }
