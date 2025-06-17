@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/26 16:03:38 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/17 14:58:53 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	ft_parse(t_ms *ms)
 		return ;
 	expand_vars(ms);
 	parse_outfile(ms);
-	parse_infile(ms);
+	parse_infile(ms);	
 	parse_cmd(ms);
 }

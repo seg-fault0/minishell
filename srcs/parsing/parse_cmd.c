@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/26 16:03:26 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/17 15:04:13 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	parse_cmd(t_ms *ms)
 		clean = extract_cmd(ms->parse.tmp2d[i]);
 		ms->parse.cmd[i] = split_with_quotes(clean);
 		i++;
+		free(clean);
 	}
-	free(clean);
 	ms->parse.cmd[i] = NULL;
 }
