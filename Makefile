@@ -33,6 +33,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/libft/ft_putnbr.c			\
 		srcs/libft/ft_atoi.c			\
 		srcs/other/checkers.c			\
+		srcs/other/checkers2.c			\
 		srcs/other/arr_utils.c			\
 		srcs/other/free.c				\
 		srcs/other/utils.c				\

@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_code.c                                        :+:      :+:    :+:   */
+/*   checkers2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 09:38:27 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/17 11:24:14 by wimam            ###   ########.fr       */
+/*   Created: 2025/06/17 10:55:21 by wimam             #+#    #+#             */
+/*   Updated: 2025/06/17 11:04:29 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	get_exit_code(t_ms *ms)
+BOOL	is_dir(const char	*path)
 {
-	char	*cmd;
-	int		counter;
+	struct stat	statbuf;
 
-	counter = ms->cmd.counter;
-	cmd = ms->cmd.cmd[counter][0];
-	if (access(cmd, F_OK) != 0)
-		return (127);
-	if (access(cmd, X_OK) != 0 || is_dir(cmd) == TRUE)
-		return (126);
-	if (ms->cmd.cmd[counter][1] != NULL
-		&& access(ms->cmd.cmd[counter][1], F_OK) != 0)
-		return (2);
-	return (127);
+	if (stat(path, &statbuf) != 0)
+		return (FALSE);
+	if (S_ISDIR(statbuf.st_mode))
+		return (TRUE);
+	return (FALSE);
+}
+
+BOOL	is_file(const char *path)
+{
+	struct stat	statbuf;
+
+	if (stat(path, &statbuf) != 0)
+		return (FALSE);
+	if (S_ISREG(statbuf.st_mode))
+		return (TRUE);
+	return (FALSE);
 }
