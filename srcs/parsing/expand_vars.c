@@ -41,7 +41,7 @@ static char	*extract_and_expand_var(t_ms *ms, char *str, int *i)
 
 	start = *i + 1;
 	len = 0;
-	if(ft_memcmp(str + start, "?", 1) == 0)
+	if (ft_memcmp(str + start, "?", 1) == 0)
 	{
 		var_value = ft_itoa(ms->cmd.last_exit_code);
 		*i += 1;
@@ -87,7 +87,7 @@ static char	*expand_line(t_ms *ms, char *str)
 	while (str[++i])
 	{
 		if (str[i] == '$' && !is_in_single_quotes(str, i)
-			&&  (ft_isalnum(str[i + 1]) || str[i + 1] == '?'))
+			&& (ft_isalnum(str[i + 1]) || str[i + 1] == '?'))
 		{
 			result = append_text_before_dollar(result, str, start, i);
 			expanded = extract_and_expand_var(ms, str, &i);

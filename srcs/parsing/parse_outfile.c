@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse_outfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
 /*   Updated: 2025/06/17 14:54:28 by zogrir           ###   ########.fr       */
@@ -27,7 +27,6 @@ static void	handle_filename(char *cmd, int *i, char *outfiles, int *j)
 				(*i)++;
 		}
 		else
-		{
 			outfiles[(*j)++] = cmd[(*i)++];
 		}
 	}
