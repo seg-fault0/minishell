@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:56:01 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/17 14:22:06 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:12:10 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,31 @@ static char	*expand_line(t_ms *ms, char *str)
 	return (result);
 }
 
+
+void ft_ft(char *s)
+{
+	int  i;
+	int  start;
+
+	i = 0;
+	while (s[i])
+	{
+	if (s[i] == '<')
+	{
+		start = i;
+		while (s[i] && s[i] != '>' && s[i] != '<' && !is_space(s[i]))
+		i++;
+		if (access((&s[start + 1]), F_OK) == -1)
+		{
+			s[start] = '\0';
+			return;
+		}
+	}
+	else
+		i++;
+	}
+}
+
 void	expand_vars(t_ms *ms)
 {
 	int		i;
@@ -117,5 +142,6 @@ void	expand_vars(t_ms *ms)
 			free(ms->parse.tmp2d[i]);
 			ms->parse.tmp2d[i] = expanded;
 		}
+		ft_ft(ms->parse.tmp2d[i]);
 	}
 }
