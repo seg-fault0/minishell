@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/17 15:28:34 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/17 16:30:09 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ void	ft_parse(t_ms *ms)
 		return ;
 	expand_vars(ms);
 	parse_outfile(ms);
-	parse_infile(ms);	
+	parse_infile(ms);
 	parse_cmd(ms);
-	for (int i = 0; i < ms->parse.cmd_nbr; i++)
-	{
-		for (int j = 0; ms->parse.oufiles[i][j]; j++)
-		{
-			printf("%s\n", ms->parse.oufiles[i][j]);
-		}
-	}
 }
