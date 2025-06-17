@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/17 11:04:37 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/17 13:47:15 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_isalnum(int c);
 void	ft_putnbr(int n);
 long	ft_atoi(const char *str);
+char	*ft_itoa(int n);
 
 //char utils
 BOOL	char_search(char *str, char c);
