@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_outfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/17 14:54:28 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/19 18:45:46 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,24 @@ static size_t	append_scanner(char	*files_str)
 	return (ret);
 }
 
+char	*ft_ft(char	*str)
+{
+	char	*start;
+	char	*filename;
+	char	*new;
+	int		len;
+
+	filename = extract_first_missing_filename(str);
+	if (filename == NULL)
+		return (ft_strdup(str));
+	start = ft_strstr(str, filename);
+	len = start - str + ft_strlen(filename);
+	new = malloc(len + 1);
+	ft_memcpy(new, str, len);
+	new[len] = '\0';
+	return (free(filename), new);
+}
+
 void	parse_outfile(t_ms *ms)
 {
 	int		i;
@@ -104,7 +122,7 @@ void	parse_outfile(t_ms *ms)
 	i = -1;
 	while (++i < ms->parse.cmd_nbr)
 	{
-		cmd = ms->parse.tmp2d[i];
+		cmd = ft_ft(ms->parse.tmp2d[i]);
 		if (char_search(cmd, '>'))
 		{
 			redirect = get_outfiles_str(cmd);
@@ -116,6 +134,7 @@ void	parse_outfile(t_ms *ms)
 		}
 		else
 			ms->parse.oufiles[i] = NULL;
+		free(cmd);
 	}
 	ms->parse.oufiles[i] = NULL;
 }

@@ -19,6 +19,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/exe/init.c					\
 		srcs/exe/main.c					\
 		srcs/parsing/main.c				\
+		srcs/parsing/remove_files.c		\
 		srcs/parsing/helper.c			\
 		srcs/parsing/parse_outfile.c	\
 		srcs/parsing/parse_infile.c		\
