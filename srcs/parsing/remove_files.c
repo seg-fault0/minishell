@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:45:01 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 18:07:57 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 20:30:09 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ char	*extract_first_missing_filename(char *s)
 		else
 			i++;
 	}
-	return (NULL);
+	return (free(filename), NULL);
 }
