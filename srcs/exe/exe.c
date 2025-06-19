@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/17 13:22:48 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 17:10:17 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_start(t_ms *ms, int rfd)
 	int	pid;
 
 	if (ms->cmd.counter == ms->cmd.max_counter)
-		return (ft_wait(ms));
+		return ;
 	if (pipe(pfd) == -1)
 		err_msg(ERR_PIPE_F);
 	pid = fork();

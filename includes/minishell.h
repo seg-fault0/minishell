@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/17 13:47:15 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 17:10:27 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	ft_exe(t_ms *ms);
 void	ft_start(t_ms *ms, int rfd);
 void	fd_manager(t_ms *ms, int rfd, int *pfd);
 int		get_exit_code(t_ms *ms);
+void	ft_wait(t_ms *ms);
 
 //env
 char	*get_env(char **env, char *look_for);
