@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/19 18:45:46 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 19:04:05 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static char	*get_outfiles_str(char *cmd)
 	int		j;
 	char	quote;
 
-	(1) & (i = 0, j = 0);
+	i = 0;
+	j = 0;
 	outfiles = malloc(ft_strlen(cmd) + 1);
 	if (!outfiles)
 		return (NULL);

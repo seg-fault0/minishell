@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 15:55:57 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/17 15:01:32 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/19 19:04:16 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ char	*extract_cmd(char *cmd)
 	char	*res;
 	char	quote;
 
-	(1) & (i = 0, j = 0);
+	i = 0;
+	j = 0;
 	res = malloc(ft_strlen(cmd) + 1);
 	if (!res)
 		return (NULL);
