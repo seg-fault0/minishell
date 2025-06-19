@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:38:27 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/17 11:24:14 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 20:43:48 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ int	get_exit_code(t_ms *ms)
 	counter = ms->cmd.counter;
 	cmd = ms->cmd.cmd[counter][0];
 	if (access(cmd, F_OK) != 0)
-		return (127);
-	if (access(cmd, X_OK) != 0 || is_dir(cmd) == TRUE)
+		return (err_msg(ERR_CMD_NF), 127);
+	if (access(cmd, X_OK) != 0)
 		return (126);
+	if (is_dir(cmd) == TRUE)
+		return (err_msg(ERR_THIS_IS_DIR), 126);
 	if (ms->cmd.cmd[counter][1] != NULL
 		&& access(ms->cmd.cmd[counter][1], F_OK) != 0)
 		return (2);

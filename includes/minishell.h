@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 18:40:44 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 20:42:23 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 # define ERR_CHDIR_F 6
 # define ERR_PWD_F 7
 # define ERR_OPEN_F 8
+# define ERR_THIS_IS_DIR 9
+# define ERR_CMD_NF 10
 
 typedef struct s_parsed
 {

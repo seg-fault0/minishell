@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:05:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 12:08:23 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 20:42:16 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,8 @@ void	err_msg(int msg)
 		ft_putstr_fd("ERR : pwd failed\n", 2);
 	else if (msg == ERR_OPEN_F)
 		ft_putstr_fd("ERR : open failed\n", 2);
+	else if (msg == ERR_THIS_IS_DIR)
+		ft_putstr_fd("ERR : This is dir\n", 2);
+	else if (msg == ERR_CMD_NF)
+		ft_putstr_fd("ERR : command not found\n", 2);
 }
