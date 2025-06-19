@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 11:56:07 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/27 14:20:03 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 20:09:48 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	ou_fd_manager(t_ms *ms, int pfd, int counter)
 {
-	if (ms->fd.out[counter] != -1)
+	if (ms->fd.out[counter] == -1)
+		exit(1);
+	if (ms->fd.out[counter] >= -1)
 	{
 		if (dup2(ms->fd.out[counter], STDOUT) == -1)
 			return (err_msg(ERR_DUP2_F), exit(0));

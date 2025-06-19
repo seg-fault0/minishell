@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:56:57 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 18:47:42 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 20:07:25 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ void	ou_fd_opener(t_ms *ms)
 				fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 			else
 				fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			if (fd == -1)
+			{
+				ft_putstr_fd("permission denied\n", STDERR);
+				ms->fd.out[i] = fd;
+				break ;
+			}
 			if (ms->parse.oufiles[i][j + 1] == NULL)
 				ms->fd.out[i] = fd;
 			else
