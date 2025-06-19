@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 17:05:56 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 19:12:52 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	env_var_checker(t_ms *ms, char *str)
 	char	*tmp_envar;
 	char	**tmp_arr;
 	int		len;
-	
+
 	tmp_envar = ft_strdup(str);
 	len = 0;
 	while (str[len] && str[len] != '=')

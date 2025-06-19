@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/19 19:04:05 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 19:14:23 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	handle_filename(char *cmd, int *i, char *outfiles, int *j)
 {
-	char quote;
+	char	quote;
 
 	while (cmd[*i] && !is_space(cmd[*i]) && cmd[*i] != '<' && cmd[*i] != '>')
 	{
@@ -32,7 +32,6 @@ static void	handle_filename(char *cmd, int *i, char *outfiles, int *j)
 		}
 	}
 }
-
 
 static char	*get_outfiles_str(char *cmd)
 {

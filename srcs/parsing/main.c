@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 18:46:23 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/19 19:14:04 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	ft_parse(t_ms *ms)
 		return ;
 	expand_vars(ms);
 	parse_outfile(ms);
-	parse_infile(ms);	
+	parse_infile(ms);
 	parse_cmd(ms);
 }
