@@ -18,7 +18,8 @@ void	ft_delimiter_extract(char *delimiter)
 	int		j;
 	char	quote;
 
-	(1) & (i = 0, j = 0);
+	i = 0;
+	j = 0;
 	while (delimiter[i])
 	{
 		if (delimiter[i] == '\'' || delimiter[i] == '"')
