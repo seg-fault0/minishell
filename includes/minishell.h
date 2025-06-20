@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 20:42:23 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/20 03:17:52 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ BOOL	is_file(const char *path);
 BOOL	open_quotes_checker(char *input);
 BOOL	open_pipe_checker(char *input);
 BOOL	operators_checker(char *input);
+BOOL	open_redir_checker(char *input);
 
 //libft
 char	**ft_split(char const *s, char c);
