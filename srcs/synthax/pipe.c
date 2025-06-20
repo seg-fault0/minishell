@@ -6,11 +6,29 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 13:38:00 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/19 13:46:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/20 09:40:59 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+BOOL	is_invalid_pipe(char *input, int i)
+{
+	int	left;
+	int	right;
+
+	left = i - 1;
+	right = i + 1;
+	while (left >= 0 && input[left] == ' ')
+		left--;
+	if (left < 0)
+		return (TRUE);
+	while (input[right] == ' ')
+		right++;
+	if (input[right] == '\0' || input[right] == '|')
+		return (TRUE);
+	return (FALSE);
+}
 
 BOOL	open_pipe_checker(char *input)
 {
@@ -30,13 +48,8 @@ BOOL	open_pipe_checker(char *input)
 		}
 		else if (input[i] == quote_char)
 			in_quotes = FALSE;
-		else if (input[i] == '|' && !in_quotes)
-		{
-			while (input[++i] == ' ')
-				i++;
-			if (input[i] == '|' || input[i] == '\0')
-				return (TRUE);
-		}
+		else if (input[i] == '|' && !in_quotes && is_invalid_pipe(input, i))
+			return (TRUE);
 	}
 	return (FALSE);
 }
