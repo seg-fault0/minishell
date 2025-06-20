@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:45:01 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 09:18:57 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/20 09:52:07 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,27 @@ int	is_sep(char c)
 	return (c == ' ' || c == '<' || c == '>' || c == '\0');
 }
 
-char	*extract_first_missing_filename(char *s)
+char	*get_next_filename(char *s, int *i)
 {
-	int		i;
 	int		j;
 	char	*filename;
 
+	j = 0;
+	filename = malloc(ft_strlen(s) + 1);
+	while (s[*i] == ' ')
+		(*i)++;
+	while (!is_sep(s[*i]) && s[*i] && j < 255)
+		filename[j++] = s[(*i)++];
+	filename[j] = '\0';
+	return (filename);
+}
+
+char	*extract_first_missing_filename(char *s)
+{
+	int		i;
+	char	*filename;
+
 	i = 0;
-	filename = malloc (ft_strlen(s) + 1);
 	while (s[i])
 	{
 		if (s[i] == '<')
@@ -32,17 +45,13 @@ char	*extract_first_missing_filename(char *s)
 			i++;
 			if (s[i] == '<')
 				break ;
-			while (s[i] == ' ')
-				i++;
-			j = 0;
-			while (!is_sep(s[i]) && s[i] && j < 255)
-				filename[j++] = s[i++];
-			filename[j] = '\0';
+			filename = get_next_filename(s, &i);
 			if (access(filename, R_OK) != 0)
 				return (filename);
+			free(filename);
 		}
 		else
 			i++;
 	}
-	return (free(filename), NULL);
+	return (NULL);
 }
