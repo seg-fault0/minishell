@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:08:51 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 10:04:20 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:58:16 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,30 @@ char	**ft_split(char const *s, char c)
 	char	**buffer;
 	int		row;
 	int		i;
+	int		len;
 
+	i = 0;
 	if (!s)
 		return (NULL);
 	row = ft_row(s, c);
+	len = ft_strlen(s);
+	if (len > 0 && s[len - 1] == c)
+		row++;
 	buffer = malloc((row + 1) * sizeof(char *));
 	if (!buffer)
 		return (NULL);
-	i = 0;
 	while (i < row)
 	{
 		while (*s && *s == c)
 			s++;
-		buffer[i++] = ft_fill(s, c);
-		while (*s && *s != c)
-			s++;
+		if (*s)
+		{
+			buffer[i++] = ft_fill(s, c);
+			while (*s && *s != c)
+				s++;
+		}
+		else
+			buffer[i++] = ft_strdup("");
 	}
 	buffer[row] = NULL;
 	return (buffer);
