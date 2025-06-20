@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/27 09:36:22 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/20 11:25:02 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	ft_luncher(t_ms *ms)
 			fd_setup(ms);
 			ft_exe(ms);
 		}
+		else
+			ms->cmd.last_exit_code = 2;
 		reset_prompt(ms);
 	}
 }
