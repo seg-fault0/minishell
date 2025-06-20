@@ -21,7 +21,7 @@ static char	**get_paths(char **env)
 	path_str = NULL;
 	paths = NULL;
 	i = -1;
-	path_str = get_env(env, "PATH=");
+	path_str = get_env(env, "PATH");
 	if (!path_str)
 		return (NULL);
 	paths = ft_split(path_str, ':');

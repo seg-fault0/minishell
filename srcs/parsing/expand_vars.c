@@ -41,20 +41,25 @@ static char	*extract_and_expand_var(t_ms *ms, char *str, int *i)
 
 	start = *i + 1;
 	len = 0;
-	if (ft_memcmp(str + start, "?", 1) == 0)
+	if (str[start] == '?')
 	{
 		var_value = ft_itoa(ms->cmd.last_exit_code);
 		*i += 1;
+		return (var_value);
 	}
+	while (str[start + len]
+		&& (ft_isalnum(str[start + len]) || str[start + len] == '_'))
+		len++;
+	if (len == 0)
+		return (ft_strdup("$"));
+	var_name = ft_substr(str, start, len);
+	var_value = get_env(ms->env, var_name);
+	free(var_name);
+	if (var_value)
+		var_value = ft_strdup(var_value);
 	else
-	{
-		while (ft_isalnum(str[start + len]))
-			len++;
-		var_name = ft_substr(str, start, len);
-		var_value = ft_strdup(get_env(ms->env, var_name));
-		free(var_name);
-		*i = start + len - 1;
-	}
+		var_value = ft_strdup("");
+	*i = start + len - 1;
 	return (var_value);
 }
 
@@ -86,8 +91,8 @@ static char	*expand_line(t_ms *ms, char *str)
 	(1) && (i = -1, start = 0, result = NULL);
 	while (str[++i])
 	{
-		if (str[i] == '$' && !is_in_single_quotes(str, i)
-			&& (ft_isalnum(str[i + 1]) || str[i + 1] == '?'))
+		if (str[i] == '$' && !is_in_single_quotes(str, i) && 
+			(ft_isalnum(str[i + 1]) || str[i + 1] == '?' || str[i + 1] == '_'))
 		{
 			result = append_text_before_dollar(result, str, start, i);
 			expanded = extract_and_expand_var(ms, str, &i);

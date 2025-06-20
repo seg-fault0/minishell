@@ -25,13 +25,15 @@ void	print_env(t_ms *ms)
 
 char	*get_env(char **env, char *look_for)
 {
-	int	i;
+	int		i;
+	size_t	len;
 
 	i = -1;
+	len = ft_strlen(look_for);
 	while (env[++i])
 	{
-		if (ft_memcmp(env[i], look_for, ft_strlen(look_for)) == 0)
-			return (env[i] + ft_strlen(look_for) + 1);
+		if (ft_strncmp(env[i], look_for, len) == 0 && env[i][len] == '=')
+			return (env[i] + len + 1);
 	}
 	return (NULL);
 }
