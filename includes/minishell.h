@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 03:17:52 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 07:46:48 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int		skip_redirection(char *cmd, int i);
 char	*extract_cmd(char *cmd);
 void	expand_vars(t_ms *ms);
 char	*extract_first_missing_filename(char *s);
+char	*heredoc_expand(char *line);
 
 //fds
 void	fd_setup(t_ms *ms);

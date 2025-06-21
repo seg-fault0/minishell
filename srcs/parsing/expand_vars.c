@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:56:01 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/19 19:13:32 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 07:51:06 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ static char	*expand_line(t_ms *ms, char *str)
 	(1) && (i = -1, start = 0, result = NULL);
 	while (str[++i])
 	{
-		if (str[i] == '$' && !is_in_single_quotes(str, i) && 
-			(ft_isalnum(str[i + 1]) || str[i + 1] == '?' || str[i + 1] == '_'))
+		if ((ft_isalnum(str[i + 1]) || str[i + 1] == '?' || str[i + 1] == '_')
+			&& str[i] == '$' && !is_in_single_quotes(str, i))
 		{
 			result = append_text_before_dollar(result, str, start, i);
 			expanded = extract_and_expand_var(ms, str, &i);

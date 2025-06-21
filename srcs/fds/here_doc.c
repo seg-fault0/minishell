@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:45:53 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/27 11:10:09 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/21 07:47:12 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	here_doc(char *delimiter)
 	if (pipe(pfd) == -1)
 		return (err_msg(ERR_PIPE_F), -1);
 	ft_putstr_fd(HERE_DOC, STDOUT);
-	line = get_next_line(STDIN);
+	line = heredoc_expand(get_next_line(STDIN));
 	while (line && (ft_memcmp(line, delimiter, ft_strlen(delimiter)) != 0))
 	{
 		write(pfd[1], line, ft_strlen(line));
 		free(line);
 		ft_putstr_fd(HERE_DOC, STDOUT);
-		line = get_next_line(STDIN);
+		line = heredoc_expand(get_next_line(STDIN));
 	}
 	if (line)
 		free(line);
