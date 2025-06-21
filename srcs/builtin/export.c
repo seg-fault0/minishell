@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 19:12:52 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 08:09:56 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ void	env_var_checker(t_ms *ms, char *str)
 		len++;
 	tmp_envar[len] = '\0';
 	if (get_env(ms->env, tmp_envar) == NULL)
-	{
-		ft_putstr_fd("minishell: export: not a valid identifier\n", STDERR);
 		return (free(tmp_envar));
-	}
 	else
 	{
 		tmp_arr = ms->env;
@@ -67,6 +64,7 @@ void	set_env(t_ms *ms)
 			ms->cmd.cur_exit_code = 1;
 		else if (ft_strstr(ms->cmd.cmd[counter][i], "="))
 		{
+			env_var_checker(ms, ms->cmd.cmd[counter][i]);
 			tmp_arr = ms->env;
 			ms->env = add_to_arr(tmp_arr, ms->cmd.cmd[counter][i]);
 			free2(tmp_arr, HEAP);
