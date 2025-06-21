@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 11:26:01 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 03:17:11 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 11:46:24 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ BOOL	synthax_checker(char *input)
 		return (ft_putstr_fd(OPEN_PIPE, STDERR), FALSE);
 	if (open_redir_checker(input) == TRUE)
 		return (ft_putstr_fd(OPEN_REDIR, STDERR), FALSE);
+	if (op_counter(input) == TRUE)
+		return (FALSE);
 	return (TRUE);
 }	
