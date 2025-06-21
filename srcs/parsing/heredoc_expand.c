@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expand.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 07:44:44 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/21 07:51:56 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 17:20:23 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*heredoc_expand(char *line)
+char	*heredoc_expand(t_ms *ms, char *line)
 {
-	if (!line || !ft_strstr(line, "$"))
+	char	*expanded;
+
+	if (!line || !ft_strchr(line, '$'))
 		return (line);
-	else
-		return (free(line), ft_strdup("expended line\n"));
+	expanded = expand_line_heredoc(ms, line);
+	free(line);
+	return (expanded);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:45:53 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/21 07:47:12 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 17:25:25 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_delimiter_extract(char *delimiter)
 	delimiter[j] = '\0';
 }
 
-int	here_doc(char *delimiter)
+int	here_doc(t_ms *ms, char *delimiter)
 {
 	char	*line;
 	int		pfd[2];
@@ -46,13 +46,13 @@ int	here_doc(char *delimiter)
 	if (pipe(pfd) == -1)
 		return (err_msg(ERR_PIPE_F), -1);
 	ft_putstr_fd(HERE_DOC, STDOUT);
-	line = heredoc_expand(get_next_line(STDIN));
+	line = heredoc_expand(ms, get_next_line(STDIN));
 	while (line && (ft_memcmp(line, delimiter, ft_strlen(delimiter)) != 0))
 	{
 		write(pfd[1], line, ft_strlen(line));
 		free(line);
 		ft_putstr_fd(HERE_DOC, STDOUT);
-		line = heredoc_expand(get_next_line(STDIN));
+		line = heredoc_expand(ms, get_next_line(STDIN));
 	}
 	if (line)
 		free(line);

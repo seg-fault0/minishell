@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 13:10:28 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 09:48:41 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 17:26:46 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	handle_infile(t_ms *ms, int i)
 	while (ms->parse.infiles[i] && ms->parse.infiles[i][++j])
 	{
 		if ((ms->fd.heredoc[i] >> j) & 1)
-			fd = here_doc(ms->parse.infiles[i][j]);
+			fd = here_doc(ms, ms->parse.infiles[i][j]);
 		else
 			fd = open(ms->parse.infiles[i][j], O_RDONLY);
 		if (fd == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:56:01 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/21 07:51:06 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 17:21:32 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,33 @@ static char	*expand_line(t_ms *ms, char *str)
 	{
 		if ((ft_isalnum(str[i + 1]) || str[i + 1] == '?' || str[i + 1] == '_')
 			&& str[i] == '$' && !is_in_single_quotes(str, i))
+		{
+			result = append_text_before_dollar(result, str, start, i);
+			expanded = extract_and_expand_var(ms, str, &i);
+			tmp = result;
+			result = ft_strjoin(result, expanded);
+			free(expanded);
+			free(tmp);
+			start = i + 1;
+		}
+	}
+	if (start < i)
+		result = append_text_before_dollar(result, str, start, i);
+	return (result);
+}
+char	*expand_line_heredoc(t_ms *ms, char *str)
+{
+	char	*result;
+	int		i;
+	int		start;
+	char	*expanded;
+	char	*tmp;
+
+	(1) && (i = -1, start = 0, result = NULL);
+	while (str[++i])
+	{
+		if ((ft_isalnum(str[i + 1]) || str[i + 1] == '?' || str[i + 1] == '_')
+			&& str[i] == '$')
 		{
 			result = append_text_before_dollar(result, str, start, i);
 			expanded = extract_and_expand_var(ms, str, &i);

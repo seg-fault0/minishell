@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/21 11:49:21 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 17:26:15 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,15 @@ int		skip_redirection(char *cmd, int i);
 char	*extract_cmd(char *cmd);
 void	expand_vars(t_ms *ms);
 char	*extract_first_missing_filename(char *s);
-char	*heredoc_expand(char *line);
+char	*expand_line_heredoc(t_ms *ms, char *str);
+char	*heredoc_expand(t_ms *ms, char *line);
+
 
 //fds
 void	fd_setup(t_ms *ms);
 void	in_fd_opener(t_ms *ms);
 void	ou_fd_opener(t_ms *ms);
-int		here_doc(char *delimiter);
+int		here_doc(t_ms *ms, char *delimiter);
 
 //reseter
 void	parse_reseter(t_ms *ms);
