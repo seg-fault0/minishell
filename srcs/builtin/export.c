@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/21 08:09:56 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/21 10:02:42 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,23 @@ static BOOL	env_synthax(char *str)
 	return (FALSE);
 }
 
-void	env_var_checker(t_ms *ms, char *str)
+void	add_varg(t_ms *ms, char *var_name, int i)
+{
+	char	*tmp1;
+	char	*tmp2;
+	int		counter;
+
+	counter = ms->cmd.counter;
+	tmp1 = ft_strjoin(var_name, "=");
+	tmp2 = ft_strjoin(tmp1, get_env(ms->env, var_name));
+	free(tmp1);
+	tmp1 = ms->cmd.cmd[counter][i];
+	ms->cmd.cmd[counter][i] = ft_strjoin(tmp2, tmp1 + ft_strlen(var_name) + 2);
+	free(tmp1);
+	free(tmp2);
+}
+
+void	env_var_checker(t_ms *ms, char *str, int i)
 {
 	char	*tmp_envar;
 	char	**tmp_arr;
@@ -39,6 +55,11 @@ void	env_var_checker(t_ms *ms, char *str)
 	while (str[len] && str[len] != '=')
 		len++;
 	tmp_envar[len] = '\0';
+	if (tmp_envar[len - 1] == '+')
+	{
+		tmp_envar[--len] = '\0';
+		add_varg(ms, tmp_envar, i);
+	}
 	if (get_env(ms->env, tmp_envar) == NULL)
 		return (free(tmp_envar));
 	else
@@ -64,7 +85,7 @@ void	set_env(t_ms *ms)
 			ms->cmd.cur_exit_code = 1;
 		else if (ft_strstr(ms->cmd.cmd[counter][i], "="))
 		{
-			env_var_checker(ms, ms->cmd.cmd[counter][i]);
+			env_var_checker(ms, ms->cmd.cmd[counter][i], i);
 			tmp_arr = ms->env;
 			ms->env = add_to_arr(tmp_arr, ms->cmd.cmd[counter][i]);
 			free2(tmp_arr, HEAP);
