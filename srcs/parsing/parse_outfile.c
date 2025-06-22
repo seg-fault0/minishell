@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/20 14:48:04 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/22 10:40:42 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ static void	handle_filename(char *cmd, int *i, char *outfiles, int *j)
 		if (cmd[*i] == '\'' || cmd[*i] == '"')
 		{
 			quote = cmd[(*i)++];
+			if (cmd[*i] == quote)
+			{
+				outfiles[(*j)++] = ' ';
+				(*i)++; // skip closing quote
+				continue ;
+			}
 			while (cmd[*i] && cmd[*i] != quote)
 				outfiles[(*j)++] = cmd[(*i)++];
 			if (cmd[*i] == quote)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_files.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:45:01 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 09:52:07 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/22 10:40:54 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,25 @@ char	*get_next_filename(char *s, int *i)
 	return (filename);
 }
 
+static char	*get_quoted_filename(char *s, int *i)
+{
+	char	quote;
+	int		j;
+	char	*filename;
+
+	quote = s[(*i)++];
+	filename = malloc(ft_strlen(s) + 2);
+	if (!filename)
+		return (NULL);
+	j = 0;
+	while (s[*i] && s[*i] != quote)
+		filename[j++] = s[(*i)++];
+	filename[j] = '\0';
+	if (s[*i] == quote)
+		(*i)++;
+	return (filename);
+}
+
 char	*extract_first_missing_filename(char *s)
 {
 	int		i;
@@ -45,7 +64,12 @@ char	*extract_first_missing_filename(char *s)
 			i++;
 			if (s[i] == '<')
 				break ;
-			filename = get_next_filename(s, &i);
+			while (s[i] == ' ')
+				i++;
+			if (s[i] == '\'' || s[i] == '"')
+				filename = get_quoted_filename(s, &i);
+			else
+				filename = get_next_filename(s, &i);
 			if (access(filename, R_OK) != 0)
 				return (filename);
 			free(filename);
