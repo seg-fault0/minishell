@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:38:27 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 20:43:48 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/22 15:23:49 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	get_exit_code(t_ms *ms)
 	if (ms->cmd.cmd[counter][1] != NULL
 		&& access(ms->cmd.cmd[counter][1], F_OK) != 0)
 		return (2);
-	return (127);
+	return (err_msg(ERR_CMD_NF), 127);
 }
