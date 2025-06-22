@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:45:53 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/21 17:25:25 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/22 18:43:48 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,20 @@ int	here_doc(t_ms *ms, char *delimiter)
 	char	*line;
 	int		pfd[2];
 
+	printf("delimiter (%s)\n", delimiter);
 	if (delimiter[0] == '\'' || delimiter[0] == '"')
 		ft_delimiter_extract(delimiter);
 	if (pipe(pfd) == -1)
 		return (err_msg(ERR_PIPE_F), -1);
-	ft_putstr_fd(HERE_DOC, STDOUT);
-	line = heredoc_expand(ms, get_next_line(STDIN));
-	while (line && (ft_memcmp(line, delimiter, ft_strlen(delimiter)) != 0))
-	{
+	line = heredoc_expand(ms, readline(HERE_DOC));
+	while (line && (ft_strcmp(line, delimiter) == FALSE))
+	{	
 		write(pfd[1], line, ft_strlen(line));
 		free(line);
-		ft_putstr_fd(HERE_DOC, STDOUT);
-		line = heredoc_expand(ms, get_next_line(STDIN));
+		line = heredoc_expand(ms, readline(HERE_DOC));
 	}
 	if (line)
 		free(line);
-	get_next_line(GNL_FREE);
+	write(pfd[1], "\n", 1);
 	return (close(pfd[1]), pfd[0]);
 }

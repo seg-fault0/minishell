@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 13:56:37 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/09 14:07:30 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/22 18:36:23 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_strstr(char *haystack, char *needle)
 
 BOOL	ft_strcmp(const char *s1, const char *s2)
 {
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (FALSE);
 	while (*s1 && *s2)
 	{
 		if (*s1 != *s2)
