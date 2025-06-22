@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 19:26:10 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/08 19:48:51 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/22 18:52:50 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	**extract_from_arr(char **arr, char *to_extract)
 	j = 0;
 	while (arr[++i])
 	{
-		if (ft_memcmp(arr[i], to_extract, 4) != 0)
+		if (ft_memcmp(arr[i], to_extract, ft_strlen(to_extract)) != 0)
 		{
 			new_arr[j] = ft_strdup(arr[i]);
 			j++;
