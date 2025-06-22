@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/21 17:26:15 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/22 18:23:45 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef struct s_cmd
 	char	**paths;
 	char	***cmd;
 	int		*pids;
-	int		cur_exit_code;
-	int		last_exit_code;
+	long	cur_exit_code;
+	long	last_exit_code;
 	int		counter;
 	int		max_counter;
 }t_cmd;
@@ -115,7 +115,6 @@ void	expand_vars(t_ms *ms);
 char	*extract_first_missing_filename(char *s);
 char	*expand_line_heredoc(t_ms *ms, char *str);
 char	*heredoc_expand(t_ms *ms, char *line);
-
 
 //fds
 void	fd_setup(t_ms *ms);

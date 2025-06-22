@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 20:39:20 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/22 18:25:35 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	ft_wait(t_ms *ms)
 {
 	int	i;
 	int	id;
+	int	status;
 
 	i = 0;
 	while (i < ms->cmd.counter)
 	{
 		id = ms->cmd.pids[i];
-		waitpid(id, &ms->cmd.cur_exit_code, 0);
+		waitpid(id, &status, 0);
+		ms->cmd.cur_exit_code = status;
 		i++;
 	}
 	ms->cmd.cur_exit_code = WEXITSTATUS(ms->cmd.cur_exit_code);

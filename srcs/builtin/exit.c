@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:44:38 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/27 12:33:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/22 18:27:12 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static BOOL	is_there_char(char *str)
 {
+	if (!str)
+		return (FALSE);
 	if (*str == '-' || *str == '+')
 		str++;
 	while (*str)
@@ -37,7 +39,16 @@ void	built_in_exit(t_ms *ms)
 		ft_putstr_fd("too many arguments\n", STDERR);
 		return (ms->cmd.cur_exit_code = 1, (void) 0);
 	}
-	else
+	else if (ms->cmd.cmd[ms->cmd.counter][1])
+	{
 		ms->cmd.cur_exit_code = ft_atoi(ms->cmd.cmd[ms->cmd.counter][1]);
+		if (ms->cmd.cur_exit_code >= LONG_MAX)
+		{
+			ft_putstr_fd("numeric argument required\n", STDERR);
+			ms->cmd.cur_exit_code = 2;
+		}
+	}
+	else
+		ms->cmd.cur_exit_code = ms->cmd.last_exit_code;
 	ft_exit(ms);
 }
