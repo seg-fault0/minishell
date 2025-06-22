@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:10:32 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 20:27:43 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/22 19:28:55 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ BOOL	is_builtin(char	*cmd)
 {
 	if (!cmd)
 		return (FALSE);
-	if (ft_memcmp(cmd, "env", 3) == 0
-		|| ft_memcmp(cmd, "exit", 4) == 0
-		|| ft_memcmp(cmd, "cd", 2) == 0
-		|| ft_memcmp(cmd, "echo", 4) == 0
-		|| ft_memcmp(cmd, "pwd", 3) == 0
-		|| ft_memcmp(cmd, "export", 6) == 0
-		|| ft_memcmp(cmd, "unset", 5) == 0)
+	if (ft_strcmp(cmd, "env") == TRUE
+		|| ft_strcmp(cmd, "exit") == TRUE
+		|| ft_strcmp(cmd, "cd") == TRUE
+		|| ft_strcmp(cmd, "echo") == TRUE
+		|| ft_strcmp(cmd, "pwd") == TRUE
+		|| ft_strcmp(cmd, "export") == TRUE
+		|| ft_strcmp(cmd, "unset") == TRUE)
 		return (TRUE);
 	return (FALSE);
 }
@@ -31,10 +31,10 @@ BOOL	is_main_process_exe(char *cmd)
 {
 	if (!cmd)
 		return (FALSE);
-	if (ft_memcmp(cmd, "cd", 3) == 0
-		|| ft_memcmp(cmd, "exit", 4) == 0
-		|| ft_memcmp(cmd, "export", 6) == 0
-		|| ft_memcmp(cmd, "unset", 5) == 0)
+	if (ft_strcmp(cmd, "cd") == TRUE
+		|| ft_strcmp(cmd, "exit") == TRUE
+		|| ft_strcmp(cmd, "export") == TRUE
+		|| ft_strcmp(cmd, "unset") == TRUE)
 		return (TRUE);
 	return (FALSE);
 }
