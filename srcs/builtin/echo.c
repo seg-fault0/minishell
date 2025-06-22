@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 11:01:09 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 11:39:20 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/22 15:29:11 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@ void	ft_echo(t_ms *ms)
 	i = 0;
 	while (cmd_args[++i])
 	{
-		if (i == 1 && ft_memcmp(cmd_args[i], "-n", 3) == 0)
-			continue ;
-		else
-		{
-			write(STDOUT, cmd_args[i], ft_strlen(cmd_args[i]));
-			if (cmd_args[i + 1])
-				write(STDOUT, " ", 1);
-		}
+		while (ft_memcmp(cmd_args[i], "-n", 3) == 0)
+			i++;
+		write(STDOUT, cmd_args[i], ft_strlen(cmd_args[i]));
+		if (cmd_args[i + 1])
+			write(STDOUT, " ", 1);
 	}
 	if (!cmd_args[1] || ft_memcmp(cmd_args[1], "-n", 3) != 0)
 		printf("\n");
