@@ -6,21 +6,21 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/25 16:45:46 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 16:49:37 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_env(t_ms *ms)
+void	print_arr(char **arr)
 {
 	int	i;
 
 	i = 0;
-	if (!ms->env)
+	if (!arr)
 		return ;
-	while (ms->env[i])
-		printf("%s\n", ms->env[i++]);
+	while (arr[i])
+		printf("%s\n", arr[i++]);
 }
 
 char	*get_env(char **env, char *look_for)

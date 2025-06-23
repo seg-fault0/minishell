@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/22 18:23:45 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 17:05:05 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	ft_wait(t_ms *ms);
 char	*get_env(char **env, char *look_for);
 void	set_env(t_ms *ms);
 void	unset_env(t_ms *ms);
-void	print_env(t_ms *ms);
+void	print_arr(char **arr);
 
 //builtin cmds
 void	builtin_exe(t_ms *ms, char *cmd);
@@ -159,6 +159,8 @@ void	ft_close(int fd);
 char	**get_2darr_cp(char **arr);
 char	**add_to_arr(char **arr, char *to_add);
 char	**extract_from_arr(char **arr, char *to_extract);
+void	sort_arr(char **arr);
+int		get_arr_size(char **arr);
 
 //checkers
 BOOL	is_builtin(char	*str);
@@ -192,6 +194,7 @@ int		ft_isalnum(int c);
 void	ft_putnbr(int n);
 long	ft_atoi(const char *str);
 char	*ft_itoa(int n);
+int		diff_strcmp(const char *s1, const char *s2);
 
 //char utils
 BOOL	char_search(char *str, char c);

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:07:06 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/22 19:30:12 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 16:50:38 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	builtin_exe(t_ms *ms, char *cmd)
 {
 	if (ft_strcmp(cmd, "env") == TRUE)
-		print_env(ms);
+		print_arr(ms->env);
 	else if (ft_strcmp(cmd, "exit") == TRUE)
 		built_in_exit(ms);
 	else if (ft_strcmp(cmd, "cd") == TRUE)

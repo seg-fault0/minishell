@@ -6,11 +6,26 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/21 10:02:42 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 17:06:14 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	print_export(t_ms *ms)
+{
+	char	**tmp;
+	int		i;
+	int		max;
+
+	max = get_arr_size(ms->env);
+	tmp = get_2darr_cp(ms->env);
+	sort_arr(tmp);
+	i = 0;
+	while (i < max)
+		printf("declare -x %s\n", tmp[i++]);
+	free2(tmp, HEAP);
+}
 
 static BOOL	env_synthax(char *str)
 {
@@ -79,6 +94,8 @@ void	set_env(t_ms *ms)
 
 	counter = ms->cmd.counter;
 	i = 0;
+	if (!ms->cmd.cmd[counter][i + 1])
+		print_export(ms);
 	while (ms->cmd.cmd[counter][++i])
 	{
 		if (env_synthax(ms->cmd.cmd[counter][i]) == TRUE)

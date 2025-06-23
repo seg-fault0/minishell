@@ -6,13 +6,13 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 19:26:10 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/22 18:52:50 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 17:04:54 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	get_arr_size(char **arr)
+int	get_arr_size(char **arr)
 {
 	int	size;
 
@@ -86,4 +86,33 @@ char	**add_to_arr(char **arr, char *to_add)
 	new_arr[i++] = ft_strdup(to_add);
 	new_arr[i] = NULL;
 	return (new_arr);
+}
+
+void	sort_arr(char **arr)
+{
+	int		size;
+	int		i;
+	int		swapped;
+	char	*tmp;
+
+	size = get_arr_size(arr);
+	if (size < 2)
+		return ;
+	swapped = 1;
+	while (swapped)
+	{
+		swapped = 0;
+		i = 0;
+		while (i < size - 1)
+		{
+			if (diff_strcmp(arr[i], arr[i + 1]) > 0)
+			{
+				tmp = arr[i];
+				arr[i] = arr[i + 1];
+				arr[i + 1] = tmp;
+				swapped = 1;
+			}
+			i++;
+		}
+	}
 }

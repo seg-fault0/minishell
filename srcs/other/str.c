@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 13:56:37 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/22 18:36:23 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 17:03:15 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ BOOL	ft_strcmp(const char *s1, const char *s2)
 	if (*s1 == *s2)
 		return (TRUE);
 	return (FALSE);
+}
+
+int	diff_strcmp(const char *s1, const char *s2)
+{
+	if (!s1 && !s2)
+		return (0);
+	if (!s1)
+		return (-1);
+	if (!s2)
+		return (1);
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
