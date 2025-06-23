@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 11:45:25 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/21 11:57:39 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 16:03:24 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ BOOL	op_counter(char *input)
 		return (ft_putstr_fd("too much commands\n", STDERR), TRUE);
 	tmp = split_cmd(input);
 	i = 0;
-	while (i < max)
+	while (i < max + 1)
 	{
 		if (counter(tmp[i], '>') > MAX_FD
 			|| counter(tmp[i], '<') > MAX_FD)
