@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:45:53 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/22 18:43:48 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 16:33:07 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	here_doc(t_ms *ms, char *delimiter)
 	char	*line;
 	int		pfd[2];
 
-	printf("delimiter (%s)\n", delimiter);
 	if (delimiter[0] == '\'' || delimiter[0] == '"')
 		ft_delimiter_extract(delimiter);
 	if (pipe(pfd) == -1)
