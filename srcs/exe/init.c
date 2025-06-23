@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:57:35 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 09:47:30 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 19:37:50 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	add_path(t_ms *ms)
 	{
 		j = -1;
 		while (ms->cmd.paths[++j] && (is_builtin(ms->cmd.cmd[i][0]) == FALSE)
-			&& ms->cmd.cmd[i][0])
+			&& ms->cmd.cmd[i][0] && ms->cmd.cmd[i][0][0])
 		{
 			tmp = ft_strjoin(ms->cmd.paths[j], ms->cmd.cmd[i][0]);
 			if (access(tmp, X_OK) == 0)

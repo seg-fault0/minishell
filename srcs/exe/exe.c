@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/22 18:25:35 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/23 19:38:51 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 
 	status = 0;
 	tmp = ms->cmd.cmd[ms->cmd.counter];
-	if (tmp[0] == NULL || tmp[0][0] == '\0')
+	if (tmp[0] == NULL)
 		ft_exit(ms);
 	fd_manager(ms, rfd, pfd);
 	if (is_builtin(tmp[0]) == TRUE)
