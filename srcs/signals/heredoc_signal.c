@@ -1,44 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   heredoc_signal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 16:09:32 by wimam             #+#    #+#             */
-/*   Updated: 2025/05/16 16:09:34 by wimam            ###   ########.fr       */
+/*   Created: 2025/06/24 16:43:04 by wimam             #+#    #+#             */
+/*   Updated: 2025/06/24 16:47:44 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	disable_echoctl(void)
-{
-	struct termios	term;
 
-	tcgetattr(STDIN_FILENO, &term);
-	term.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSANOW, &term);
-}
-
-void	handle_sigint(int sig)
+static void	handle_sigint(int sig)
 {
 	(void) sig;
 	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	exit(0);
 }
 
-void	handle_sigquit(int sig)
+static void	handle_sigquit(int sig)
 {
 	(void)sig;
-	printf("%s", PROMPT);
+	printf("%s", HERE_DOC);
 }
 
-void	setup_signals(void)
+void	heredoc_signals(void)
 {
-	disable_echoctl();
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, handle_sigquit);
 }

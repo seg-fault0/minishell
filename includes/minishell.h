@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 16:32:30 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/24 16:45:02 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,11 @@ BOOL	init_struct(t_ms *ms, char **env);
 void	ft_luncher(t_ms *ms);
 void	ft_exit(t_ms *ms);
 void	err_msg(int msg);
-void	setup_signals(void);
 void	reset_prompt(t_ms *ms);
+
+//signals
+void	minishell_signals(void);
+void	heredoc_signals(void);
 
 //parse
 void	ft_parse(t_ms *ms);

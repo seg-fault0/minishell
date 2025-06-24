@@ -4,7 +4,8 @@ SRCS =	srcs/core/main.c				\
 		srcs/core/err.c					\
 		srcs/core/reseter.c				\
 		srcs/core/exit.c				\
-		srcs/core/signals.c				\
+		srcs/signals/ms_signals.c		\
+		srcs/signals/heredoc_signal.c	\
 		srcs/builtin/main.c				\
 		srcs/builtin/chdir.c			\
 		srcs/builtin/echo.c				\

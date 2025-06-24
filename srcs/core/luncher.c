@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 11:25:02 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/24 16:43:59 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	reset_prompt(t_ms *ms)
 
 void	ft_luncher(t_ms *ms)
 {
-	setup_signals();
+	minishell_signals();
 	while (ft_redline(ms) == TRUE)
 	{
 		if (synthax_checker(ms->input) == TRUE)
