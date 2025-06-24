@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 13:10:28 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/21 17:26:46 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/24 17:48:36 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	handle_infile(t_ms *ms, int i)
 			fd = here_doc(ms, ms->parse.infiles[i][j]);
 		else
 			fd = open(ms->parse.infiles[i][j], O_RDONLY);
+		if (fd == 130)
+			return (ms->fd.in[i] = fd, (void) 0);
 		if (fd == -1)
 		{
 			ft_putstr_fd("no such file or directory\n", STDERR);
@@ -45,5 +47,9 @@ void	in_fd_opener(t_ms *ms)
 		return ;
 	i = -1;
 	while (++i < ms->parse.cmd_nbr)
+	{
 		handle_infile(ms, i);
+		if (ms->fd.in[i] == 130)
+			return ;
+	}
 }

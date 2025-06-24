@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:45:53 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 16:45:27 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/24 17:52:06 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ void	heredoc_chiled(t_ms *ms, char *delimiter, int *pfd)
 	if (line)
 		free(line);
 	close(pfd[1]);
-	ft_exit(ms);
+	exit(0);
 }
 
 int	here_doc(t_ms *ms, char *delimiter)
 {
-	int		pfd[2];
-	int		pid;
+	int	pfd[2];
+	int	pid;
+	int	code;
 
 	if (delimiter[0] == '\'' || delimiter[0] == '"')
 		ft_delimiter_extract(delimiter);
@@ -49,8 +50,10 @@ int	here_doc(t_ms *ms, char *delimiter)
 	else
 	{
 		close(pfd[1]);
-		wait(NULL);
-		return (pfd[0]);
+		wait(&code);
+		ms->cmd.cur_exit_code = WEXITSTATUS(code);
 	}
-	return (-1);
+	if (ms->cmd.cur_exit_code == 130)
+		return (130);
+	return (pfd[0]);
 }

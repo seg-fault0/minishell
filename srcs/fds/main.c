@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:55:44 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/19 20:07:45 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/24 17:47:53 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ void	fd_setup(t_ms *ms)
 	if (ft_allocator(ms) == FALSE)
 		return ;
 	in_fd_opener(ms);
+	if (sigint_trigered(ms) == TRUE)
+		return ;
 	ou_fd_opener(ms);
 }

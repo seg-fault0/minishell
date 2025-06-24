@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 16:43:59 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/24 17:49:49 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	ft_luncher(t_ms *ms)
 		{
 			ft_parse(ms);
 			fd_setup(ms);
-			ft_exe(ms);
+			if (sigint_trigered(ms) == FALSE)
+				ft_exe(ms);
 		}
 		else
 			ms->cmd.last_exit_code = 2;

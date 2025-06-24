@@ -6,21 +6,17 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 16:43:04 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 16:47:44 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/24 17:53:27 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
 static void	handle_sigint(int sig)
 {
-	(void) sig;
+	(void)sig;
 	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-	exit(0);
+	exit(130);
 }
 
 static void	handle_sigquit(int sig)
