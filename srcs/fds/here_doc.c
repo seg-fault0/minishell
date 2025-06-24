@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:45:53 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 17:52:06 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/24 17:56:25 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	here_doc(t_ms *ms, char *delimiter)
 	{
 		close(pfd[1]);
 		wait(&code);
-		ms->cmd.cur_exit_code = WEXITSTATUS(code);
+		ms->cmd.last_exit_code = WEXITSTATUS(code);
 	}
-	if (ms->cmd.cur_exit_code == 130)
+	if (ms->cmd.last_exit_code == 130)
 		return (130);
 	return (pfd[0]);
 }
