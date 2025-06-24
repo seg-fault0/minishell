@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:56:01 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/21 17:21:32 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/24 16:04:59 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,23 @@ static char	*extract_and_expand_var(t_ms *ms, char *str, int *i)
 	var_value = get_env(ms->env, var_name);
 	free(var_name);
 	if (var_value)
-		var_value = ft_strdup(var_value);
+	{
+		if (ft_strchr(var_value, ' '))
+		{
+			char *quoted = ft_strjoin("\"", var_value);
+			char *final = ft_strjoin(quoted, "\"");
+			free(quoted);
+			var_value = final;
+		}
+		else
+			var_value = ft_strdup(var_value);
+	}
 	else
 		var_value = ft_strdup("");
 	*i = start + len - 1;
 	return (var_value);
 }
+
 
 static char	*append_text_before_dollar(char *result, char *str,
 		int start, int end)
@@ -142,9 +153,9 @@ void	expand_vars(t_ms *ms)
 
 	i = -1;
 	while (ms->parse.tmp2d[++i])
-	{
+	{	
 		if (ft_strchr(ms->parse.tmp2d[i], '$'))
-		{
+		{	
 			expanded = expand_line(ms, ms->parse.tmp2d[i]);
 			free(ms->parse.tmp2d[i]);
 			ms->parse.tmp2d[i] = expanded;
