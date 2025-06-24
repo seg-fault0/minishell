@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:29:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 14:48:22 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/24 19:37:52 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ void	ft_parse(t_ms *ms)
 	if (ft_allocator(ms) == FALSE)
 		return ;
 	expand_vars(ms);
+	for (int i = 0; i < ms->parse.cmd_nbr; i++)
+	{
+		printf("%s\n", ms->parse.tmp2d[i]);
+	}
+	
 	parse_outfile(ms);
 	parse_infile(ms);
 	parse_cmd(ms);

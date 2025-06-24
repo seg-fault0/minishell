@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/24 14:40:02 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/24 17:03:59 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static char	*handle_word(char *input, int *i)
 	}
 	return (word);
 }
+
 
 char	**split_with_quotes(char *input)
 {
