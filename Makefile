@@ -43,8 +43,6 @@ SRCS =	srcs/core/main.c				\
 		srcs/other/utils.c				\
 		srcs/other/char.c				\
 		srcs/other/str.c				\
-		srcs/gnl/get_next_line.c		\
-		srcs/gnl/get_next_line_utils.c	\
 		srcs/synthax/main.c				\
 		srcs/synthax/operators.c		\
 		srcs/synthax/op_counter.c		\

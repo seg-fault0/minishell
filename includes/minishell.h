@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 17:51:50 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/24 21:28:33 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,6 @@ void	*ft_calloc(size_t count, size_t size);
 //gnl
 int		ft_new_line_check(char *str);
 char	*ft_init(char *str);
-char	*get_next_line(int fd);
 char	*ft_strljoin(char *s1, char *s2, int size);
 
 //other
