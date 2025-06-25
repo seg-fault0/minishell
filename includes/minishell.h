@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/25 16:07:00 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/25 20:51:03 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	*expand_line_heredoc(t_ms *ms, char *str);
 char	*heredoc_expand(t_ms *ms, char *line);
 void	ft_delimiter_extract(char *delimiter);
 int		is_in_single_quotes(const char *str, int pos);
-BOOL 	is_ft(const char *str);
+BOOL	is_ft(const char *str);
 BOOL	is_in_assignment(const char *str, int pos);
 char	*wrap_if_needed(char *var_value, char *str, int i);
 char	*extract_and_expand_var(t_ms *ms, char *str, int *i);

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:55:21 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/25 01:13:27 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/25 20:48:56 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ BOOL	sigint_trigered(t_ms *ms)
 
 	i = 0;
 	while (i < ms->parse.cmd_nbr)
-		if (ms->fd.in[i++] == 130)
+		if (ms->fd.in[i++] == -130)
 			return (TRUE);
 	return (FALSE);
 }
