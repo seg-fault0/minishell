@@ -6,22 +6,22 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:56:57 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 09:49:44 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/25 01:13:11 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_outfile(t_ms *ms, int i)
+void	handle_outfile(t_ms *ms, char **arr, int i)
 {
 	int		j;
 	int		fd;
 	char	*filename;
 
 	j = -1;
-	while (ms->parse.oufiles[i] && ms->parse.oufiles[i][++j])
+	while (arr && arr[++j])
 	{
-		filename = ms->parse.oufiles[i][j];
+		filename = arr[j];
 		if ((ms->fd.append[i] >> j) & 1)
 			fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		else
@@ -32,8 +32,8 @@ void	handle_outfile(t_ms *ms, int i)
 			ms->fd.out[i] = fd;
 			break ;
 		}
-		if (ms->parse.oufiles[i][j + 1] == NULL)
-			ms->fd.out[i] = fd;
+		if (arr[j + 1] == NULL || stdout_file_checker(&arr[j + 1]) == TRUE)
+			return (ms->fd.out[i] = fd, (void) 0);
 		else
 			ft_close(fd);
 	}
@@ -47,5 +47,5 @@ void	ou_fd_opener(t_ms *ms)
 		return ;
 	i = -1;
 	while (++i < ms->parse.cmd_nbr)
-		handle_outfile(ms, i);
+		handle_outfile(ms, ms->parse.oufiles[i], i);
 }

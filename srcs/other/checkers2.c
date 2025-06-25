@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:55:21 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 17:52:57 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/25 01:13:27 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,18 @@ BOOL	sigint_trigered(t_ms *ms)
 		if (ms->fd.in[i++] == 130)
 			return (TRUE);
 	return (FALSE);
+}
+
+BOOL	stdout_file_checker(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		if (diff_strcmp(arr[i], "/dev/stdout") != 0)
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 21:28:33 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/25 00:57:30 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ BOOL	is_digit(int c);
 BOOL	is_dir(const char *path);
 BOOL	is_file(const char *path);
 BOOL	sigint_trigered(t_ms *ms);
+BOOL	stdout_file_checker(char **arr);
 
 //synthax
 BOOL	open_quotes_checker(char *input);
