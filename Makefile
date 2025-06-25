@@ -28,6 +28,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/parsing/extract_cmd.c		\
 		srcs/parsing/expand_vars.c		\
 		srcs/parsing/heredoc_expand.c	\
+		srcs/parsing/epand_vars_helper.c\
 		srcs/libft/ft_split.c			\
 		srcs/libft/ft_mem.c				\
 		srcs/libft/str.c				\
