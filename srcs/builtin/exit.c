@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:44:38 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/22 18:27:12 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/26 16:33:01 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	built_in_exit(t_ms *ms)
 	}
 	else
 		ms->cmd.cur_exit_code = ms->cmd.last_exit_code;
+	printf("exit\n");
 	ft_exit(ms);
 }
