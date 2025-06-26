@@ -6,19 +6,19 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 17:49:49 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/27 00:30:05 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static BOOL	ft_redline(t_ms *ms)
+static BOOL	ft_readline(t_ms *ms)
 {
 	while (!ms->input || !*ms->input)
 	{
 		ms->input = readline(PROMPT);
 		if (!ms->input)
-			return (FALSE);
+			return (printf("exit\n"), FALSE);
 		if (*ms->input)
 			add_history(ms->input);
 	}
@@ -37,7 +37,7 @@ void	reset_prompt(t_ms *ms)
 void	ft_luncher(t_ms *ms)
 {
 	minishell_signals();
-	while (ft_redline(ms) == TRUE)
+	while (ft_readline(ms) == TRUE)
 	{
 		if (synthax_checker(ms->input) == TRUE)
 		{
