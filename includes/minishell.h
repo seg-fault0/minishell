@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/25 20:51:03 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/27 00:26:06 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# define PROMPT "\033[0;35mminishell : \033[0m"
+# define PROMPT "minishell : "
 # define HERE_DOC "> "
 
 # define GNL_BUFFER_SIZE 1
