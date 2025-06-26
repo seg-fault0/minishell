@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:34:05 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/25 10:41:59 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/26 20:21:53 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ char	*wrap_if_needed(char *var_value, char *str, int i)
 
 	if (!var_value)
 		return (ft_strdup(""));
-	if (is_in_assignment(str, i) && ft_strchr(var_value, ' '))
+	if ((is_in_assignment(str, i) && ft_strchr(var_value, ' '))
+		|| ft_strchr(var_value, '\'') || ft_strchr(var_value, '"'))
 	{
 		quoted = ft_strjoin("\"", var_value);
 		final = ft_strjoin(quoted, "\"");
