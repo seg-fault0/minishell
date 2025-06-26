@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 09:56:57 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/25 01:13:11 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/26 22:54:22 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	handle_outfile(t_ms *ms, char **arr, int i)
 		if (fd == -1)
 		{
 			ft_putstr_fd("permission denied\n", STDERR);
+			ms->cmd.cur_exit_code = 1;
 			ms->fd.out[i] = fd;
 			break ;
 		}

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 13:10:28 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/25 20:48:52 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/26 22:54:37 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ void	in_fd_opener(t_ms *ms)
 		if (ms->fd.in[i] == -130)
 			return ;
 	}
+	ms->cmd.cur_exit_code = 0;
 }
