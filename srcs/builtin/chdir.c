@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:38 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/27 04:18:38 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/27 04:48:25 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,25 @@ static char	**update_env(char **env, char *old)
 		new_env);
 }
 
+static char	*get_path(t_ms *ms, int counter)
+{
+	char	*path;
+	char	*arg;
+
+	arg = ms->cmd.cmd[counter][1];
+	if (arg == NULL)
+		path = get_env(ms->env, "HOME");
+	else if (ft_strcmp(arg, "-") == TRUE)
+	{
+		path = get_env(ms->env, "OLDPWD");
+		if (!path)
+			ft_putstr_fd("ERROR : OLDPWD not set\n", STDERR);
+	}
+	else
+		path = ms->cmd.cmd[counter][1];
+	return (path);
+}
+
 void	ft_chdir(t_ms *ms)
 {
 	char	*path;
@@ -53,10 +72,7 @@ void	ft_chdir(t_ms *ms)
 	counter = ms->cmd.counter;
 	if (chdir_synthax(ms) == FALSE)
 		return (ms->cmd.cur_exit_code = 1, (void) 0);
-	if (ms->cmd.cmd[counter][1] == NULL)
-		path = get_env(ms->env, "HOME");
-	else
-		path = ms->cmd.cmd[counter][1];
+	path = get_path(ms, counter);
 	if (!path)
 		return (ms->cmd.cur_exit_code = 1, (void) 0);
 	old_wd = getcwd(NULL, 0);
