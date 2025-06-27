@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:38 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/27 03:33:39 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/27 03:48:38 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	ft_chdir(t_ms *ms)
 		return (err_msg(ERR_CHDIR_F));
 	}
 	ms->env = update_env(ms->env);
+	ms->cwd = get_env(ms->env, "PWD");
 	ms->cmd.cur_exit_code = 0;
 }
