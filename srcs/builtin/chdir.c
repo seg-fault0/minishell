@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:38 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/27 03:48:38 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/27 04:18:38 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static BOOL	chdir_synthax(t_ms *ms)
 	return (TRUE);
 }
 
-static char	**update_env(char **env)
+static char	**update_env(char **env, char *old)
 {
 	char	**new_env;
 	char	**tmp_arr;
@@ -29,7 +29,7 @@ static char	**update_env(char **env)
 	char	*old_wd;
 	char	*tmp_str;
 
-	old_wd = ft_strjoin("OLDPWD=", get_env(env, "PWD"));
+	old_wd = ft_strjoin("OLDPWD=", old);
 	tmp_str = getcwd(NULL, 0);
 	new_wd = ft_strjoin("PWD=", tmp_str);
 	new_env = extract_from_arr(env, "PWD");
@@ -48,6 +48,7 @@ void	ft_chdir(t_ms *ms)
 {
 	char	*path;
 	int		counter;
+	char	*old_wd;
 
 	counter = ms->cmd.counter;
 	if (chdir_synthax(ms) == FALSE)
@@ -58,12 +59,14 @@ void	ft_chdir(t_ms *ms)
 		path = ms->cmd.cmd[counter][1];
 	if (!path)
 		return (ms->cmd.cur_exit_code = 1, (void) 0);
+	old_wd = getcwd(NULL, 0);
 	if (chdir(path) == -1)
 	{
 		ms->cmd.cur_exit_code = 1;
-		return (err_msg(ERR_CHDIR_F));
+		return (err_msg(ERR_CHDIR_F), free(old_wd));
 	}
-	ms->env = update_env(ms->env);
+	ms->env = update_env(ms->env, old_wd);
 	ms->cwd = get_env(ms->env, "PWD");
+	free(old_wd);
 	ms->cmd.cur_exit_code = 0;
 }
