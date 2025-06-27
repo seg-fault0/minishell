@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/27 03:45:30 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/27 04:58:20 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ void	built_in_exit(t_ms *ms);
 void	ft_echo(t_ms *ms);
 void	ft_pwd(t_ms *ms);
 void	ft_chdir(t_ms *ms);
+void	env(t_ms *ms);
 
 //utils
 void	free2(char **arr, int c);
@@ -171,6 +172,7 @@ char	**add_to_arr(char **arr, char *to_add);
 char	**extract_from_arr(char **arr, char *to_extract);
 void	sort_arr(char **arr);
 int		get_arr_size(char **arr);
+void	print_arr(char **arr);
 
 //checkers
 BOOL	is_builtin(char	*str);

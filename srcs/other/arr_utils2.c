@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   arr_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/27 04:59:35 by wimam            ###   ########.fr       */
+/*   Created: 2025/06/27 04:56:37 by wimam             #+#    #+#             */
+/*   Updated: 2025/06/27 04:56:52 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_env(char **env, char *look_for)
+void	print_arr(char **arr)
 {
-	int		i;
-	size_t	len;
+	int	i;
 
-	i = -1;
-	len = ft_strlen(look_for);
-	while (env[++i])
-	{
-		if (ft_strncmp(env[i], look_for, len) == 0 && env[i][len] == '=')
-			return (env[i] + len + 1);
-	}
-	return (NULL);
-}
-
-void	env(t_ms *ms)
-{
-	print_arr(ms->env);
-	ms->cmd.cur_exit_code = 0;
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+		printf("%s\n", arr[i++]);
 }

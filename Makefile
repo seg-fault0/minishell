@@ -40,6 +40,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/other/checkers.c			\
 		srcs/other/checkers2.c			\
 		srcs/other/arr_utils.c			\
+		srcs/other/arr_utils2.c			\
 		srcs/other/free.c				\
 		srcs/other/utils.c				\
 		srcs/other/char.c				\
