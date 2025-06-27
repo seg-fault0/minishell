@@ -32,12 +32,18 @@ static BOOL	env_synthax(char *str)
 	int	i;
 
 	if (str[0] == '\0' || str[0] == '=')
+	{
+		ft_putstr_fd("export: not a valid identifier\n", STDERR);
 		return (TRUE);
+	}
 	i = 0;
 	while (str[i] && str[i] != '=')
 	{
 		if (is_digit(str[i]) || str[i] == '-')
+		{
+			ft_putstr_fd("export: not a valid identifier\n", STDERR);
 			return (TRUE);
+		}
 		i++;
 	}	
 	return (FALSE);
@@ -91,15 +97,17 @@ void	set_env(t_ms *ms)
 	char	**tmp_arr;
 	int		counter;
 	int		i;
+	int		code;
 
 	counter = ms->cmd.counter;
+	code = 0;
 	i = 0;
 	if (!ms->cmd.cmd[counter][i + 1])
 		print_export(ms);
 	while (ms->cmd.cmd[counter][++i])
 	{
 		if (env_synthax(ms->cmd.cmd[counter][i]) == TRUE)
-			ms->cmd.cur_exit_code = 1;
+			code = 1;
 		else if (ft_strstr(ms->cmd.cmd[counter][i], "="))
 		{
 			env_var_checker(ms, ms->cmd.cmd[counter][i], i);
@@ -108,4 +116,5 @@ void	set_env(t_ms *ms)
 			free2(tmp_arr, HEAP);
 		}
 	}
+	ms->cmd.cur_exit_code = code;
 }

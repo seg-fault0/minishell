@@ -29,4 +29,5 @@ void	unset_env(t_ms *ms)
 		free2(tmp_arr, HEAP);
 		free(to_extract);
 	}
+	ms->cmd.cur_exit_code = 0;
 }
