@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:27:37 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/25 10:42:33 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/29 22:16:08 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,37 +31,37 @@ static char	*handle_quotes(char *input, int *i)
 	return (NULL);
 }
 
+static char	*append_word_segment(char *input, int *i, char *word)
+{
+	char	*tmp;
+	char	*new_word;
+	int		start;
+
+	if (input[*i] == '\'' || input[*i] == '"')
+	{
+		tmp = handle_quotes(input, i);
+	}
+	else
+	{
+		start = *i;
+		while (input[*i] && !is_space(input[*i])
+			&& !is_redirection(input[*i]) && !is_quote(input[*i]))
+			(*i)++;
+		tmp = ft_substr(input, start, *i - start);
+	}
+	new_word = ft_strjoin(word, tmp);
+	free(word);
+	free(tmp);
+	return (new_word);
+}
+
 static char	*handle_word(char *input, int *i)
 {
 	char	*word;
-	char	*tmp;
-	int		start;
-	char	*new_word;
 
 	word = NULL;
 	while (input[*i] && !is_space(input[*i]) && !is_redirection(input[*i]))
-	{
-		if (input[*i] == '\'' || input[*i] == '"')
-		{
-			tmp = handle_quotes(input, i);
-			new_word = ft_strjoin(word, tmp);
-			free(word);
-			free(tmp);
-			word = new_word;
-		}
-		else
-		{
-			start = *i;
-			while (input[*i] && !is_space(input[*i])
-				&& !is_redirection(input[*i]) && !is_quote(input[*i]))
-				(*i)++;
-			tmp = ft_substr(input, start, *i - start);
-			new_word = ft_strjoin(word, tmp);
-			free(word);
-			free(tmp);
-			word = new_word;
-		}
-	}
+		word = append_word_segment(input, i, word);
 	return (word);
 }
 

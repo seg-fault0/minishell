@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:08:51 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/20 14:58:16 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/29 22:11:18 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,11 @@ static char	*ft_fill(char const *s, char c)
 	return (buffer);
 }
 
-char	**ft_split(char const *s, char c)
+static void	fill_buffer(char **buffer, const char *s, char c, int row)
 {
-	char	**buffer;
-	int		row;
-	int		i;
-	int		len;
+	int	i;
 
 	i = 0;
-	if (!s)
-		return (NULL);
-	row = ft_row(s, c);
-	len = ft_strlen(s);
-	if (len > 0 && s[len - 1] == c)
-		row++;
-	buffer = malloc((row + 1) * sizeof(char *));
-	if (!buffer)
-		return (NULL);
 	while (i < row)
 	{
 		while (*s && *s == c)
@@ -76,5 +64,23 @@ char	**ft_split(char const *s, char c)
 			buffer[i++] = ft_strdup("");
 	}
 	buffer[row] = NULL;
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**buffer;
+	int		row;
+	int		len;
+
+	if (!s)
+		return (NULL);
+	row = ft_row(s, c);
+	len = ft_strlen(s);
+	if (len > 0 && s[len - 1] == c)
+		row++;
+	buffer = malloc((row + 1) * sizeof(char *));
+	if (!buffer)
+		return (NULL);
+	fill_buffer(buffer, s, c, row);
 	return (buffer);
 }

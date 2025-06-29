@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:56:52 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/25 10:42:46 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/29 22:18:19 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,35 @@ static void	handle_filename(char *cmd, int *i, char *outfiles, int *j)
 	}
 }
 
+static void	process_outfile_char(char *cmd, int *i, char *outfiles, int *j)
+{
+	char	quote;
+
+	if (cmd[*i] == '\'' || cmd[*i] == '"')
+	{
+		quote = cmd[(*i)++];
+		while (cmd[*i] && cmd[*i] != quote)
+			(*i)++;
+		if (cmd[*i] == quote)
+			(*i)++;
+	}
+	else if (cmd[*i] == '>')
+	{
+		outfiles[(*j)++] = '>';
+		(*i)++;
+		while (is_space(cmd[*i]))
+			(*i)++;
+		handle_filename(cmd, i, outfiles, j);
+	}
+	else
+		(*i)++;
+}
+
 static char	*get_outfiles_str(char *cmd)
 {
 	char	*outfiles;
 	int		i;
 	int		j;
-	char	quote;
 
 	i = 0;
 	j = 0;
@@ -52,26 +75,7 @@ static char	*get_outfiles_str(char *cmd)
 	if (!outfiles)
 		return (NULL);
 	while (cmd[i])
-	{
-		if (cmd[i] == '\'' || cmd[i] == '"')
-		{
-			quote = cmd[i++];
-			while (cmd[i] && cmd[i] != quote)
-				i++;
-			if (cmd[i] == quote)
-				i++;
-		}
-		else if (cmd[i] == '>')
-		{
-			outfiles[j++] = '>';
-			i++;
-			while (is_space(cmd[i]))
-				i++;
-			handle_filename(cmd, &i, outfiles, &j);
-		}
-		else
-			i++;
-	}
+		process_outfile_char(cmd, &i, outfiles, &j);
 	outfiles[j] = '\0';
 	return (outfiles);
 }
@@ -99,24 +103,6 @@ static size_t	append_scanner(char	*files_str)
 		i++;
 	}
 	return (ret);
-}
-
-char	*ft_ft(char	*str)
-{
-	char	*start;
-	char	*filename;
-	char	*new;
-	int		len;
-
-	filename = extract_first_missing_filename(str);
-	if (filename == NULL)
-		return (ft_strdup(str));
-	start = ft_strstr(str, filename);
-	len = start - str + ft_strlen(filename);
-	new = malloc(len + 1);
-	ft_memcpy(new, str, len);
-	new[len] = '\0';
-	return (free(filename), new);
 }
 
 void	parse_outfile(t_ms *ms)

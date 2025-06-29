@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
+/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/27 04:58:20 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/29 22:18:32 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ BOOL	is_ft(const char *str);
 BOOL	is_in_assignment(const char *str, int pos);
 char	*wrap_if_needed(char *var_value, char *str, int i);
 char	*extract_and_expand_var(t_ms *ms, char *str, int *i);
+char	*ft_ft(char	*str);
 
 //fds
 void	fd_setup(t_ms *ms);

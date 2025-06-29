@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:43:27 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/27 12:07:28 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/29 22:17:15 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,35 @@ static void	handle_filename(char *cmd, int *i, char *outfiles, int *j)
 	}
 }
 
+static void	process_infile_char(char *cmd, int *i, char *infiles, int *j)
+{
+	char	quote;
+
+	if (cmd[*i] == '\'' || cmd[*i] == '"')
+	{
+		quote = cmd[(*i)++];
+		while (cmd[*i] && cmd[*i] != quote)
+			(*i)++;
+		if (cmd[*i] == quote)
+			(*i)++;
+	}
+	else if (cmd[*i] == '<')
+	{
+		infiles[(*j)++] = '<';
+		(*i)++;
+		while (is_space(cmd[*i]))
+			(*i)++;
+		handle_filename(cmd, i, infiles, j);
+	}
+	else
+		(*i)++;
+}
+
 static char	*get_infiles_str(char *cmd)
 {
 	char	*infiles;
 	int		i;
 	int		j;
-	char	quote;
 
 	infiles = malloc(ft_strlen(cmd) + 1);
 	if (!infiles)
@@ -45,27 +68,9 @@ static char	*get_infiles_str(char *cmd)
 	i = 0;
 	j = 0;
 	while (cmd[i])
-	{
-		if (cmd[i] == '\'' || cmd[i] == '"')
-		{
-			quote = cmd[i++];
-			while (cmd[i] && cmd[i] != quote)
-				i++;
-			if (cmd[i] == quote)
-				i++;
-		}
-		else if (cmd[i] == '<')
-		{
-			infiles[j++] = '<';
-			i++;
-			while (is_space(cmd[i]))
-				i++;
-			handle_filename(cmd, &i, infiles, &j);
-		}
-		else
-			i++;
-	}
-	return (infiles[j] = '\0', infiles);
+		process_infile_char(cmd, &i, infiles, &j);
+	infiles[j] = '\0';
+	return (infiles);
 }
 
 static size_t	heredoc_scanner(char *files_str)

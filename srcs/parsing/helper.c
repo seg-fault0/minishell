@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:13:39 by zogrir            #+#    #+#             */
-/*   Updated: 2025/05/23 19:08:00 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/29 22:18:41 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,22 @@ int	skip_redirection(char *cmd, int i)
 	while (cmd[i] && is_space(cmd[i]))
 		i++;
 	return (i);
+}
+
+char	*ft_ft(char	*str)
+{
+	char	*start;
+	char	*filename;
+	char	*new;
+	int		len;
+
+	filename = extract_first_missing_filename(str);
+	if (filename == NULL)
+		return (ft_strdup(str));
+	start = ft_strstr(str, filename);
+	len = start - str + ft_strlen(filename);
+	new = malloc(len + 1);
+	ft_memcpy(new, str, len);
+	new[len] = '\0';
+	return (free(filename), new);
 }
