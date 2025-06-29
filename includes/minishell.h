@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/29 22:05:40 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/29 22:09:25 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ typedef struct s_cmd
 	char	**paths;
 	char	***cmd;
 	int		*pids;
-	long	cur_exit_code;
-	long	last_exit_code;
+	int		cur_exit_code;
+	int		last_exit_code;
 	int		counter;
 	int		max_counter;
 }t_cmd;
