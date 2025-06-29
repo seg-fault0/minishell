@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/27 04:58:20 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/29 19:22:57 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # define HERE_DOC "> "
 
 # define GNL_BUFFER_SIZE 1
-# define GNL_FREE -9123423
 # define MAX_CMD 500
 # define MAX_FD 62
 

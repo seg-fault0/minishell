@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/24 18:14:35 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/29 19:18:21 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	set_env(t_ms *ms)
 	{
 		if (env_synthax(ms->cmd.cmd[counter][i]) == TRUE)
 			code = 1;
-		else if (ft_strstr(ms->cmd.cmd[counter][i], "="))
+		else
 		{
 			env_var_checker(ms, ms->cmd.cmd[counter][i], i);
 			tmp_arr = ms->env;
