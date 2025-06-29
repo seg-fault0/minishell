@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/29 19:44:54 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/29 19:51:15 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,11 +219,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_calloc(size_t count, size_t size);
-
-//gnl
-int		ft_new_line_check(char *str);
-char	*ft_init(char *str);
-char	*ft_strljoin(char *s1, char *s2, int size);
 
 //other
 int		skip_space(char *str);
