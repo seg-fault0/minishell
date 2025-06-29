@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:44:38 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/26 16:33:01 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/29 22:05:31 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	built_in_exit(t_ms *ms)
 	else if (ms->cmd.cmd[ms->cmd.counter][1])
 	{
 		ms->cmd.cur_exit_code = ft_atoi(ms->cmd.cmd[ms->cmd.counter][1]);
-		if (ms->cmd.cur_exit_code >= LONG_MAX)
+		if (outRageLong(ms->cmd.cmd[ms->cmd.counter][1]) == TRUE)
 		{
 			ft_putstr_fd("numeric argument required\n", STDERR);
 			ms->cmd.cur_exit_code = 2;
