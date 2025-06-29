@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/29 22:18:32 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/29 22:21:27 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 # define PROMPT "minishell : "
 # define HERE_DOC "> "
 
+# define PTH "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
 # define GNL_BUFFER_SIZE 1
-# define GNL_FREE -9123423
 # define MAX_CMD 500
 # define MAX_FD 62
 
@@ -69,8 +70,8 @@ typedef struct s_cmd
 	char	**paths;
 	char	***cmd;
 	int		*pids;
-	long	cur_exit_code;
-	long	last_exit_code;
+	int		cur_exit_code;
+	int		last_exit_code;
 	int		counter;
 	int		max_counter;
 }t_cmd;
@@ -185,6 +186,7 @@ BOOL	is_dir(const char *path);
 BOOL	is_file(const char *path);
 BOOL	sigint_trigered(t_ms *ms);
 BOOL	stdout_file_checker(char **arr);
+BOOL	outRageLong(char *str);
 
 //synthax
 BOOL	open_quotes_checker(char *input);
@@ -219,11 +221,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_calloc(size_t count, size_t size);
-
-//gnl
-int		ft_new_line_check(char *str);
-char	*ft_init(char *str);
-char	*ft_strljoin(char *s1, char *s2, int size);
 
 //other
 int		skip_space(char *str);

@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:55:21 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/25 20:48:56 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/29 22:05:24 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,31 @@ BOOL	stdout_file_checker(char **arr)
 		i++;
 	}
 	return (TRUE);
+}
+
+BOOL	outRageLong(char *str)
+{
+	int		sign;
+	char	*max;
+
+	sign = 1;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	if (!str)
+		return (TRUE);
+	if (ft_strlen(str) > 19)
+		return (TRUE);
+	if (ft_strlen(str) < 19)
+		return (FALSE);
+	if (sign == -1)
+		max = "9223372036854775808";
+	else
+		max = "9223372036854775807";
+	if (ft_strncmp(str, max, 19) > 0)
+		return (TRUE);
+	return (FALSE);
 }

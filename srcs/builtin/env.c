@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:07:43 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/27 04:59:35 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/29 19:23:20 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ char	*get_env(char **env, char *look_for)
 
 void	env(t_ms *ms)
 {
-	print_arr(ms->env);
+	int	i;
+
+	i = -1;
+	while (ms->env[++i])
+	{
+		if (ft_strchr(ms->env[i], '='))
+			printf("%s\n", ms->env[i]);
+	}
 	ms->cmd.cur_exit_code = 0;
 }
