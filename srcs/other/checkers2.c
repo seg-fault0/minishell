@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:55:21 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/29 22:05:24 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/30 00:01:11 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ BOOL	stdout_file_checker(char **arr)
 	return (TRUE);
 }
 
-BOOL	outRageLong(char *str)
+BOOL	outrange_long(char *str)
 {
 	int		sign;
 	char	*max;

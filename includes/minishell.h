@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/29 22:21:27 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/30 00:01:22 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ BOOL	is_dir(const char *path);
 BOOL	is_file(const char *path);
 BOOL	sigint_trigered(t_ms *ms);
 BOOL	stdout_file_checker(char **arr);
-BOOL	outRageLong(char *str);
+BOOL	outrange_long(char *str);
 
 //synthax
 BOOL	open_quotes_checker(char *input);
