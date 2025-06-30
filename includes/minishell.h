@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/30 00:01:22 by wimam            ###   ########.fr       */
+/*   Updated: 2025/06/30 04:17:32 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <unistd.h>
 # include <limits.h>
 # include <fcntl.h>
-# include <termios.h>
 # include <signal.h>
 # include <sys/wait.h>
 # include <sys/stat.h>

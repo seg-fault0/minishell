@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/26 15:55:58 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/06/30 03:09:28 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	status = 0;
 	tmp = ms->cmd.cmd[ms->cmd.counter];
 	if (tmp[0] == NULL)
-		ft_exit(ms);
+		return (close(rfd), close_pipe(pfd), ft_exit(ms));
 	fd_manager(ms, rfd, pfd);
 	if (is_builtin(tmp[0]) == TRUE)
 		builtin_exe(ms, tmp[0]);
