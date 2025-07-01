@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 09:45:53 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/25 20:48:43 by wimam            ###   ########.fr       */
+/*   Updated: 2025/07/02 00:39:19 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	heredoc_chiled(t_ms *ms, char *delimiter, int *pfd)
 {
 	char	*line;
 
-	heredoc_signals();
+	heredoc_signals(pfd);
 	close(pfd[0]);
 	line = heredoc_expand(ms, readline(HERE_DOC));
 	while (line && (ft_strcmp(line, delimiter) == FALSE))

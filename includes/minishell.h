@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/30 04:17:32 by wimam            ###   ########.fr       */
+/*   Updated: 2025/07/02 00:39:30 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	reset_prompt(t_ms *ms);
 
 //signals
 void	minishell_signals(void);
-void	heredoc_signals(void);
+void	heredoc_signals(int *pfd);
 
 //parse
 void	ft_parse(t_ms *ms);
