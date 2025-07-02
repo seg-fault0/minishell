@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/07/02 20:32:17 by wimam            ###   ########.fr       */
+/*   Updated: 2025/07/02 21:28:22 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static BOOL	env_synthax(char *str)
 {
 	int	i;
 
-	if (str[0] == '\0' || str[0] == '=')
+	if (str[0] == '\0' || str[0] == '=' || is_digit(str[0]))
 	{
 		ft_putstr_fd("export: not a valid identifier\n", STDERR);
 		return (TRUE);
@@ -39,7 +39,7 @@ static BOOL	env_synthax(char *str)
 	i = 0;
 	while (str[i] && str[i] != '=')
 	{
-		if (is_digit(str[i]) || str[i] == '-')
+		if (str[i] == '-')
 		{
 			ft_putstr_fd("export: not a valid identifier\n", STDERR);
 			return (TRUE);
