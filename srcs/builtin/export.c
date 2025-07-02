@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/07/02 15:39:25 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/07/02 20:24:50 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	print_export(t_ms *ms)
 	max = get_arr_size(ms->env);
 	tmp = get_2darr_cp(ms->env);
 	sort_arr(tmp);
-	i = 0;
-	while (i < max)
-		printf("declare -x %s\n", tmp[i++]);
+	i = -1;
+	while (++i < max)
+		printf("declare -x %s\n", tmp[i]);
 	free2(tmp, HEAP);
 }
 
@@ -31,7 +31,7 @@ static BOOL	env_synthax(char *str)
 {
 	int	i;
 
-	if (str[0] == '\0' || str[0] == '=' || is_digit(str[0]))
+	if (str[0] == '\0' || str[0] == '=')
 	{
 		ft_putstr_fd("export: not a valid identifier\n", STDERR);
 		return (TRUE);
@@ -39,7 +39,7 @@ static BOOL	env_synthax(char *str)
 	i = 0;
 	while (str[i] && str[i] != '=')
 	{
-		if (str[i] == '-')
+		if (is_digit(str[i]) || str[i] == '-')
 		{
 			ft_putstr_fd("export: not a valid identifier\n", STDERR);
 			return (TRUE);
@@ -65,7 +65,7 @@ void	add_varg(t_ms *ms, char *var_name, int i)
 	free(tmp2);
 }
 
-BOOL	env_var_checker(t_ms *ms, char *str, int i)
+void	env_var_checker(t_ms *ms, char *str, int i)
 {
 	char	*tmp_envar;
 	char	**tmp_arr;
@@ -80,65 +80,41 @@ BOOL	env_var_checker(t_ms *ms, char *str, int i)
 	{
 		tmp_envar[--len] = '\0';
 		add_varg(ms, tmp_envar, i);
-		free(tmp_envar);
-		return (FALSE);
 	}
 	if (get_env(ms->env, tmp_envar) == NULL)
-		return (free(tmp_envar), TRUE);
-	tmp_arr = ms->env;
-	ms->env = extract_from_arr(tmp_arr, tmp_envar);
-	free2(tmp_arr, HEAP);
-	free(tmp_envar);
-	return (TRUE);
-}
-
-static void	add_env_if_needed(t_ms *ms, char *arg)
-{
-	char	**tmp_arr;
-
-	tmp_arr = ms->env;
-	ms->env = add_to_arr(tmp_arr, arg);
-	free2(tmp_arr, HEAP);
-}
-
-static void	handle_env_argument(t_ms *ms, char *arg, int i, int *code)
-{
-	BOOL	should_add;
-
-	if (env_synthax(arg) == TRUE)
-	{
-		*code = 1;
-		return ;
-	}
-	if (ft_strstr(arg, "="))
-	{
-		should_add = env_var_checker(ms, arg, i);
-		if (should_add)
-			add_env_if_needed(ms, arg);
-	}
+		return (free(tmp_envar));
 	else
 	{
-		should_add = env_var_checker(ms, arg, i);
-		if (should_add)
-			add_env_if_needed(ms, arg);
+		tmp_arr = ms->env;
+		ms->env = extract_from_arr(tmp_arr, tmp_envar);
+		free2(tmp_arr, HEAP);
+		free(tmp_envar);
 	}
 }
 
 void	set_env(t_ms *ms)
 {
-	int	counter;
-	int	i;
-	int	code;
+	char	**tmp_arr;
+	int		counter;
+	int		i;
+	int		code;
 
 	counter = ms->cmd.counter;
 	code = 0;
 	i = 0;
 	if (!ms->cmd.cmd[counter][i + 1])
-	{
 		print_export(ms);
-		return ;
-	}
 	while (ms->cmd.cmd[counter][++i])
-		handle_env_argument(ms, ms->cmd.cmd[counter][i], i, &code);
+	{
+		if (env_synthax(ms->cmd.cmd[counter][i]) == TRUE)
+			code = 1;
+		else
+		{
+			env_var_checker(ms, ms->cmd.cmd[counter][i], i);
+			tmp_arr = ms->env;
+			ms->env = add_to_arr(tmp_arr, ms->cmd.cmd[counter][i]);
+			free2(tmp_arr, HEAP);
+		}
+	}
 	ms->cmd.cur_exit_code = code;
 }
