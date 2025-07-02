@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:27:59 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/27 00:30:05 by wimam            ###   ########.fr       */
+/*   Updated: 2025/07/02 01:40:33 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static BOOL	ft_readline(t_ms *ms)
 
 void	reset_prompt(t_ms *ms)
 {
+	minishell_signals();
 	parse_reseter(ms);
 	cmd_reseter(ms);
 	fd_reseter(ms);
