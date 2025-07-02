@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/30 04:34:59 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/07/02 15:39:25 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static BOOL	env_synthax(char *str)
 	{
 		if (str[i] == '-')
 		{
-			printf("the issue is here !!!");
 			ft_putstr_fd("export: not a valid identifier\n", STDERR);
 			return (TRUE);
 		}
@@ -113,7 +112,6 @@ static void	handle_env_argument(t_ms *ms, char *arg, int i, int *code)
 	}
 	if (ft_strstr(arg, "="))
 	{
-		printf("[  %s ] \n", arg);
 		should_add = env_var_checker(ms, arg, i);
 		if (should_add)
 			add_env_if_needed(ms, arg);
