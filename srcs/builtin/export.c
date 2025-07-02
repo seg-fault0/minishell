@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:43:55 by wimam             #+#    #+#             */
-/*   Updated: 2025/07/02 20:24:50 by wimam            ###   ########.fr       */
+/*   Updated: 2025/07/02 20:32:17 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void	set_env(t_ms *ms)
 	{
 		if (env_synthax(ms->cmd.cmd[counter][i]) == TRUE)
 			code = 1;
+		else if (get_env(ms->env, ms->cmd.cmd[counter][i])
+				&& !ft_strstr(ms->cmd.cmd[counter][i], "="));
 		else
 		{
 			env_var_checker(ms, ms->cmd.cmd[counter][i], i);
