@@ -6,7 +6,7 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/06/30 03:09:28 by wimam            ###   ########.fr       */
+/*   Updated: 2025/07/02 01:34:16 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	ft_wait(t_ms *ms)
 	{
 		id = ms->cmd.pids[i];
 		waitpid(id, &status, 0);
+		if (WIFSIGNALED(status))
+		{
+			if (WTERMSIG(status) == SIGINT && i == ms->cmd.counter - 1)
+				return (ms->cmd.cur_exit_code = 130, (void) 0);
+		}
 		ms->cmd.cur_exit_code = status;
 		i++;
 	}
@@ -35,6 +40,7 @@ void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	int		status;
 
 	status = 0;
+	signal(SIGINT, SIG_DFL);
 	tmp = ms->cmd.cmd[ms->cmd.counter];
 	if (tmp[0] == NULL)
 		return (close(rfd), close_pipe(pfd), ft_exit(ms));
@@ -66,6 +72,7 @@ void	ft_start(t_ms *ms, int rfd)
 		ft_chiled(ms, rfd, pfd);
 	else
 	{
+		signal(SIGINT, SIG_IGN);
 		ms->cmd.pids[ms->cmd.counter] = pid;
 		ms->cmd.counter++;
 		close(pfd[1]);
