@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/07/02 17:49:06 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/07/02 23:20:01 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ BOOL	is_in_assignment(const char *str, int pos);
 char	*wrap_if_needed(char *var_value, char *str, int i);
 char	*extract_and_expand_var(t_ms *ms, char *str, int *i);
 char	*ft_ft(char	*str);
-char	*handle_backslash(char *input, int *i);
 
 //fds
 void	fd_setup(t_ms *ms);
