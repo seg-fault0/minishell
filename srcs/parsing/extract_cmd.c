@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 15:55:57 by zogrir            #+#    #+#             */
-/*   Updated: 2025/06/29 22:11:55 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/07/02 17:51:06 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,22 @@ char	*extract_cmd(char *cmd)
 			res[j++] = cmd[i++];
 	}
 	res[j] = '\0';
+	return (res);
+}
+
+char	*handle_backslash(char *input, int *i)
+{
+	char	*res;
+
+	if (input[*i] == '\\' && input[*i + 1])
+	{
+		res = ft_substr(input, *i + 1, 1);
+		*i += 2;
+	}
+	else
+	{
+		res = ft_strdup("\\");
+		(*i)++;
+	}
 	return (res);
 }
