@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:22:22 by wimam             #+#    #+#             */
-/*   Updated: 2025/07/02 23:20:01 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/07/03 03:26:04 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,13 @@ typedef struct s_ms
 	char		*input;
 }t_ms;
 
+typedef struct s_expand_state
+{
+	int		i;
+	int		start;
+	char	*result;
+}	t_expand_state;
+
 //core
 BOOL	init_struct(t_ms *ms, char **env);
 void	ft_luncher(t_ms *ms);
@@ -126,6 +133,9 @@ BOOL	is_in_assignment(const char *str, int pos);
 char	*wrap_if_needed(char *var_value, char *str, int i);
 char	*extract_and_expand_var(t_ms *ms, char *str, int *i);
 char	*ft_ft(char	*str);
+BOOL	handle_digit_after_dollar(char *str, t_expand_state *st);
+void	handle_valid_var_expand(t_ms *ms, char *str, t_expand_state *st);
+char	*append_before(char *res, char *str, int start, int end);
 
 //fds
 void	fd_setup(t_ms *ms);

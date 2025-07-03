@@ -6,7 +6,7 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 15:55:57 by zogrir            #+#    #+#             */
-/*   Updated: 2025/07/02 23:20:08 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/07/03 03:25:41 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,34 @@ char	*extract_cmd(char *cmd)
 	}
 	res[j] = '\0';
 	return (res);
+}
+
+void	handle_valid_var_expand(t_ms *ms, char *str, t_expand_state *st)
+{
+	char	*expanded;
+	char	*tmp;
+
+	if (ft_isalnum(str[st->i + 1])
+		|| str[st->i + 1] == '?' || str[st->i + 1] == '_')
+	{
+		st->result = append_before(st->result, str, st->start, st->i);
+		expanded = extract_and_expand_var(ms, str, &st->i);
+		tmp = st->result;
+		st->result = ft_strjoin(st->result, expanded);
+		free(expanded);
+		free(tmp);
+		st->start = st->i + 1;
+	}
+}
+
+BOOL	handle_digit_after_dollar(char *str, t_expand_state *st)
+{
+	if (is_digit(str[st->i + 1]))
+	{
+		st->result = append_before(st->result, str, st->start, st->i);
+		st->i++;
+		st->start = st->i + 1;
+		return (TRUE);
+	}
+	return (FALSE);
 }

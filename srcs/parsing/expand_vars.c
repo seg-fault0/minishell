@@ -6,13 +6,13 @@
 /*   By: zogrir <zogrir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:56:01 by zogrir            #+#    #+#             */
-/*   Updated: 2025/07/02 18:39:39 by zogrir           ###   ########.fr       */
+/*   Updated: 2025/07/03 03:25:58 by zogrir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
 
-static char	*append_text_before_dollar(char *res, char *str, int start, int end)
+char	*append_before(char *res, char *str, int start, int end)
 {
 	char	*before;
 	char	*new_res;
@@ -28,39 +28,22 @@ static char	*append_text_before_dollar(char *res, char *str, int start, int end)
 
 static char	*expand_generic(t_ms *ms, char *str, BOOL skip_quotes)
 {
-	int		i;
-	int		start;
-	char	*result;
-	char	*expanded;
-	char	*tmp;
+	t_expand_state	st;
 
-	(1) && (i = -1, start = 0, result = NULL);
-	while (str[++i])
+	(1) && (st.i = -1, st.start = 0, st.result = NULL);
+	while (str[++st.i])
 	{
-		if (str[i] == '$' && (!skip_quotes || !is_in_single_quotes(str, i)))
+		if (str[st.i] == '$' && (!skip_quotes
+				|| !is_in_single_quotes(str, st.i)))
 		{
-			if (is_digit(str[i + 1]))
-			{
-				result = append_text_before_dollar(result, str, start, i);
-				i++;
-				start = i + 1;
-				continue;
-			}
-			if ((ft_isalnum(str[i + 1]) || str[i + 1] == '?' || str[i + 1] == '_'))
-			{
-				result = append_text_before_dollar(result, str, start, i);
-				expanded = extract_and_expand_var(ms, str, &i);
-				tmp = result;
-				result = ft_strjoin(result, expanded);
-				free(expanded);
-				free(tmp);
-				start = i + 1;
-			}
+			if (handle_digit_after_dollar(str, &st))
+				continue ;
+			handle_valid_var_expand(ms, str, &st);
 		}
 	}
-	if (start < i)
-		result = append_text_before_dollar(result, str, start, i);
-	return (result);
+	if (st.start < st.i)
+		st.result = append_before(st.result, str, st.start, st.i);
+	return (st.result);
 }
 
 static char	*expand_line(t_ms *ms, char *str)
