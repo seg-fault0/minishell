@@ -26,7 +26,8 @@ void	ft_wait(t_ms *ms)
 		if (WIFSIGNALED(status))
 		{
 			if (WTERMSIG(status) == SIGINT && i == ms->cmd.counter - 1)
-				return (ms->cmd.cur_exit_code = 130, (void) 0);
+				return (write(1, "\n", 1),
+					ms->cmd.cur_exit_code = 130, (void) 0);
 		}
 		ms->cmd.cur_exit_code = status;
 		i++;
