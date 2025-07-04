@@ -19,7 +19,7 @@ int	main(int ac, char **av, char **env)
 	(void) ac;
 	(void) av;
 	if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO))
-		return (0);
+		return (1);
 	if (init_struct(&ms, env) == FALSE)
 		return (1);
 	ft_luncher(&ms);

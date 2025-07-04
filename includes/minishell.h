@@ -108,7 +108,7 @@ void	err_msg(int msg);
 void	reset_prompt(t_ms *ms);
 
 //signals
-void	minishell_signals(void);
+void	minishell_signals(t_ms *ms);
 void	heredoc_signals(int *pfd);
 
 //parse

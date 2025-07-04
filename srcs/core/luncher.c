@@ -27,7 +27,7 @@ static BOOL	ft_readline(t_ms *ms)
 
 void	reset_prompt(t_ms *ms)
 {
-	minishell_signals();
+	minishell_signals(ms);
 	parse_reseter(ms);
 	cmd_reseter(ms);
 	fd_reseter(ms);
@@ -37,7 +37,7 @@ void	reset_prompt(t_ms *ms)
 
 void	ft_luncher(t_ms *ms)
 {
-	minishell_signals();
+	minishell_signals(ms);
 	while (ft_readline(ms) == TRUE)
 	{
 		if (synthax_checker(ms->input) == TRUE)
