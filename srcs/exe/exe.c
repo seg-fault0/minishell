@@ -48,13 +48,10 @@ void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	fd_manager(ms, rfd, pfd);
 	if (is_builtin(tmp[0]) == TRUE)
 		builtin_exe(ms, tmp[0]);
-	else
+	else if (ft_strchr(tmp[0], '/'))
 		status = execve(tmp[0], tmp, ms->env);
-	if (status == -1)
-	{
-		ms->cmd.cur_exit_code = get_exit_code(ms);
-		ft_exit(ms);
-	}
+	ms->cmd.cur_exit_code = get_exit_code(ms);
+	ft_exit(ms);
 }
 
 void	ft_start(t_ms *ms, int rfd)
