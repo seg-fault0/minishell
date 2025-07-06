@@ -21,11 +21,11 @@ int	get_exit_code(t_ms *ms)
 	cmd = ms->cmd.cmd[counter][0];
 	if (ft_strcmp(cmd, ".") == TRUE)
 		return (2);
-	if (access(cmd, F_OK) != 0 || ft_strcmp(cmd, "..") == TRUE)
+	if (access(cmd, F_OK) != 0)
 		return (err_msg(ERR_CMD_NF), 127);
 	if (access(cmd, X_OK) != 0)
 		return (126);
-	if (is_dir(cmd) == TRUE)
+	if (is_dir(cmd) == TRUE && ft_strchr(cmd, '/'))
 		return (err_msg(ERR_THIS_IS_DIR), 126);
 	if (ms->cmd.cmd[counter][1] != NULL
 		&& access(ms->cmd.cmd[counter][1], F_OK) != 0)
