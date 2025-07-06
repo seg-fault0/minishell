@@ -14,6 +14,7 @@ SRCS =	srcs/core/main.c				\
 		srcs/builtin/export.c			\
 		srcs/builtin/pwd.c				\
 		srcs/builtin/unset.c			\
+		srcs/exe/wait.c					\
 		srcs/exe/exit_code.c			\
 		srcs/exe/fd_manager.c			\
 		srcs/exe/exe.c					\

@@ -6,34 +6,11 @@
 /*   By: wimam <walidimam69gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:47:15 by wimam             #+#    #+#             */
-/*   Updated: 2025/07/02 01:34:16 by wimam            ###   ########.fr       */
+/*   Updated: 2025/07/06 05:02:05 by wimam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_wait(t_ms *ms)
-{
-	int	i;
-	int	id;
-	int	status;
-
-	i = 0;
-	while (i < ms->cmd.counter)
-	{
-		id = ms->cmd.pids[i];
-		waitpid(id, &status, 0);
-		if (WIFSIGNALED(status))
-		{
-			if (WTERMSIG(status) == SIGINT && i == ms->cmd.counter - 1)
-				return (write(1, "\n", 1),
-					ms->cmd.cur_exit_code = 130, (void) 0);
-		}
-		ms->cmd.cur_exit_code = status;
-		i++;
-	}
-	ms->cmd.cur_exit_code = WEXITSTATUS(ms->cmd.cur_exit_code);
-}
 
 void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 {
