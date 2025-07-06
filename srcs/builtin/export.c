@@ -16,6 +16,7 @@ void	print_export(t_ms *ms)
 {
 	char	**tmp;
 	int		i;
+	int		j;
 	int		max;
 
 	max = get_arr_size(ms->env);
@@ -23,7 +24,20 @@ void	print_export(t_ms *ms)
 	sort_arr(tmp);
 	i = -1;
 	while (++i < max)
-		printf("declare -x %s\n", tmp[i]);
+	{
+		write(1, "declare -x ", 11);
+		j = -1;
+		while (tmp[i][++j] && tmp[i][j] != '=')
+			write(STDOUT, &tmp[i][j], 1);
+		if (tmp[i][j] == '=')
+		{
+			write(1, "=\"", 2);
+			write(STDOUT, &tmp[i][j + 1], ft_strlen(&tmp[i][j + 1]));
+			write(1, "\"\n", 2);
+		}
+		else
+			write(1, "\n", 1);
+	}
 	free2(tmp, HEAP);
 }
 
