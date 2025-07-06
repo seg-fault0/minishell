@@ -38,9 +38,7 @@ void	ft_wait(t_ms *ms)
 void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 {
 	char	**tmp;
-	int		status;
 
-	status = 0;
 	signal(SIGINT, SIG_DFL);
 	tmp = ms->cmd.cmd[ms->cmd.counter];
 	if (tmp[0] == NULL)
@@ -49,7 +47,7 @@ void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 	if (is_builtin(tmp[0]) == TRUE)
 		builtin_exe(ms, tmp[0]);
 	else if (ft_strchr(tmp[0], '/'))
-		status = execve(tmp[0], tmp, ms->env);
+		execve(tmp[0], tmp, ms->env);
 	ms->cmd.cur_exit_code = get_exit_code(ms);
 	ft_exit(ms);
 }

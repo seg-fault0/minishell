@@ -19,7 +19,9 @@ int	get_exit_code(t_ms *ms)
 
 	counter = ms->cmd.counter;
 	cmd = ms->cmd.cmd[counter][0];
-	if (access(cmd, F_OK) != 0)
+	if (ft_strcmp(cmd, ".") == TRUE)
+		return (2);
+	if (access(cmd, F_OK) != 0 || ft_strcmp(cmd, "..") == TRUE)
 		return (err_msg(ERR_CMD_NF), 127);
 	if (access(cmd, X_OK) != 0)
 		return (126);

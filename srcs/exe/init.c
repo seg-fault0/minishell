@@ -38,6 +38,18 @@ static char	**get_paths(char **env)
 	return (paths);
 }
 
+static BOOL	ft_check(t_ms *ms, int i, int j)
+{
+	if (ms->cmd.paths[++j]
+		&& is_builtin(ms->cmd.cmd[i][0]) == FALSE
+		&& ms->cmd.cmd[i][0] && ms->cmd.cmd[i][0][0]
+		&& ft_strstr(ms->cmd.cmd[i][0], "/") == NULL
+		&& ft_strcmp(ms->cmd.cmd[i][0], "..") == FALSE
+		&& ft_strcmp(ms->cmd.cmd[i][0], ".") == FALSE)
+		return (TRUE);
+	return (FALSE);
+}
+
 static void	add_path(t_ms *ms)
 {
 	char	*tmp;
@@ -50,13 +62,14 @@ static void	add_path(t_ms *ms)
 	while (ms->cmd.cmd[++i])
 	{
 		j = -1;
-		while (ms->cmd.paths[++j] && (is_builtin(ms->cmd.cmd[i][0]) == FALSE)
-			&& ms->cmd.cmd[i][0] && ms->cmd.cmd[i][0][0])
+		while (ms->cmd.paths[++j])
 		{
+			if (ft_check(ms, i, j) == FALSE)
+				break ;
 			tmp = ft_strjoin(ms->cmd.paths[j], ms->cmd.cmd[i][0]);
 			if (access(tmp, X_OK) == 0)
 			{
-				free(ms->parse.cmd[i][0]);
+				free(ms->cmd.cmd[i][0]);
 				ms->cmd.cmd[i][0] = tmp;
 				break ;
 			}
