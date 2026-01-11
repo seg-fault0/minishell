@@ -10,7 +10,7 @@ A minimalist **Unix shell** implementation — as beautiful as a shell — part 
 **Minishell** is a simplified version of bash, implementing core shell functionalities from scratch. This project provides deep understanding of how shells work: process creation, command execution, file descriptors, and signal handling.
 
 This project teaches:
-- Lexical analysis and parsing
+- Parsing
 - Process creation with `fork()`
 - Program execution with `execve()`
 - File descriptor manipulation
@@ -39,17 +39,10 @@ This project teaches:
                                │
                                ▼
                     ┌─────────────────────┐
-                    │    Lexer/Tokenizer  │
+                    │        Parser       │
                     │  "ls -la | grep a"  │
                     │         ↓           │
                     │  [ls][-la][|][grep] │
-                    └─────────────────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │       Parser        │
-                    │   Build AST/List    │
-                    │   of commands       │
                     └─────────────────────┘
                                │
                                ▼
@@ -123,7 +116,7 @@ This project teaches:
 
 ### Prerequisites
 
-- GCC compiler
+- CC compiler
 - Make
 - Readline library
 
@@ -188,84 +181,95 @@ minishell$ exit
 ## 📁 Project Structure
 
 ```
-minishell/
+.
 ├── Makefile
-├── README.md
-├── includes/
-│   └── minishell.h
-└── srcs/
-    ├── main.c
-    ├── lexer/
-    │   ├── lexer.c
-    │   ├── tokenizer.c
-    │   └── token_utils.c
-    ├── parser/
-    │   ├── parser.c
-    │   ├── syntax_check.c
-    │   └── ast_builder.c
-    ├── expander/
-    │   ├── expander.c
-    │   ├── variable_expansion.c
-    │   └── quote_handling.c
-    ├── executor/
-    │   ├── executor.c
-    │   ├── pipe_handler.c
-    │   ├── redirection.c
-    │   └── path_resolver.c
-    ├── builtins/
-    │   ├── echo.c
-    │   ├── cd.c
-    │   ├── pwd.c
-    │   ├── export.c
-    │   ├── unset.c
-    │   ├── env.c
-    │   └── exit.c
-    ├── signals/
-    │   └── signal_handler.c
-    └── utils/
-        ├── error.c
-        ├── free.c
-        └── utils.c
+├── includes
+│   └── minishell.h
+└── srcs
+    ├── builtin
+    │   ├── chdir.c
+    │   ├── echo.c
+    │   ├── env.c
+    │   ├── exit.c
+    │   ├── export.c
+    │   ├── main.c
+    │   ├── pwd.c
+    │   └── unset.c
+    ├── core
+    │   ├── err.c
+    │   ├── exit.c
+    │   ├── init_ms.c
+    │   ├── luncher.c
+    │   ├── main.c
+    │   └── reseter.c
+    ├── exe
+    │   ├── exe.c
+    │   ├── exit_code.c
+    │   ├── fd_manager.c
+    │   ├── init.c
+    │   ├── main.c
+    │   └── wait.c
+    ├── fds
+    │   ├── here_doc.c
+    │   ├── infd.c
+    │   ├── main.c
+    │   └── oufd.c
+    ├── libft
+    │   ├── alpha.c
+    │   ├── ft_atoi.c
+    │   ├── ft_itoi.c
+    │   ├── ft_mem.c
+    │   ├── ft_putnbr.c
+    │   ├── ft_split.c
+    │   ├── ft_split_len.c
+    │   └── str.c
+    ├── other
+    │   ├── arr_utils.c
+    │   ├── arr_utils2.c
+    │   ├── char.c
+    │   ├── checkers.c
+    │   ├── checkers2.c
+    │   ├── free.c
+    │   ├── str.c
+    │   └── utils.c
+    ├── parsing
+    │   ├── epand_vars_helper.c
+    │   ├── expand_vars.c
+    │   ├── extract_cmd.c
+    │   ├── helper.c
+    │   ├── heredoc_expand.c
+    │   ├── main.c
+    │   ├── parse_cmd.c
+    │   ├── parse_infile.c
+    │   ├── parse_outfile.c
+    │   └── remove_files.c
+    ├── signals
+    │   ├── heredoc_signal.c
+    │   └── ms_signals.c
+    └── synthax
+        ├── main.c
+        ├── op_counter.c
+        ├── operators.c
+        ├── pipe.c
+        ├── quotes.c
+        └── redir.c
+
 ```
 
 ## 🔧 Technical Implementation
 
-### Lexer (Tokenization)
-
-```c
-// Input: "ls -la | grep .c"
-// Output: Linked list of tokens
-
-typedef enum e_token_type
-{
-    TOKEN_WORD,      // ls, -la, grep, .c
-    TOKEN_PIPE,      // |
-    TOKEN_REDIR_IN,  // <
-    TOKEN_REDIR_OUT, // >
-    TOKEN_HEREDOC,   // <<
-    TOKEN_APPEND,    // >>
-}   t_token_type;
-
-typedef struct s_token
-{
-    char            *value;
-    t_token_type    type;
-    struct s_token  *next;
-}   t_token;
-```
-
 ### Parser (Command Structure)
 
 ```c
-typedef struct s_cmd
+typedef struct s_parsed
 {
-    char            **args;      // ["ls", "-la", NULL]
-    char            *infile;     // Input redirection
-    char            *outfile;    // Output redirection
-    int             append;      // >> flag
-    char            *heredoc;    // << delimiter
-    struct s_cmd    *next;       // Next command (pipe)
-}   t_cmd;
+	char	**tmp2d;
+	char	***cmd;
+	char	***infiles;
+	char	***oufiles;
+	int		cmd_nbr;
+}t_parsed;
+
 ```
 
 ### Execution Pipeline
@@ -276,48 +280,68 @@ typedef struct s_cmd
 //  ┌──────┐    pipe1    ┌──────┐    pipe2    ┌──────┐
 //  │ cmd1 │ ──────────► │ cmd2 │ ──────────► │ cmd3 │
 //  └──────┘   [0][1]    └──────┘   [0][1]    └──────┘
-//                                                │
-//                                                ▼
-//                                             STDOUT
+//     ▲                                          │
+//     │                                          ▼
+//    INFD                                         OUFD
 
-void execute_pipeline(t_cmd *cmd)
+void	ft_chiled(t_ms *ms, int rfd, int *pfd)
 {
-    int pipefd[2];
-    int prev_fd = STDIN_FILENO;
-    
-    while (cmd)
-    {
-        if (cmd->next)
-            pipe(pipefd);
-        
-        pid_t pid = fork();
-        if (pid == 0)
-        {
-            // Child process
-            if (prev_fd != STDIN_FILENO)
-            {
-                dup2(prev_fd, STDIN_FILENO);
-                close(prev_fd);
-            }
-            if (cmd->next)
-            {
-                dup2(pipefd[1], STDOUT_FILENO);
-                close(pipefd[0]);
-                close(pipefd[1]);
-            }
-            execve(cmd->path, cmd->args, env);
-        }
-        // Parent process
-        if (prev_fd != STDIN_FILENO)
-            close(prev_fd);
-        if (cmd->next)
-        {
-            close(pipefd[1]);
-            prev_fd = pipefd[0];
-        }
-        cmd = cmd->next;
-    }
-    wait_for_children();
+	char	**tmp;
+
+	signal(SIGINT, SIG_DFL);
+	tmp = ms->cmd.cmd[ms->cmd.counter];
+	if (tmp[0] == NULL)
+		return (close(rfd), close_pipe(pfd), ft_exit(ms));
+	fd_manager(ms, rfd, pfd);
+	if (is_builtin(tmp[0]) == TRUE)
+		builtin_exe(ms, tmp[0]);
+	else if (ft_strchr(tmp[0], '/'))
+		execve(tmp[0], tmp, ms->env);
+	ms->cmd.cur_exit_code = get_exit_code(ms);
+	ft_exit(ms);
+}
+
+void	ft_start(t_ms *ms, int rfd)
+{
+	int	pfd[2];
+	int	pid;
+
+	if (ms->cmd.counter == ms->cmd.max_counter)
+		return ;
+	if (pipe(pfd) == -1)
+		err_msg(ERR_PIPE_F);
+	pid = fork();
+	if (pid == -1)
+		err_msg(ERR_FORK_F);
+	if (pid == 0)
+		ft_chiled(ms, rfd, pfd);
+	else
+	{
+		signal(SIGINT, SIG_IGN);
+		ms->cmd.pids[ms->cmd.counter] = pid;
+		ms->cmd.counter++;
+		close(pfd[1]);
+		ft_start(ms, pfd[0]);
+		close(pfd[0]);
+	}
+}
+
+void	ft_exe(t_ms *ms)
+{
+	char	*first_cmd;
+
+	if (!ms->input || !*ms->input)
+		return ;
+	init_cmd(ms);
+	first_cmd = ms->cmd.cmd[0][0];
+	if (is_main_process_exe(first_cmd) == TRUE && ms->cmd.max_counter == 1)
+		builtin_exe(ms, first_cmd);
+	else
+	{
+		ft_start(ms, ms->fd.in[0]);
+		ft_wait(ms);
+	}
+	ms->cmd.last_exit_code = ms->cmd.cur_exit_code;
 }
 ```
 
@@ -379,27 +403,6 @@ echo "$HOME/test"
 echo '$HOME/test'
 ```
 
-### Edge Cases
-
-```bash
-# Empty input
-(just press enter)
-
-# Only spaces
-     
-
-# Unclosed quotes (should wait for closing)
-echo "hello
-
-# Non-existent command
-asdfghjkl
-
-# Permission denied
-./non_executable_file
-
-# Ctrl+C, Ctrl+D, Ctrl+\
-```
-
 ## ⚠️ Error Handling
 
 | Error | Message |
@@ -407,7 +410,7 @@ asdfghjkl
 | Command not found | `minishell: cmd: command not found` |
 | Permission denied | `minishell: ./file: Permission denied` |
 | No such file | `minishell: file: No such file or directory` |
-| Syntax error | `minishell: syntax error near unexpected token` |
+| Syntax error | `minishell: syntax error` |
 | Too many arguments | `minishell: exit: too many arguments` |
 | Numeric argument required | `minishell: exit: abc: numeric argument required` |
 
@@ -441,12 +444,8 @@ asdfghjkl
 | **seg-fault0** | [@seg-fault0](https://github.com/seg-fault0) |
 | **Zouhair Grir** | [@GrirZouhair](https://github.com/GrirZouhair) |
 
-42 Intra: zogrir
-
 ## 📄 License
 
 This project is part of the 42 school curriculum.
 
 ---
-
-*Made with ❤️ at 42/1337*
